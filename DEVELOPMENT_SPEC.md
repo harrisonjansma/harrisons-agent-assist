@@ -64,13 +64,16 @@ docs(id bigint identity pk, title text, body text, embedding vector(1536))  -- +
 
 | Var | Scope | Purpose | Present in this env? | How to obtain |
 |---|---|---|---|---|
-| `DEEPGRAM_API_KEY` | worker | streaming ASR | **❌ missing** | Deepgram console (Harrison has an app in there) — or `BWS_TOKEN` vault |
-| `OPENAI_API_KEY` | worker | notes, sentiment, embeddings | **❌ missing** | OpenAI dashboard — or `BWS_TOKEN` vault |
-| `SUPABASE_URL` | worker | Postgres/pgvector endpoint | **❌ missing (runtime)** | derive from Supabase project (see `SUPABASE_ACCESS_TOKEN` below) |
-| `SUPABASE_SERVICE_ROLE_KEY` | worker | server-side DB writes | **❌ missing (runtime)** | Supabase project API settings |
+| `DEEPGRAM_API_KEY` | worker | streaming ASR | ✅ **in BWS vault** | `BWS_TOKEN` → Bitwarden Secrets Manager |
+| `OPENAI_API_KEY` | worker | notes, sentiment, embeddings | ✅ **in BWS vault** | `BWS_TOKEN` → Bitwarden Secrets Manager |
+| `SUPABASE_URL` | worker | Postgres/pgvector endpoint | ✅ **provisioned** | `https://ntvwaczcgvzfdvykqnwo.supabase.co` (project `call-copilot`) |
+| `SUPABASE_SERVICE_ROLE_KEY` | worker | server-side DB writes | ✅ **provisioned** | Supabase → project `call-copilot` → API settings (service_role) |
 | `PORT` | worker | listen port | ✅ injected by Railway | n/a |
 | `NEXT_PUBLIC_WS_URL` | web | worker WS endpoint | **❌ set after worker deploy** | `wss://ws.agentassistdemo.harrisonjansma.com/ws` (worker custom domain) |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | web | read-only doc fetch (HAR-262) | **❌ missing** | Supabase project API settings |
+| `NEXT_PUBLIC_SUPABASE_URL` | web | read-only doc fetch (HAR-262) | ✅ **provisioned** | `https://ntvwaczcgvzfdvykqnwo.supabase.co` |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | web | read-only doc fetch (HAR-262) | ✅ **provisioned** | Supabase → project `call-copilot` → API settings (anon) |
+
+> **Supabase bootstrap done (2026-07-17):** project **`call-copilot`** (ref `ntvwaczcgvzfdvykqnwo`, org `Jansma`, region `us-east-1`) created via the Management API; `pgvector` enabled and `supabase/migrations/0001_init.sql` applied (tables `sessions`, `utterances`, `notes`, `docs` + ivfflat cosine index verified). Runtime credentials (URL, service_role, anon, DB password) are stored in the session scratchpad at `supabase-credentials.env` — **not committed** — pending being wired into Railway env + the BWS vault. Non-secret values are also in `.env.example`.
 
 ### Credentials already in the environment (useful for bootstrapping)
 
@@ -101,7 +104,7 @@ Steps (done in HAR-259, step 6):
 
 > Alternative if a second subdomain is unwanted: keep the worker on its default `*.up.railway.app` host and point only the web app at the custom domain. The two-subdomain layout above is preferred because the Loom/README read cleaner and there's no third-party host visible in the demo.
 
-**Credential gate before Weekend 1 coding:** obtain/confirm `DEEPGRAM_API_KEY` and `OPENAI_API_KEY` (check `BWS_TOKEN` vault first), and provision the Supabase project via `SUPABASE_ACCESS_TOKEN`. Everything else is derivable from those.
+**Credential gate before Weekend 1 coding:** ✅ **cleared.** Deepgram + OpenAI keys are in the BWS vault; the Supabase project is provisioned and migrated (§3, note above). The only remaining runtime value is `NEXT_PUBLIC_WS_URL`, which is set after the worker's first Railway deploy (HAR-259).
 
 ---
 

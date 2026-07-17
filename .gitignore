@@ -1,0 +1,19 @@
+# deps
+node_modules/
+.pnpm-store/
+
+# env / secrets — never commit
+.env
+.env.local
+.env.*.local
+*-credentials.env
+
+# build output
+.next/
+dist/
+build/
+out/
+
+# logs / os
+*.log
+.DS_Store
