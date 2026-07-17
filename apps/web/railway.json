@@ -1,0 +1,11 @@
+{
+  "$schema": "https://railway.com/railway.schema.json",
+  "build": {
+    "builder": "NIXPACKS",
+    "buildCommand": "corepack enable && pnpm install --frozen-lockfile && pnpm --filter @call-copilot/shared build && pnpm --filter @call-copilot/web build"
+  },
+  "deploy": {
+    "startCommand": "pnpm --filter @call-copilot/web start",
+    "restartPolicyType": "ON_FAILURE"
+  }
+}

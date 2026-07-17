@@ -1,0 +1,18 @@
+{
+  "name": "call-copilot",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Live Call Copilot — real-time agent-assist demo (transcript, notes, RAG, sentiment).",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "packageManager": "pnpm@10.33.0",
+  "scripts": {
+    "build": "pnpm -r build",
+    "typecheck": "pnpm -r typecheck",
+    "dev:web": "pnpm --filter @call-copilot/web dev",
+    "dev:worker": "pnpm --filter @call-copilot/worker dev",
+    "seed": "pnpm --filter @call-copilot/worker seed"
+  }
+}
