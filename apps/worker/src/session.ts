@@ -190,7 +190,7 @@ export class Session {
   }
 
   private async persistUtterance(text: string, receivedAt: number, speaker?: Speaker): Promise<void> {
-    const id = await this.deps.store.insertUtterance(this.id, text).catch((err) => {
+    const id = await this.deps.store.insertUtterance(this.id, text, speaker).catch((err) => {
       log.error({ err, session: this.id }, "failed to insert utterance");
       return null;
     });

@@ -7,7 +7,7 @@ import { serverDb } from "@call-copilot/shared";
 
 export interface SessionStore {
   /** Insert a finalized utterance; returns its row id (or null on failure). */
-  insertUtterance(sessionId: string, text: string): Promise<number | null>;
+  insertUtterance(sessionId: string, text: string, speaker?: string): Promise<number | null>;
   /** Upsert the running notes draft for a session. */
   upsertNotes(sessionId: string, markdown: string): Promise<void>;
   /** Attach a sentiment score to a previously-inserted utterance. */
@@ -18,10 +18,12 @@ export interface SessionStore {
 
 export function supabaseStore(): SessionStore {
   return {
-    async insertUtterance(sessionId, text) {
+    async insertUtterance(sessionId, text, speaker) {
       const { data, error } = await serverDb()
         .from("utterances")
-        .insert({ session_id: sessionId, text })
+        // speaker defaults to 'user' at the DB level (single-speaker mic path);
+        // diarized calls record 'agent'/'customer'.
+        .insert({ session_id: sessionId, text, ...(speaker ? { speaker } : {}) })
         .select("id")
         .single();
       if (error || !data) return null;
