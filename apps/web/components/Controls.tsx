@@ -13,25 +13,33 @@ export function Controls(props: {
     return (
       <button
         onClick={onStop}
-        className="rounded-md bg-slate-800 px-4 py-2 text-sm font-medium text-white hover:bg-slate-900"
+        className="inline-flex items-center gap-2 rounded-xl border border-[var(--line-strong)] bg-white/5 px-4 py-2.5 text-sm font-semibold text-ink transition hover:bg-white/10"
       >
+        <span className="h-2.5 w-2.5 rounded-[3px] bg-red-400" />
         Stop
       </button>
     );
   }
 
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="flex w-full flex-col gap-2.5 sm:w-auto sm:flex-row sm:flex-wrap">
       <button
         onClick={onSample}
-        className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+        className="brand-gradient inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold text-white shadow-[0_10px_30px_-8px_rgba(79,140,255,0.55)] transition hover:brightness-110"
       >
-        ▶ Play a sample call
+        <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current" aria-hidden>
+          <path d="M8 5v14l11-7z" />
+        </svg>
+        Play a sample call
       </button>
       <button
         onClick={onMic}
-        className="rounded-md border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
+        className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--line-strong)] bg-[var(--surface)] px-4 py-2.5 text-sm font-medium text-ink-muted transition hover:border-[var(--brand)]/50 hover:text-ink"
       >
+        <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden>
+          <rect x="9" y="3" width="6" height="11" rx="3" />
+          <path d="M5 11a7 7 0 0 0 14 0M12 18v3" strokeLinecap="round" />
+        </svg>
         Use my microphone
       </button>
     </div>
@@ -40,7 +48,7 @@ export function Controls(props: {
 
 export function ErrorBanner({ message }: { message: string }) {
   return (
-    <div className="rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800">
+    <div className="animate-rise rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-200">
       {message}
     </div>
   );

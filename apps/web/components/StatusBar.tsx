@@ -6,20 +6,28 @@ function fmt(ms: number): string {
 }
 
 const DOT: Record<ConnState, string> = {
-  idle: "bg-slate-300",
-  connecting: "bg-amber-400 animate-pulse",
-  live: "bg-green-500",
-  ended: "bg-slate-400",
-  error: "bg-red-500",
+  idle: "bg-ink-faint",
+  connecting: "bg-amber-400 animate-pulse2",
+  live: "bg-emerald-400 animate-pulse2",
+  ended: "bg-ink-faint",
+  error: "bg-red-400",
 };
-
 const LABEL: Record<ConnState, string> = {
   idle: "not connected",
-  connecting: "connecting…",
-  live: "connected",
+  connecting: "connecting",
+  live: "live",
   ended: "ended",
   error: "error",
 };
+
+function Stat({ label, value, warn }: { label: string; value: string; warn?: boolean }) {
+  return (
+    <span className="inline-flex items-baseline gap-1.5">
+      <span className="text-ink-faint">{label}</span>
+      <span className={`tabular-nums ${warn ? "font-semibold text-red-300" : "text-ink-muted"}`}>{value}</span>
+    </span>
+  );
+}
 
 export function StatusBar(props: {
   conn: ConnState;
@@ -28,21 +36,16 @@ export function StatusBar(props: {
   sentimentP50Ms: number | null;
 }) {
   const { conn, remainingMs, asrLatencyMs, sentimentP50Ms } = props;
-  const showTimer = conn === "live";
   const nearEnd = remainingMs <= 30_000;
   return (
-    <div className="flex flex-wrap items-center gap-x-5 gap-y-1 rounded-md bg-slate-50 px-3 py-2 text-xs text-slate-600">
-      <span className="flex items-center gap-2">
+    <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs">
+      <span className="inline-flex items-center gap-2 rounded-full border border-[var(--line)] bg-[var(--surface)] px-2.5 py-1 font-medium text-ink-muted">
         <span className={`h-2 w-2 rounded-full ${DOT[conn]}`} />
         {LABEL[conn]}
       </span>
-      {showTimer && (
-        <span className={nearEnd ? "font-semibold text-red-600" : ""}>
-          {fmt(remainingMs)} left
-        </span>
-      )}
-      <span>ASR latency: {asrLatencyMs != null ? `${asrLatencyMs} ms` : "—"}</span>
-      <span>sentiment p50: {sentimentP50Ms != null ? `${sentimentP50Ms} ms` : "—"}</span>
+      {conn === "live" && <Stat label="time left" value={fmt(remainingMs)} warn={nearEnd} />}
+      <Stat label="ASR latency" value={asrLatencyMs != null ? `${asrLatencyMs} ms` : "—"} />
+      <Stat label="sentiment p50" value={sentimentP50Ms != null ? `${sentimentP50Ms} ms` : "—"} />
     </div>
   );
 }

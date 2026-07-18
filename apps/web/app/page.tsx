@@ -15,45 +15,60 @@ export default function Page() {
   const showAlert = state.alert && Date.now() - state.alert.at < 12_000;
 
   return (
-    <main className="mx-auto flex min-h-screen max-w-6xl flex-col gap-4 p-4 sm:p-6">
+    <main className="mx-auto flex min-h-screen max-w-6xl flex-col gap-5 px-4 py-6 sm:px-6 sm:py-9">
       <Header />
 
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <Controls
-          conn={state.conn}
-          onMic={() => void start("mic")}
-          onSample={() => void start("sample")}
-          onStop={stop}
-        />
-        <SentimentGauge score={state.sentimentScore} label={state.sentimentLabel} />
-      </div>
+      {/* Console: controls + gauge + live stats in one frame */}
+      <section className="card animate-rise p-4 sm:p-5">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <Controls
+            conn={state.conn}
+            onMic={() => void start("mic")}
+            onSample={() => void start("sample")}
+            onStop={stop}
+          />
+          <SentimentGauge score={state.sentimentScore} label={state.sentimentLabel} />
+        </div>
+        <div className="mt-4 border-t border-[var(--line)] pt-3">
+          <StatusBar
+            conn={state.conn}
+            remainingMs={state.remainingMs}
+            asrLatencyMs={state.asrLatencyMs}
+            sentimentP50Ms={state.sentimentP50Ms}
+          />
+        </div>
+      </section>
 
       {state.conn === "error" && state.errorMsg && <ErrorBanner message={state.errorMsg} />}
       {showAlert && state.alert && <FrustrationBanner latencyMs={state.alert.latencyMs} />}
 
-      <StatusBar
-        conn={state.conn}
-        remainingMs={state.remainingMs}
-        asrLatencyMs={state.asrLatencyMs}
-        sentimentP50Ms={state.sentimentP50Ms}
-      />
-
-      <div className="grid min-h-0 flex-1 grid-cols-1 gap-3 md:grid-cols-3">
-        <div className="min-h-[16rem] md:min-h-[28rem]">
+      {/* Three live panels */}
+      <div className="grid grid-cols-1 gap-4 md:h-[30rem] md:grid-cols-3">
+        <div className="h-[20rem] md:h-full">
           <TranscriptPanel finals={state.finals} interim={state.interim} />
         </div>
-        <div className="min-h-[16rem] md:min-h-[28rem]">
+        <div className="h-[20rem] md:h-full">
           <NotesPanel notes={state.notes} drafting={state.notesDrafting} />
         </div>
-        <div className="min-h-[16rem] md:min-h-[28rem]">
+        <div className="h-[20rem] md:h-full">
           <DocsPanel docs={state.docs} />
         </div>
       </div>
 
       <HowItWorks />
 
-      <footer className="pb-6 pt-2 text-center text-xs text-slate-400">
-        Live demo · <a className="hover:underline" href="https://github.com/harrisonjansma/call-copilot">source on GitHub</a> · a portfolio project, "Acme" data is fictional
+      <footer className="mt-2 flex flex-col items-center gap-1 pb-6 pt-2 text-center text-xs text-ink-faint">
+        <p>
+          Built by{" "}
+          <a className="text-ink-muted hover:text-ink" href="https://harrisonjansma.com">
+            Harrison Jansma
+          </a>{" "}
+          ·{" "}
+          <a className="hover:text-ink-muted" href="https://github.com/harrisonjansma/call-copilot">
+            source on GitHub
+          </a>
+        </p>
+        <p className="text-ink-faint/70">A portfolio project — “Acme Support” data is fictional.</p>
       </footer>
     </main>
   );

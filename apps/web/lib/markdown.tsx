@@ -53,5 +53,5 @@ export function Markdown({ source }: { source: string }) {
     );
   }
   flush();
-  return <div className="text-sm leading-relaxed text-slate-700">{out}</div>;
+  return <div className="animate-rise text-sm leading-relaxed text-ink-muted [&_strong]:text-ink">{out}</div>;
 }
