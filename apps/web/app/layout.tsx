@@ -9,6 +9,10 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://agentassistdemo.harrisonjansma.com"),
   title: TITLE,
   description: DESCRIPTION,
+  icons: {
+    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
+    apple: [{ url: "/favicon.svg" }],
+  },
   openGraph: {
     title: TITLE,
     description: DESCRIPTION,

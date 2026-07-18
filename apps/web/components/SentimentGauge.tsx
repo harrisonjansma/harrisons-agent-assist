@@ -52,12 +52,12 @@ function fmtTime(at: number): string {
 }
 
 export function FrustrationBanner({
-  latencyMs,
   at,
+  p50Ms,
   additionalCount,
 }: {
-  latencyMs: number;
   at: number;
+  p50Ms: number | null;
   additionalCount: number;
 }) {
   return (
@@ -68,8 +68,13 @@ export function FrustrationBanner({
       <div className="min-w-0">
         <div>
           <strong className="font-semibold text-red-100">Frustration detected</strong> — supervisor pinged at{" "}
-          <span className="tabular-nums text-red-100">{fmtTime(at)}</span>.{" "}
-          <span className="text-red-300/90">detected in {latencyMs} ms</span>
+          <span className="tabular-nums text-red-100">{fmtTime(at)}</span>
+          {p50Ms != null && (
+            <>
+              {" "}
+              · <span className="text-red-300/90">~{p50Ms} ms median transcript→score</span>
+            </>
+          )}
         </div>
         {additionalCount > 0 && (
           <div className="mt-1 text-xs text-red-300/70">

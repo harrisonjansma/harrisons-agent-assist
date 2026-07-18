@@ -20,9 +20,15 @@ export function Header() {
     <header className="animate-rise">
       <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
         <div className="flex min-w-0 items-start gap-4">
-          {/* Monogram mark */}
-          <div className="brand-gradient grid h-12 w-12 shrink-0 place-items-center rounded-2xl text-base font-bold tracking-tight text-white shadow-[0_10px_30px_-8px_rgba(79,140,255,0.6)]">
-            HJ
+          {/* Live Call Copilot mark — a live-audio waveform */}
+          <div className="brand-gradient grid h-12 w-12 shrink-0 place-items-center rounded-2xl shadow-[0_10px_30px_-8px_rgba(79,140,255,0.6)]">
+            <svg viewBox="0 0 64 64" className="h-7 w-7" aria-hidden fill="#fff">
+              <rect x="10" y="24" width="6" height="16" rx="3" />
+              <rect x="20" y="18" width="6" height="28" rx="3" />
+              <rect x="30" y="10" width="6" height="44" rx="3" />
+              <rect x="40" y="18" width="6" height="28" rx="3" />
+              <rect x="50" y="26" width="6" height="12" rx="3" />
+            </svg>
           </div>
           <div className="min-w-0">
             <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-brand-ink">

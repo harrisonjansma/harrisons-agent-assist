@@ -9,6 +9,7 @@ import { NotesPanel } from "../components/NotesPanel";
 import { DocsPanel } from "../components/DocsPanel";
 import { SentimentGauge, FrustrationBanner } from "../components/SentimentGauge";
 import { HowItWorks } from "../components/HowItWorks";
+import { WhatThisShows } from "../components/WhatThisShows";
 import { Disclaimer } from "../components/Disclaimer";
 import { RolePlay } from "../components/RolePlay";
 
@@ -64,8 +65,8 @@ export default function Page() {
       {state.conn === "error" && state.errorMsg && <ErrorBanner message={state.errorMsg} />}
       {showAlert && state.alert && (
         <FrustrationBanner
-          latencyMs={state.alert.latencyMs}
           at={state.alert.at}
+          p50Ms={state.sentimentP50Ms}
           additionalCount={state.alert.additionalCount}
         />
       )}
@@ -86,6 +87,7 @@ export default function Page() {
       </div>
 
       <HowItWorks />
+      <WhatThisShows />
 
       <footer className="mt-2 flex flex-col items-center gap-1 pb-6 pt-2 text-center text-xs text-ink-faint">
         <p>
