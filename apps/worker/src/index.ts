@@ -63,6 +63,22 @@ const server = createServer((req, res) => {
     })();
     return;
   }
+  // TEMPORARY: verify the Deepgram key against their REST API.
+  if (req.url === "/check-deepgram") {
+    void (async () => {
+      try {
+        const r = await fetch("https://api.deepgram.com/v1/projects", {
+          headers: { Authorization: `Token ${process.env.DEEPGRAM_API_KEY ?? ""}` },
+        });
+        const body = (await r.text()).slice(0, 300);
+        res.writeHead(200, { "content-type": "application/json" });
+        res.end(JSON.stringify({ status: r.status, body }));
+      } catch (err) {
+        res.writeHead(500).end(String(err));
+      }
+    })();
+    return;
+  }
   res.writeHead(404).end();
 });
 
