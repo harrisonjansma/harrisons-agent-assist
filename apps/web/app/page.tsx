@@ -96,7 +96,7 @@ export default function Page() {
             Harrison Jansma
           </a>{" "}
           ·{" "}
-          <a className="hover:text-ink-muted" href="https://github.com/harrisonjansma/call-copilot">
+          <a className="hover:text-ink-muted" href="https://github.com/harrisonjansma/harrisons-agent-assist">
             source on GitHub
           </a>
         </p>

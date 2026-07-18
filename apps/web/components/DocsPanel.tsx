@@ -32,11 +32,11 @@ function DocCard({ doc }: { doc: DocHit }) {
     >
       <div className="flex items-center justify-between gap-2">
         <span className="text-sm font-medium text-ink">{doc.title}</span>
-        <span className="shrink-0 rounded-md bg-white/5 px-1.5 py-0.5 text-[10px] tabular-nums text-brand-ink">
+        <span className="shrink-0 rounded-md bg-[var(--brand)]/10 px-1.5 py-0.5 text-[10px] tabular-nums text-brand-ink">
           {doc.score.toFixed(2)}
         </span>
       </div>
-      <div className="mt-2 h-1 w-full overflow-hidden rounded-full bg-white/10">
+      <div className="mt-2 h-1 w-full overflow-hidden rounded-full bg-black/[0.07]">
         <div className="brand-gradient h-full rounded-full transition-all" style={{ width: `${pct}%` }} />
       </div>
       <p className="mt-2 text-xs leading-relaxed text-ink-faint [&]:line-clamp-4">

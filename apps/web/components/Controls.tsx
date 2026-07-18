@@ -1,4 +1,9 @@
+import { useEffect, useState } from "react";
 import type { ConnState } from "../lib/useCopilot";
+
+// Once per page load: the sample button rainbow-glows briefly to draw the eye,
+// then settles into a normal button so it doesn't get annoying.
+let hasGlowed = false;
 
 export function Controls(props: {
   conn: ConnState;
@@ -9,13 +14,21 @@ export function Controls(props: {
   const { conn, onMic, onSample, onStop } = props;
   const live = conn === "live" || conn === "connecting";
 
+  const [glow, setGlow] = useState(!hasGlowed);
+  useEffect(() => {
+    if (hasGlowed) return;
+    hasGlowed = true;
+    const t = setTimeout(() => setGlow(false), 5200);
+    return () => clearTimeout(t);
+  }, []);
+
   if (live) {
     return (
       <button
         onClick={onStop}
-        className="inline-flex items-center gap-2 rounded-xl border border-[var(--line-strong)] bg-white/5 px-4 py-2.5 text-sm font-semibold text-ink transition hover:bg-white/10"
+        className="inline-flex items-center gap-2 rounded-xl border border-[var(--line-strong)] bg-[var(--surface-strong)] px-4 py-2.5 text-sm font-semibold text-ink transition hover:border-[var(--brand)]/40"
       >
-        <span className="h-2.5 w-2.5 rounded-[3px] bg-red-400" />
+        <span className="h-2.5 w-2.5 rounded-[3px] bg-red-500" />
         Stop
       </button>
     );
@@ -25,7 +38,9 @@ export function Controls(props: {
     <div className="flex w-full flex-col gap-2.5 sm:w-auto sm:flex-row sm:flex-wrap">
       <button
         onClick={onSample}
-        className="brand-gradient inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold text-white shadow-[0_10px_30px_-8px_rgba(79,140,255,0.55)] transition hover:brightness-110"
+        className={`brand-gradient inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold text-white shadow-[0_10px_30px_-8px_rgba(79,70,229,0.5)] transition hover:brightness-110 ${
+          glow ? "sample-glow" : ""
+        }`}
       >
         <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current" aria-hidden>
           <path d="M8 5v14l11-7z" />
@@ -48,7 +63,7 @@ export function Controls(props: {
 
 export function ErrorBanner({ message }: { message: string }) {
   return (
-    <div className="animate-rise rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-200">
+    <div className="animate-rise rounded-xl border border-amber-500/40 bg-amber-50 px-4 py-3 text-sm text-amber-800">
       {message}
     </div>
   );

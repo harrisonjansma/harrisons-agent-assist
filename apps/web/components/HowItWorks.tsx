@@ -32,7 +32,7 @@ export function HowItWorks() {
             drafts running notes, a pgvector search retrieves the most relevant procedures, and a second LLM scores
             sentiment — the frustration alert time is measured from transcript to score and shown on screen.
           </p>
-          <pre className="scroll-thin overflow-x-auto rounded-lg border border-[var(--line)] bg-black/20 p-3 text-xs text-ink-muted">
+          <pre className="scroll-thin overflow-x-auto rounded-lg border border-[var(--line)] bg-[var(--surface-strong)] p-3 text-xs text-ink-muted">
 {`mic ──ws──▶ worker ──▶ Deepgram (ASR)
                  ├──▶ LLM  ▶ notes
                  ├──▶ pgvector ▶ docs

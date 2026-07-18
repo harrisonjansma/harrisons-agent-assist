@@ -7,7 +7,7 @@
 > is recorded.
 
 **Live demo:** https://agentassistdemo.harrisonjansma.com ·
-**Code:** https://github.com/harrisonjansma/call-copilot
+**Code:** https://github.com/harrisonjansma/harrisons-agent-assist
 
 {{EMBED_LOOM}}
 

@@ -1,10 +1,10 @@
 import type { SentimentLabel } from "@call-copilot/shared/protocol";
 
 const LABEL_COLOR: Record<SentimentLabel, string> = {
-  positive: "text-emerald-400",
+  positive: "text-emerald-600",
   neutral: "text-ink-muted",
-  negative: "text-amber-400",
-  frustrated: "text-red-400",
+  negative: "text-amber-600",
+  frustrated: "text-red-600",
 };
 
 /** Semicircular needle gauge spanning -1 (left) to +1 (right). */
@@ -26,13 +26,13 @@ export function SentimentGauge({ score, label }: { score: number; label: Sentime
           y1="60"
           x2="60"
           y2="20"
-          stroke="#e6edf6"
+          stroke="#171a26"
           strokeWidth="2.5"
           strokeLinecap="round"
           transform={`rotate(${angle} 60 60)`}
           style={{ transition: "transform 400ms cubic-bezier(.2,.8,.2,1)" }}
         />
-        <circle cx="60" cy="60" r="3.5" fill="#e6edf6" />
+        <circle cx="60" cy="60" r="3.5" fill="#171a26" />
       </svg>
       <div>
         <div className="text-[10px] uppercase tracking-[0.14em] text-ink-faint">Sentiment</div>
@@ -61,23 +61,23 @@ export function FrustrationBanner({
   additionalCount: number;
 }) {
   return (
-    <div className="animate-rise flex items-start gap-3 rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-200">
-      <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-red-500/20 text-red-300" aria-hidden>
+    <div className="animate-rise flex items-start gap-3 rounded-xl border border-red-500/30 bg-red-50 px-4 py-3 text-sm text-red-800">
+      <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-red-100 text-red-600" aria-hidden>
         !
       </span>
       <div className="min-w-0">
         <div>
-          <strong className="font-semibold text-red-100">Frustration detected</strong> — supervisor pinged at{" "}
-          <span className="tabular-nums text-red-100">{fmtTime(at)}</span>
+          <strong className="font-semibold text-red-900">Frustration detected</strong> — supervisor pinged at{" "}
+          <span className="tabular-nums text-red-900">{fmtTime(at)}</span>
           {p50Ms != null && (
             <>
               {" "}
-              · <span className="text-red-300/90">~{p50Ms} ms median transcript→score</span>
+              · <span className="text-red-600">~{p50Ms} ms median transcript→score</span>
             </>
           )}
         </div>
         {additionalCount > 0 && (
-          <div className="mt-1 text-xs text-red-300/70">
+          <div className="mt-1 text-xs text-red-600">
             +{additionalCount} additional sentiment alert{additionalCount > 1 ? "s" : ""} received — logged, not
             re-paged (supervisor already engaged).
           </div>

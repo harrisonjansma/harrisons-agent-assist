@@ -51,7 +51,7 @@ function Line({ text, speaker, interim }: { text: string; speaker?: Speaker | nu
       <div
         className={`animate-rise max-w-[88%] rounded-2xl px-3 py-2 ${
           isAgent
-            ? "rounded-tr-sm border border-[var(--line)] bg-white/[0.04]"
+            ? "rounded-tr-sm border border-[var(--line)] bg-[var(--surface-strong)]"
             : "rounded-tl-sm border border-[var(--brand)]/25 bg-[var(--brand)]/[0.10]"
         } ${interim ? "opacity-70" : ""}`}
       >

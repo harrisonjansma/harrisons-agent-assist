@@ -24,7 +24,7 @@ function Stat({ label, value, warn }: { label: string; value: string; warn?: boo
   return (
     <span className="inline-flex items-baseline gap-1.5">
       <span className="text-ink-faint">{label}</span>
-      <span className={`tabular-nums ${warn ? "font-semibold text-red-300" : "text-ink-muted"}`}>{value}</span>
+      <span className={`tabular-nums ${warn ? "font-semibold text-red-600" : "text-ink-muted"}`}>{value}</span>
     </span>
   );
 }

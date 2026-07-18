@@ -1,4 +1,4 @@
-const GITHUB_URL = "https://github.com/harrisonjansma/call-copilot";
+const GITHUB_URL = "https://github.com/harrisonjansma/harrisons-agent-assist";
 const SITE_URL = "https://harrisonjansma.com";
 
 function IconLink({ href, children, label }: { href: string; children: React.ReactNode; label: string }) {
@@ -46,7 +46,7 @@ export function Header() {
 
         <div className="flex shrink-0 flex-wrap items-center gap-x-2 gap-y-1 sm:flex-col sm:items-end">
           <span className="text-xs text-ink-faint">built by</span>
-          <a href={SITE_URL} target="_blank" rel="noreferrer" className="text-sm font-semibold text-ink hover:text-white">
+          <a href={SITE_URL} target="_blank" rel="noreferrer" className="text-sm font-semibold text-ink hover:text-brand">
             Harrison Jansma
           </a>
           <div className="mt-1 flex gap-2">
