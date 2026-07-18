@@ -59,15 +59,17 @@ export default function Page() {
       {state.conn === "error" && state.errorMsg && <ErrorBanner message={state.errorMsg} />}
       {showAlert && state.alert && <FrustrationBanner latencyMs={state.alert.latencyMs} />}
 
-      {/* Three live panels */}
-      <div className="grid grid-cols-1 gap-4 md:h-[30rem] md:grid-cols-3">
-        <div className="h-[20rem] md:h-full">
+      {/* Three live panels. Each column gets an explicit height so the panels'
+          internal scroll clips content — relying on h-full through an auto-sized
+          grid row lets tall panels overflow and paint over the card below. */}
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+        <div className="h-[20rem] md:h-[30rem]">
           <TranscriptPanel finals={state.finals} interim={state.interim} />
         </div>
-        <div className="h-[20rem] md:h-full">
+        <div className="h-[20rem] md:h-[30rem]">
           <NotesPanel notes={state.notes} drafting={state.notesDrafting} />
         </div>
-        <div className="h-[20rem] md:h-full">
+        <div className="h-[20rem] md:h-[30rem]">
           <DocsPanel docs={state.docs} />
         </div>
       </div>
