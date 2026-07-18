@@ -96,24 +96,29 @@ const server = createServer((req, res) => {
         const docEmbStr = typeof rawEmb === "string" ? rawEmb : JSON.stringify(rawEmb);
         const viaDocEmb = await db.rpc("match_docs", { query_embedding: docEmbStr, match_count: 3, min_score: -2 });
 
-        // B) live OpenAI query embedding, all scores (min_score -2)
+        // B) live OpenAI query embedding — try several string formats
         const [emb] = await embed("I was charged twice and I want a refund");
-        const viaOpenAI = await db.rpc("match_docs", {
-          query_embedding: JSON.stringify(emb),
-          match_count: 3,
-          min_score: -2,
-        });
+        const fmtA = JSON.stringify(emb);
+        const fmtB = "[" + emb.map((x) => x.toFixed(8)).join(",") + "]";
+        const runRaw = async (s: string) => {
+          const r = await db.rpc("match_docs", { query_embedding: s, match_count: 3, min_score: -2 });
+          return { len: s.length, err: r.error ? String((r.error as { message?: string }).message) : null, rows: fmt(r) };
+        };
+        const viaJson = await runRaw(fmtA);
+        const viaFixed = await runRaw(fmtB);
 
         res.writeHead(200, { "content-type": "application/json" });
         res.end(
           JSON.stringify(
             {
               docEmbType: typeof rawEmb,
+              docEmbLen: docEmbStr?.length,
               docEmbSample: docEmbStr?.slice(0, 40),
-              openaiEmbLen: emb?.length,
-              openaiEmbSample: emb?.slice(0, 4),
               viaDocEmb: fmt(viaDocEmb),
-              viaOpenAI: fmt(viaOpenAI),
+              openaiEmbLen: emb?.length,
+              jsonSample: fmtA.slice(0, 60),
+              viaJson,
+              viaFixed,
             },
             null,
             2,
