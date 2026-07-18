@@ -17,10 +17,13 @@ export async function retrieveDocs(windowText: string): Promise<DocHit[]> {
   const [queryEmbedding] = await embed(trimmed);
   if (!queryEmbedding) return [];
 
+  // Format as a compact pgvector literal at float4-like precision. Full
+  // float64 JSON.stringify produces a ~30KB arg that the RPC silently rejects
+  // (arrives NULL → 0 rows); ~7 significant figures matches how pgvector stores
+  // the docs and keeps the arg small. match_docs casts `::vector` (migration 0004).
+  const vectorLiteral = "[" + queryEmbedding.map((x) => Number(x.toPrecision(7))).join(",") + "]";
   const { data, error } = await serverDb().rpc("match_docs", {
-    // pass as text — PostgREST won't coerce a JSON array into a pgvector param;
-    // match_docs casts `::vector` internally (migration 0004).
-    query_embedding: JSON.stringify(queryEmbedding),
+    query_embedding: vectorLiteral,
     match_count: TOP_K,
     min_score: MIN_SCORE,
   });
