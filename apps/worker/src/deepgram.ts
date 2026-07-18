@@ -55,7 +55,7 @@ export class DeepgramStream {
         const msg = JSON.parse(data.toString());
         if (msg.type && msg.type !== "Results") {
           if (msg.type !== "Metadata" && msg.type !== "SpeechStarted") {
-            log.info({ dg: msg.type, msg: JSON.stringify(msg).slice(0, 300) }, "deepgram non-results message");
+            log.info("deepgram non-results: " + JSON.stringify(msg).slice(0, 250));
           }
           return; // Metadata/SpeechStarted etc.
         }
@@ -73,14 +73,14 @@ export class DeepgramStream {
     });
 
     this.ws.on("error", (err) => {
-      log.error({ err }, "deepgram: error");
+      log.error("deepgram: error " + String(err).slice(0, 200));
       handlers.onError(err instanceof Error ? err : new Error(String(err)));
     });
 
     this.ws.on("close", (code: number, reason: Buffer) => {
       this.open = false;
       if (this.keepAlive) clearInterval(this.keepAlive);
-      log.info({ code, reason: reason?.toString().slice(0, 200) }, "deepgram: close");
+      log.info(`deepgram: close code=${code} reason=${reason?.toString().slice(0, 160)}`);
       handlers.onClose();
     });
   }
