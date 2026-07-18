@@ -11,6 +11,12 @@ function DocCard({ doc }: { doc: DocHit }) {
     const next = !open;
     setOpen(next);
     if (next && body == null) {
+      // Sample replay ships the body inline (self-contained, no DB call);
+      // live mic mode fetches it by id.
+      if (doc.body != null) {
+        setBody(doc.body);
+        return;
+      }
       setLoading(true);
       try {
         const res = await fetch(`/api/docs/${doc.id}`);
