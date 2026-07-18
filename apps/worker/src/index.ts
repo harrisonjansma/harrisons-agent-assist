@@ -45,6 +45,10 @@ const server = createServer((req, res) => {
         const viaRetrieve = await retrieveDocs(query);
         // 2) raw match_docs with the compact literal, min_score -2 (all scores)
         const [emb] = await embed(query);
+        if (!emb) {
+          res.writeHead(500).end("no embedding");
+          return;
+        }
         const lit = "[" + emb.map((x) => Number(x.toPrecision(7))).join(",") + "]";
         const raw = await db.rpc("match_docs", { query_embedding: lit, match_count: 5, min_score: -2 });
         res.writeHead(200, { "content-type": "application/json" });
