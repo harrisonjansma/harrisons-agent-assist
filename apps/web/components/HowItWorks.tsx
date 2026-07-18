@@ -1,5 +1,16 @@
 import { useState } from "react";
 
+const STACK: { name: string; role: string }[] = [
+  { name: "Next.js", role: "web UI" },
+  { name: "Node + ws", role: "WebSocket worker" },
+  { name: "Deepgram nova-2", role: "streaming speech-to-text" },
+  { name: "OpenAI gpt-4o-mini", role: "notes + sentiment" },
+  { name: "text-embedding-3-small", role: "RAG embeddings" },
+  { name: "Supabase + pgvector", role: "docs store + vector search" },
+  { name: "Railway", role: "hosting" },
+  { name: "Cloudflare", role: "DNS + TLS" },
+];
+
 export function HowItWorks() {
   const [open, setOpen] = useState(false);
   return (
@@ -34,6 +45,39 @@ export function HowItWorks() {
             costs nothing to re-watch. Use your microphone for a fully live session where Deepgram and the
             LLMs run in real time.
           </p>
+
+          {/* Stack */}
+          <div className="border-t border-[var(--line)] pt-3">
+            <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-faint">
+              Built with
+            </p>
+            <ul className="flex flex-wrap gap-1.5">
+              {STACK.map((t) => (
+                <li
+                  key={t.name}
+                  title={t.role}
+                  className="inline-flex items-baseline gap-1.5 rounded-md border border-[var(--line)] bg-[var(--surface)] px-2 py-1 text-xs text-ink-muted"
+                >
+                  <span className="font-medium text-ink">{t.name}</span>
+                  <span className="text-ink-faint">· {t.role}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-2 text-xs leading-relaxed text-ink-faint">
+              Built with{" "}
+              <a
+                href="https://claude.com/claude-code"
+                target="_blank"
+                rel="noreferrer"
+                className="text-ink-muted underline decoration-dotted underline-offset-2 hover:text-ink"
+              >
+                Claude Code
+              </a>
+              , Anthropic&rsquo;s agentic coding CLI — pair-programmed end to end (scaffold, pipeline,
+              deploy).
+            </p>
+          </div>
+
           <p className="text-ink-faint">
             A public re-build of a real-time agent-assist system I built at Capital One. Code on GitHub; full write-up
             on my site.

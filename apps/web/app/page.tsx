@@ -10,6 +10,7 @@ import { DocsPanel } from "../components/DocsPanel";
 import { SentimentGauge, FrustrationBanner } from "../components/SentimentGauge";
 import { HowItWorks } from "../components/HowItWorks";
 import { Disclaimer } from "../components/Disclaimer";
+import { RolePlay } from "../components/RolePlay";
 
 export default function Page() {
   const { state, start, stop } = useCopilot();
@@ -55,6 +56,8 @@ export default function Page() {
           </p>
         )}
       </section>
+
+      {state.mode === "mic" && (state.conn === "connecting" || state.conn === "live") && <RolePlay />}
 
       {state.conn === "error" && state.errorMsg && <ErrorBanner message={state.errorMsg} />}
       {showAlert && state.alert && <FrustrationBanner latencyMs={state.alert.latencyMs} />}
