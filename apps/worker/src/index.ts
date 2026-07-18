@@ -34,6 +34,35 @@ const server = createServer((req, res) => {
     res.end(JSON.stringify({ ok: true, uptime: Math.floor((Date.now() - START) / 1000) }));
     return;
   }
+  // TEMPORARY: one-off generator for the sample-call audio via OpenAI TTS.
+  // Removed after the asset is produced (OpenAI is only reachable from prod).
+  if (req.url === "/gen-sample") {
+    void (async () => {
+      try {
+        const { default: OpenAI } = await import("openai");
+        const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+        const script =
+          "Hi, yeah, I'm calling because I was charged twice for my order this month. " +
+          "There are two identical charges on my card, same amount, same day, and I need one of them refunded. " +
+          "Honestly, this is the third time I've had to call about billing and it is getting ridiculous. Nobody has fixed it and I'm really frustrated at this point. " +
+          "Look, if this keeps happening, I want to know how to cancel my subscription entirely. " +
+          "Can you tell me how to cancel, and whether I'll get a refund for the unused time? I just want this sorted out today.";
+        const speech = await client.audio.speech.create({
+          model: "tts-1",
+          voice: "onyx",
+          input: script,
+          response_format: "opus",
+        });
+        const buf = Buffer.from(await speech.arrayBuffer());
+        res.writeHead(200, { "content-type": "audio/ogg" });
+        res.end(buf);
+      } catch (err) {
+        log.error({ err }, "gen-sample failed");
+        res.writeHead(500).end(String(err));
+      }
+    })();
+    return;
+  }
   res.writeHead(404).end();
 });
 
