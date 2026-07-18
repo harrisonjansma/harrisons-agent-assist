@@ -11,6 +11,7 @@
   "scripts": {
     "build": "pnpm -r build",
     "typecheck": "pnpm -r typecheck",
+    "test": "pnpm -r --if-present test",
     "dev:web": "pnpm --filter @call-copilot/web dev",
     "dev:worker": "pnpm --filter @call-copilot/worker dev",
     "seed": "pnpm --filter @call-copilot/worker seed"
