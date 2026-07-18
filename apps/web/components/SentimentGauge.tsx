@@ -43,16 +43,41 @@ export function SentimentGauge({ score, label }: { score: number; label: Sentime
   );
 }
 
-export function FrustrationBanner({ latencyMs }: { latencyMs: number }) {
+function fmtTime(at: number): string {
+  try {
+    return new Date(at).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+  } catch {
+    return "";
+  }
+}
+
+export function FrustrationBanner({
+  latencyMs,
+  at,
+  additionalCount,
+}: {
+  latencyMs: number;
+  at: number;
+  additionalCount: number;
+}) {
   return (
-    <div className="animate-rise flex items-center gap-3 rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-200">
-      <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-red-500/20 text-red-300" aria-hidden>
+    <div className="animate-rise flex items-start gap-3 rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-200">
+      <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-red-500/20 text-red-300" aria-hidden>
         !
       </span>
-      <span>
-        <strong className="font-semibold text-red-100">Frustration detected</strong> — a supervisor would be pinged
-        now. <span className="text-red-300/90">detected in {latencyMs} ms</span>
-      </span>
+      <div className="min-w-0">
+        <div>
+          <strong className="font-semibold text-red-100">Frustration detected</strong> — supervisor pinged at{" "}
+          <span className="tabular-nums text-red-100">{fmtTime(at)}</span>.{" "}
+          <span className="text-red-300/90">detected in {latencyMs} ms</span>
+        </div>
+        {additionalCount > 0 && (
+          <div className="mt-1 text-xs text-red-300/70">
+            +{additionalCount} additional sentiment alert{additionalCount > 1 ? "s" : ""} received — logged, not
+            re-paged (supervisor already engaged).
+          </div>
+        )}
+      </div>
     </div>
   );
 }

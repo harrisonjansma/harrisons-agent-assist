@@ -14,7 +14,9 @@ import { RolePlay } from "../components/RolePlay";
 
 export default function Page() {
   const { state, start, stop } = useCopilot();
-  const showAlert = state.alert && Date.now() - state.alert.at < 12_000;
+  // The alert is a persistent notification once the first one fires (it stays
+  // for the session so the timestamp remains visible); it resets on a new call.
+  const showAlert = state.alert !== null;
 
   return (
     <main className="mx-auto flex min-h-screen max-w-6xl flex-col gap-5 px-4 py-6 sm:px-6 sm:py-9">
@@ -60,7 +62,13 @@ export default function Page() {
       {state.mode === "mic" && (state.conn === "connecting" || state.conn === "live") && <RolePlay />}
 
       {state.conn === "error" && state.errorMsg && <ErrorBanner message={state.errorMsg} />}
-      {showAlert && state.alert && <FrustrationBanner latencyMs={state.alert.latencyMs} />}
+      {showAlert && state.alert && (
+        <FrustrationBanner
+          latencyMs={state.alert.latencyMs}
+          at={state.alert.at}
+          additionalCount={state.alert.additionalCount}
+        />
+      )}
 
       {/* Three live panels. Each column gets an explicit height so the panels'
           internal scroll clips content — relying on h-full through an auto-sized

@@ -22,10 +22,26 @@ export function Disclaimer() {
             This is an independent portfolio project built by Harrison Jansma. It is{" "}
             <span className="font-semibold text-amber-100">not connected to Capital One</span> and uses
             none of its internal systems, data, models, or code — it&rsquo;s a public re-build of the{" "}
-            <span className="whitespace-nowrap">shape</span> of that work. The sample call is a
-            simulated support session for <span className="font-semibold text-amber-100">Shopfolio</span>{" "}
-            (my other portfolio project); the caller and conversation are fictional and the knowledge base
-            is Shopfolio&rsquo;s own help docs.
+            <span className="whitespace-nowrap">shape</span> of that work. The sample call simulates a
+            support session for{" "}
+            <a
+              href="https://shopfolio.app"
+              target="_blank"
+              rel="noreferrer"
+              className="font-semibold text-amber-100 underline decoration-amber-400/40 decoration-dotted underline-offset-2 hover:decoration-amber-200"
+            >
+              Shopfolio
+            </a>{" "}
+            — a portfolio project I built for my wife to help manage her{" "}
+            <a
+              href="https://www.pinterest.com/itsamyjansma/my-fashion-favorites-itsamyjansma/"
+              target="_blank"
+              rel="noreferrer"
+              className="font-semibold text-amber-100 underline decoration-amber-400/40 decoration-dotted underline-offset-2 hover:decoration-amber-200"
+            >
+              Pinterest content ↗
+            </a>
+            . The caller and conversation are fictional.
           </p>
         </div>
       </div>

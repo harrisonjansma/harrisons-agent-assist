@@ -36,8 +36,17 @@ export function RolePlay() {
             >
               shopfolio.app
             </a>{" "}
-            (a link-in-bio storefront app Harrison built) and you&rsquo;ve hit a snag. Speak as the
-            <span className="text-ink"> customer</span> — the copilot assists the agent. Try describing one of these:
+            — a tool Harrison built for his wife to manage her{" "}
+            <a
+              href="https://www.pinterest.com/itsamyjansma/my-fashion-favorites-itsamyjansma/"
+              target="_blank"
+              rel="noreferrer"
+              className="text-brand-ink underline decoration-dotted underline-offset-2 hover:text-ink"
+            >
+              Pinterest content
+            </a>{" "}
+            — and you&rsquo;ve hit a snag. Speak as the <span className="text-ink">customer</span> — the copilot
+            assists the agent. Try describing one of these:
           </p>
           <ul className="mt-3 grid gap-1.5 sm:grid-cols-2">
             {ISSUES.map((issue) => (

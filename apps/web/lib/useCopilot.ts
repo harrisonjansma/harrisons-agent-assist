@@ -44,7 +44,7 @@ export interface CopilotState {
   docs: DocHit[];
   sentimentScore: number;
   sentimentLabel: SentimentLabel;
-  alert: { latencyMs: number; at: number } | null;
+  alert: { latencyMs: number; at: number; additionalCount: number } | null;
   asrLatencyMs: number | null;
   sentimentP50Ms: number | null;
   remainingMs: number;
@@ -166,7 +166,13 @@ export function useCopilot() {
           break;
         }
         case "alert.frustration":
-          patch({ alert: { latencyMs: msg.latencyMs, at: Date.now() } });
+          // Only the FIRST alert pings a supervisor; later alerts are just
+          // logged (the supervisor is already engaged) — mirrors real dedup.
+          setState((s) =>
+            s.alert
+              ? { ...s, alert: { ...s.alert, additionalCount: s.alert.additionalCount + 1 } }
+              : { ...s, alert: { latencyMs: msg.latencyMs, at: Date.now(), additionalCount: 0 } },
+          );
           break;
         case "error":
           cleanup();
