@@ -77,6 +77,7 @@ export class Session {
 
   // transcript
   private finals: string[] = [];
+  private customerFinals: string[] = []; // customer-only, for notes + RAG windows
 
   // notes
   private notesDraft = "";
@@ -174,10 +175,16 @@ export class Session {
     }
     this.send({ type: "transcript.final", text: e.text, ts: e.receivedAt, speaker });
     this.finals.push(e.text);
+    void this.persistUtterance(e.text, e.receivedAt, speaker);
+
+    // The agent's lines are display-only. All analysis — notes, retrieval, and
+    // sentiment — is about the CUSTOMER, so agent turns don't feed them. On the
+    // single-speaker mic path (speaker undefined) everything runs as before.
+    if (speaker === "agent") return;
+
+    this.customerFinals.push(e.text);
     this.notesBuffer.push(e.text);
     this.ragFinalsSinceRun += 1;
-
-    void this.persistUtterance(e.text, e.receivedAt, speaker);
     this.maybeRunNotes();
     this.maybeRunRag();
   }
@@ -236,7 +243,7 @@ export class Session {
     this.ragInflight = true;
     this.ragLastRunAt = Date.now();
     this.ragFinalsSinceRun = 0;
-    const windowText = this.finals.slice(-this.cadence.ragWindow).join(" ");
+    const windowText = this.customerFinals.slice(-this.cadence.ragWindow).join(" ");
     try {
       const docs = await this.deps.retrieveDocs(windowText);
       const key = docsKey(docs);
