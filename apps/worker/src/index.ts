@@ -34,6 +34,41 @@ const server = createServer((req, res) => {
     res.end(JSON.stringify({ ok: true, uptime: Math.floor((Date.now() - START) / 1000) }));
     return;
   }
+  if (req.url === "/test-rag2") {
+    void (async () => {
+      try {
+        const { embed, serverDb } = await import("@call-copilot/shared");
+        const { retrieveDocs } = await import("./rag.js");
+        const db = serverDb();
+        const query = "I was charged twice this month and I want a refund";
+        // 1) the exact production retrieveDocs path
+        const viaRetrieve = await retrieveDocs(query);
+        // 2) raw match_docs with the compact literal, min_score -2 (all scores)
+        const [emb] = await embed(query);
+        const lit = "[" + emb.map((x) => Number(x.toPrecision(7))).join(",") + "]";
+        const raw = await db.rpc("match_docs", { query_embedding: lit, match_count: 5, min_score: -2 });
+        res.writeHead(200, { "content-type": "application/json" });
+        res.end(
+          JSON.stringify(
+            {
+              litLen: lit.length,
+              litSample: lit.slice(0, 50),
+              viaRetrieve: viaRetrieve.map((d) => `${d.title}:${d.score}`),
+              rawErr: raw.error ? String((raw.error as { message?: string }).message) : null,
+              rawScores: (raw.data as { title: string; score: number }[] | null)?.map(
+                (x) => `${x.title}:${Number(x.score).toFixed(3)}`,
+              ),
+            },
+            null,
+            2,
+          ),
+        );
+      } catch (err) {
+        res.writeHead(500).end(String(err));
+      }
+    })();
+    return;
+  }
   res.writeHead(404).end();
 });
 
