@@ -18,7 +18,9 @@ export async function retrieveDocs(windowText: string): Promise<DocHit[]> {
   if (!queryEmbedding) return [];
 
   const { data, error } = await serverDb().rpc("match_docs", {
-    query_embedding: queryEmbedding,
+    // pass as text — PostgREST won't coerce a JSON array into a pgvector param;
+    // match_docs casts `::vector` internally (migration 0004).
+    query_embedding: JSON.stringify(queryEmbedding),
     match_count: TOP_K,
     min_score: MIN_SCORE,
   });
