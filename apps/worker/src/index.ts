@@ -105,6 +105,11 @@ wss.on("connection", async (ws: WebSocket, req) => {
 
 server.listen(PORT, () => log.info({ port: PORT }, "worker listening"));
 
+// A single misbehaving session must never take down the worker (it serves
+// every visitor). Log and keep running.
+process.on("uncaughtException", (err) => log.error({ err }, "uncaughtException"));
+process.on("unhandledRejection", (err) => log.error({ err }, "unhandledRejection"));
+
 for (const sig of ["SIGINT", "SIGTERM"] as const) {
   process.on(sig, () => {
     log.info({ sig }, "shutting down");

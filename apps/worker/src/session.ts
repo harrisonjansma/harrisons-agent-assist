@@ -125,13 +125,20 @@ export class Session {
   }
 
   private openDeepgram(): void {
-    this.dg = this.deps.createAsr({
-      onTranscript: (e) => this.onTranscript(e),
-      onError: () => {
-        /* handled on close */
-      },
-      onClose: () => this.onDeepgramClose(),
-    });
+    try {
+      this.dg = this.deps.createAsr({
+        onTranscript: (e) => this.onTranscript(e),
+        onError: () => {
+          /* handled on close */
+        },
+        onClose: () => this.onDeepgramClose(),
+      });
+    } catch (err) {
+      // e.g. missing DEEPGRAM_API_KEY — fail cleanly instead of crashing.
+      log.error({ err, session: this.id }, "failed to start ASR");
+      this.send({ type: "error", code: "asr_unavailable", message: "Speech service is unavailable right now." });
+      void this.close("asr-init-failed");
+    }
   }
 
   private onDeepgramClose(): void {
