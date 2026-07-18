@@ -112,17 +112,17 @@ Steps (done in HAR-259, step 6):
 
 The monorepo and full pipeline are **built and pushed** on branch
 `claude/linear-dev-items-spec-3y97k8`. `pnpm -r build` is green and `pnpm test`
-passes (14 unit tests).
+passes (18 tests: 14 unit + 4 pipeline integration).
 
 | Item | Code | Verified |
 |---|---|---|
 | HAR-259 scaffold + deploy skeleton | ✅ | ✅ worker `/healthz` 200, WS session writes `sessions` row w/ `ended_at` against live Supabase |
-| HAR-260 mic → Deepgram → transcript | ✅ | ⚠️ code + unit tests; live ASR unverified (see constraint) |
-| HAR-261 live notes | ✅ | ⚠️ orchestration built; live LLM unverified |
-| HAR-262 RAG pgvector | ✅ | ⚠️ schema + `match_docs` + corpus + seed built; embeddings unrun |
-| HAR-263 sentiment + alert | ✅ | ✅ `FrustrationDetector` unit-tested; live LLM unverified |
-| HAR-264 sample-call + hardening | ✅ | ⚠️ rate-limit unit-tested; `sample-call.webm` asset still needed |
-| HAR-265 launch (Loom/blog/links) | ⛔ not started | — |
+| HAR-260 mic → Deepgram → transcript | ✅ | ✅ transcript→persist wiring integration-tested (fakes); ⚠️ live Deepgram ASR unrun (egress) |
+| HAR-261 live notes | ✅ | ✅ notes cadence (≥2 finals) + emit + persist integration-tested; ⚠️ live LLM output unrun |
+| HAR-262 RAG pgvector | ✅ | ✅ `match_docs` cosine ranking + threshold verified on live DB (synthetic vectors); retrieval loop integration-tested; ⚠️ OpenAI embeddings unrun |
+| HAR-263 sentiment + alert | ✅ | ✅ `FrustrationDetector` unit-tested + alert path integration-tested; ⚠️ live LLM output unrun |
+| HAR-264 sample-call + hardening | ✅ | ✅ rate-limit unit-tested; ⚠️ `sample-call.webm` asset still needed |
+| HAR-265 launch (Loom/blog/links) | ◑ blog draft in `docs/` | — |
 | HAR-266 LiveKit stretch | ⛔ not started | — |
 
 **Blocking constraint — this sandbox cannot reach Deepgram/OpenAI keys.** The
