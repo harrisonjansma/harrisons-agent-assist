@@ -36,9 +36,11 @@ export function Disclaimer() {
           <p className="text-sm leading-relaxed text-amber-100/75">
             This is an independent portfolio project built by Harrison Jansma. It is{" "}
             <span className="font-semibold text-amber-100">not connected to Capital One</span> and uses
-            none of its internal systems, data, models, or code. It is a public re-build of the{" "}
-            <span className="whitespace-nowrap">shape</span> of that work. Every transcript, document,
-            and caller here is fictional “Acme Support” sample data.
+            none of its internal systems, data, models, or code — it&rsquo;s a public re-build of the{" "}
+            <span className="whitespace-nowrap">shape</span> of that work. The sample call is a
+            simulated support session for <span className="font-semibold text-amber-100">Shopfolio</span>{" "}
+            (my other portfolio project); the caller and conversation are fictional and the knowledge base
+            is Shopfolio&rsquo;s own help docs.
           </p>
         </div>
       </div>

@@ -29,6 +29,12 @@ export function HowItWorks() {
               all results ──ws──▶ browser`}
           </pre>
           <p className="text-ink-faint">
+            <span className="text-ink-muted">Sample vs. mic:</span> the sample call is a recorded replay
+            of one real run of this pipeline — captured once, then played back so it&rsquo;s instant and
+            costs nothing to re-watch. Use your microphone for a fully live session where Deepgram and the
+            LLMs run in real time.
+          </p>
+          <p className="text-ink-faint">
             A public re-build of a real-time agent-assist system I built at Capital One. Code on GitHub; full write-up
             on my site.
           </p>

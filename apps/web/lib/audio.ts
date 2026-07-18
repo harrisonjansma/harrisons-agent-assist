@@ -1,13 +1,31 @@
 /**
- * Audio sources for the copilot. Both produce a stream of ~250ms webm/opus
- * chunks delivered to `onChunk`, so the worker/Deepgram pipeline is identical
- * whether the audio is a live mic or the shipped sample call (HAR-264): the
- * sample path is not special-cased server-side.
+ * Audio sources for the copilot.
+ *
+ * - Mic mode (`startMic`) is fully live: it streams ~250ms webm/opus chunks to
+ *   the worker, which relays them to Deepgram and runs the downstream LLMs.
+ * - Sample mode (`replaySample`) is a RECORDED REPLAY: the call was run through
+ *   the real pipeline once (see scripts/capture-replay.mjs) and every event —
+ *   transcript, notes, doc hits, sentiment, alert — was captured with its
+ *   playback timestamp into public/sample-replay.json. Here we just play the
+ *   audio and re-emit those cached events on their original cadence, so nothing
+ *   is re-transcribed or re-scored. It's deterministic, instant, and free.
  */
 import { LIMITS } from "@call-copilot/shared/protocol";
+import type { ServerMessage } from "@call-copilot/shared/protocol";
 
 export interface AudioSource {
   stop: () => void;
+}
+
+/** One cached pipeline event, keyed to a playback position. */
+export interface ReplayEvent {
+  atMs: number;
+  asrMs?: number;
+  msg: ServerMessage;
+}
+export interface ReplayFixture {
+  audioDurationMs: number;
+  events: ReplayEvent[];
 }
 
 export class MicPermissionError extends Error {
@@ -46,71 +64,56 @@ export async function startMic(onChunk: (b: Blob) => void): Promise<AudioSource>
 }
 
 /**
- * Streams the pre-recorded sample call (public/sample-call.ogg) through the same
- * pipeline while ALSO playing it audibly, so a visitor with no microphone hears
- * the call they're watching get transcribed.
- *
- * The container bytes are piped sequentially — no decoding — but paced to the
- * <audio> element's playback clock so Deepgram receives the audio at real time
- * and roughly in sync with what the listener hears. If the browser blocked
- * autoplay (no gesture, muted tab), the element stays paused and we fall back to
- * a fixed cadence so the transcript still works — it just won't be audible.
+ * Drives a recorded replay: plays the sample audio audibly and re-emits the
+ * cached pipeline events in `fixture` on their captured cadence. No WebSocket,
+ * no Deepgram, no LLM calls.
  *
  * `audioEl` is created and .play()'d by the caller *inside the click gesture*
- * (autoplay policy requires that); this function only drives byte delivery.
+ * (autoplay policy requires that). The audio playhead is the master clock while
+ * it's advancing, so the transcript/notes/docs stay in sync with what's heard;
+ * if autoplay was blocked we fall back to a wall clock so the replay still runs
+ * (silently). Events captured after the audio ends (a final notes redraft, the
+ * closing line) fire on the wall clock once playback finishes.
  */
-export async function streamSampleFile(
-  url: string,
+export function replaySample(
   audioEl: HTMLAudioElement | null,
-  onChunk: (b: Blob) => void,
+  fixture: ReplayFixture,
+  emit: (msg: ServerMessage, asrMs?: number) => void,
   onEnd: () => void,
-): Promise<AudioSource> {
-  const res = await fetch(url);
-  if (!res.ok) throw new Error(`sample file not found (${res.status})`);
-  const buf = new Uint8Array(await res.arrayBuffer());
-
-  // ~8KB per tick keeps frames well under the 32KB cap.
-  const chunkBytes = 8 * 1024;
-  let offset = 0;
+): AudioSource {
+  const events = [...fixture.events].sort((a, b) => a.atMs - b.atMs);
+  let i = 0;
   let stopped = false;
-  let ended = false;
+  let finished = false;
+  const startWall = performance.now();
+  let endedWall = 0;
 
-  // True only while audio is genuinely playing with a known duration; that lets
-  // us sync byte delivery to it. Otherwise we fall back to a fixed cadence.
-  const playing = () =>
-    !!audioEl && !audioEl.paused && Number.isFinite(audioEl.duration) && audioEl.duration > 0;
-
-  if (audioEl) audioEl.addEventListener("ended", () => (ended = true), { once: true });
-
-  const send = (to: number) => {
-    while (offset < to && !stopped) {
-      const end = Math.min(offset + chunkBytes, to);
-      onChunk(new Blob([buf.subarray(offset, end)], { type: "audio/ogg" }));
-      offset = end;
+  const clockMs = (): number => {
+    if (audioEl && audioEl.currentTime > 0 && !audioEl.ended) {
+      return audioEl.currentTime * 1000; // audio is master while it advances
     }
+    if (audioEl && audioEl.ended) {
+      if (!endedWall) endedWall = performance.now();
+      return fixture.audioDurationMs + (performance.now() - endedWall);
+    }
+    // Not started / autoplay blocked — run on the wall clock so it still plays.
+    return performance.now() - startWall;
   };
 
   const timer = setInterval(() => {
     if (stopped) return;
-
-    if (playing()) {
-      // Stay a chunk ahead of the playhead so Deepgram is never starved.
-      const frac = Math.min(1, audioEl!.currentTime / audioEl!.duration);
-      send(Math.min(buf.length, Math.ceil(frac * buf.length) + chunkBytes));
-      if (offset >= buf.length && ended) {
-        clearInterval(timer);
-        onEnd();
-      }
-      return;
+    const t = clockMs();
+    while (i < events.length && events[i]!.atMs <= t) {
+      const ev = events[i]!;
+      emit(ev.msg, ev.asrMs);
+      i++;
     }
-
-    // Fallback / audio finished: drain remaining bytes at a fixed rate.
-    send(Math.min(buf.length, offset + chunkBytes));
-    if (offset >= buf.length) {
+    if (i >= events.length && !finished) {
+      finished = true;
       clearInterval(timer);
       onEnd();
     }
-  }, LIMITS.CHUNK_MS);
+  }, 100);
 
   return {
     stop: () => {

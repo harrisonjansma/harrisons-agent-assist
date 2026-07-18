@@ -40,6 +40,20 @@ export default function Page() {
             sentimentP50Ms={state.sentimentP50Ms}
           />
         </div>
+        {state.mode === "sample" && (
+          <p className="animate-rise mt-3 flex items-start gap-1.5 text-[11px] leading-relaxed text-ink-faint">
+            <span className="mt-[1px] inline-flex shrink-0 items-center rounded border border-[var(--line)] bg-[var(--surface)] px-1.5 text-[10px] font-semibold uppercase tracking-wide text-ink-muted">
+              cached
+            </span>
+            <span>
+              This sample call is a <span className="text-ink-muted">recorded replay</span> of one real run
+              of this pipeline — the transcript, notes, docs, and sentiment were computed once and cached, so
+              replaying it is deterministic and doesn&rsquo;t re-hit Deepgram or the LLMs (keeping the demo
+              free and instant). <span className="text-ink-muted">Use your microphone</span> for a fully live
+              session.
+            </span>
+          </p>
+        )}
       </section>
 
       {state.conn === "error" && state.errorMsg && <ErrorBanner message={state.errorMsg} />}
@@ -71,7 +85,9 @@ export default function Page() {
             source on GitHub
           </a>
         </p>
-        <p className="text-ink-faint/70">A portfolio project — “Acme Support” data is fictional.</p>
+        <p className="text-ink-faint/70">
+          A portfolio project — the sample call is a fictional Shopfolio support session.
+        </p>
       </footer>
     </main>
   );
