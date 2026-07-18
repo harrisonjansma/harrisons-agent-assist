@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import type { Speaker } from "@call-copilot/shared/protocol";
 import type { TranscriptLine } from "../lib/useCopilot";
 
 export function Panel({
@@ -35,7 +36,49 @@ export function Empty({ icon, children }: { icon?: React.ReactNode; children: Re
   );
 }
 
-export function TranscriptPanel({ finals, interim }: { finals: TranscriptLine[]; interim: string }) {
+/** One transcript line. With a speaker it's a chat bubble; without (mic), a plain line. */
+function Line({ text, speaker, interim }: { text: string; speaker?: Speaker | null; interim?: boolean }) {
+  if (!speaker) {
+    return (
+      <p className={`animate-rise text-[15px] leading-relaxed ${interim ? "italic text-ink-faint" : "text-ink"}`}>
+        {text}
+      </p>
+    );
+  }
+  const isAgent = speaker === "agent";
+  return (
+    <div className={`flex ${isAgent ? "justify-end" : "justify-start"}`}>
+      <div
+        className={`animate-rise max-w-[88%] rounded-2xl px-3 py-2 ${
+          isAgent
+            ? "rounded-tr-sm border border-[var(--line)] bg-white/[0.04]"
+            : "rounded-tl-sm border border-[var(--brand)]/25 bg-[var(--brand)]/[0.10]"
+        } ${interim ? "opacity-70" : ""}`}
+      >
+        <div
+          className={`mb-0.5 text-[10px] font-semibold uppercase tracking-[0.12em] ${
+            isAgent ? "text-ink-faint" : "text-brand-ink"
+          }`}
+        >
+          {isAgent ? "Agent" : "Customer"}
+        </div>
+        <p className={`text-[14px] leading-relaxed ${isAgent ? "text-ink-muted" : "text-ink"} ${interim ? "italic" : ""}`}>
+          {text}
+        </p>
+      </div>
+    </div>
+  );
+}
+
+export function TranscriptPanel({
+  finals,
+  interim,
+  interimSpeaker,
+}: {
+  finals: TranscriptLine[];
+  interim: string;
+  interimSpeaker?: Speaker | null;
+}) {
   const endRef = useRef<HTMLDivElement | null>(null);
   const wrapRef = useRef<HTMLDivElement | null>(null);
   const pinnedRef = useRef(true);
@@ -68,11 +111,9 @@ export function TranscriptPanel({ finals, interim }: { finals: TranscriptLine[];
           </Empty>
         )}
         {finals.map((l, i) => (
-          <p key={i} className="animate-rise text-[15px] leading-relaxed text-ink">
-            {l.text}
-          </p>
+          <Line key={i} text={l.text} speaker={l.speaker} />
         ))}
-        {interim && <p className="text-[15px] italic leading-relaxed text-ink-faint">{interim}</p>}
+        {interim && <Line text={interim} speaker={interimSpeaker} interim />}
         <div ref={endRef} />
       </div>
     </Panel>

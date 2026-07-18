@@ -1,317 +1,747 @@
 {
-  "audioDurationMs": 69444,
-  "capturedAt": null,
+  "audioDurationMs": 91338,
   "events": [
     {
-      "atMs": 1721,
+      "atMs": 1132,
+      "msg": {
+        "type": "transcript.interim",
+        "text": "Thanks for calling Shop",
+        "ts": 1784392094881,
+        "speaker": "agent"
+      },
+      "asrMs": 130
+    },
+    {
+      "atMs": 2133,
+      "msg": {
+        "type": "transcript.interim",
+        "text": "Thanks for calling ShopFolio support.",
+        "ts": 1784392095882,
+        "speaker": "agent"
+      },
+      "asrMs": 130
+    },
+    {
+      "atMs": 2399,
+      "msg": {
+        "type": "transcript.final",
+        "text": "Thanks for calling ShopFolio support.",
+        "ts": 1784392096149,
+        "speaker": "agent"
+      },
+      "asrMs": 146
+    },
+    {
+      "atMs": 3403,
+      "msg": {
+        "type": "transcript.final",
+        "text": "This is Alex.",
+        "ts": 1784392097153,
+        "speaker": "agent"
+      },
+      "asrMs": 149
+    },
+    {
+      "atMs": 4392,
+      "msg": {
+        "type": "transcript.interim",
+        "text": "How can I help today?",
+        "ts": 1784392098141,
+        "speaker": "agent"
+      },
+      "asrMs": 135
+    },
+    {
+      "atMs": 4662,
+      "msg": {
+        "type": "transcript.final",
+        "text": "How can I help today?",
+        "ts": 1784392098410,
+        "speaker": "agent"
+      },
+      "asrMs": 156
+    },
+    {
+      "atMs": 5658,
       "msg": {
         "type": "transcript.final",
         "text": "Hi.",
-        "ts": 1784388431639
+        "ts": 1784392099407,
+        "speaker": "agent"
       },
-      "asrMs": 213
+      "asrMs": 150
     },
     {
-      "atMs": 2522,
+      "atMs": 6645,
       "msg": {
         "type": "transcript.interim",
-        "text": "Yeah. So my",
-        "ts": 1784388432440
+        "text": "Yeah. So my store",
+        "ts": 1784392100394,
+        "speaker": "agent"
       },
-      "asrMs": 10
+      "asrMs": 135
     },
     {
-      "atMs": 2622,
+      "atMs": 7649,
+      "msg": {
+        "type": "transcript.interim",
+        "text": "Yeah. So my storefront's been down basically",
+        "ts": 1784392101398,
+        "speaker": "agent"
+      },
+      "asrMs": 136
+    },
+    {
+      "atMs": 8656,
+      "msg": {
+        "type": "transcript.interim",
+        "text": "Yeah. So my storefront's been down basically all day, and I'm kinda",
+        "ts": 1784392102405,
+        "speaker": "agent"
+      },
+      "asrMs": 142
+    },
+    {
+      "atMs": 9666,
+      "msg": {
+        "type": "transcript.interim",
+        "text": "Yeah. So my storefront's been down basically all day, and I'm kind of freaking out.",
+        "ts": 1784392103416,
+        "speaker": "agent"
+      },
+      "asrMs": 151
+    },
+    {
+      "atMs": 9944,
+      "msg": {
+        "type": "transcript.final",
+        "text": "Yeah. So my storefront's been down basically all day, and I'm kind of freaking out.",
+        "ts": 1784392103693,
+        "speaker": "customer"
+      },
+      "asrMs": 159
+    },
+    {
+      "atMs": 10926,
+      "msg": {
+        "type": "transcript.interim",
+        "text": "I'm really sorry to hear",
+        "ts": 1784392104676,
+        "speaker": "customer"
+      },
+      "asrMs": 141
+    },
+    {
+      "atMs": 11028,
+      "msg": {
+        "type": "sentiment.update",
+        "score": -0.7,
+        "label": "frustrated",
+        "latencyMs": 1084
+      }
+    },
+    {
+      "atMs": 11028,
+      "msg": {
+        "type": "alert.frustration",
+        "latencyMs": 1084
+      }
+    },
+    {
+      "atMs": 11439,
+      "msg": {
+        "type": "transcript.final",
+        "text": "I'm really sorry to hear that.",
+        "ts": 1784392105188,
+        "speaker": "agent"
+      },
+      "asrMs": 153
+    },
+    {
+      "atMs": 12429,
+      "msg": {
+        "type": "transcript.interim",
+        "text": "Let's get it sorted.",
+        "ts": 1784392106179,
+        "speaker": "agent"
+      },
+      "asrMs": 140
+    },
+    {
+      "atMs": 12938,
+      "msg": {
+        "type": "transcript.final",
+        "text": "Let's get it sorted.",
+        "ts": 1784392106687,
+        "speaker": "agent"
+      },
+      "asrMs": 148
+    },
+    {
+      "atMs": 13932,
+      "msg": {
+        "type": "transcript.interim",
+        "text": "Seeing?",
+        "ts": 1784392107682,
+        "speaker": "agent"
+      },
+      "asrMs": 140
+    },
+    {
+      "atMs": 14449,
+      "msg": {
+        "type": "transcript.final",
+        "text": "Can you tell me what you're seeing?",
+        "ts": 1784392108199,
+        "speaker": "agent"
+      },
+      "asrMs": 156
+    },
+    {
+      "atMs": 15430,
+      "msg": {
+        "type": "transcript.interim",
+        "text": "So",
+        "ts": 1784392109179,
+        "speaker": "agent"
+      },
+      "asrMs": 137
+    },
+    {
+      "atMs": 16433,
+      "msg": {
+        "type": "transcript.interim",
+        "text": "So I set up my own",
+        "ts": 1784392110182,
+        "speaker": "agent"
+      },
+      "asrMs": 138
+    },
+    {
+      "atMs": 17438,
+      "msg": {
+        "type": "transcript.interim",
+        "text": "So I set up my own domain, shop dot",
+        "ts": 1784392111187,
+        "speaker": "agent"
+      },
+      "asrMs": 141
+    },
+    {
+      "atMs": 18450,
+      "msg": {
+        "type": "transcript.interim",
+        "text": "So I set up my own domain, shop.myhandle.com,",
+        "ts": 1784392112200,
+        "speaker": "agent"
+      },
+      "asrMs": 150
+    },
+    {
+      "atMs": 19470,
+      "msg": {
+        "type": "transcript.final",
+        "text": "So I set up my own domain, shop.myhandle.com,",
+        "ts": 1784392113219,
+        "speaker": "customer"
+      },
+      "asrMs": 169
+    },
+    {
+      "atMs": 19937,
+      "msg": {
+        "type": "transcript.interim",
+        "text": "through the custom",
+        "ts": 1784392113686,
+        "speaker": "customer"
+      },
+      "asrMs": 135
+    },
+    {
+      "atMs": 20459,
+      "msg": {
+        "type": "notes.update",
+        "markdown": "**Reason for call**\n- Storefront down all day\n\n**Key details**\n- Customer set up own domain: shop.myhandle.com\n\n**Actions taken**\n- —\n\n**Follow-ups**\n- —"
+      }
+    },
+    {
+      "atMs": 20517,
       "msg": {
         "type": "sentiment.update",
         "score": 0,
         "label": "neutral",
-        "latencyMs": 901
+        "latencyMs": 1048
       }
     },
     {
-      "atMs": 3336,
+      "atMs": 20942,
       "msg": {
         "type": "transcript.interim",
-        "text": "Yeah. So my storefront's been down",
-        "ts": 1784388433255
+        "text": "through the custom domain settings,",
+        "ts": 1784392114692,
+        "speaker": "customer"
       },
-      "asrMs": 73
+      "asrMs": 139
     },
     {
-      "atMs": 4338,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "Yeah. So my storefront's been down basically all",
-        "ts": 1784388434256
-      },
-      "asrMs": 73
-    },
-    {
-      "atMs": 5346,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "Yeah. So my storefront's been down basically all day, and I'm kind",
-        "ts": 1784388435264
-      },
-      "asrMs": 81
-    },
-    {
-      "atMs": 6351,
+      "atMs": 21462,
       "msg": {
         "type": "transcript.final",
-        "text": "Yeah. So my storefront's been down basically all day.",
-        "ts": 1784388436269
+        "text": "through the custom domain settings,",
+        "ts": 1784392115212,
+        "speaker": "customer"
       },
-      "asrMs": 85
+      "asrMs": 157
     },
     {
-      "atMs": 6356,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "I'm kind of freaking out.",
-        "ts": 1784388436274
-      },
-      "asrMs": 90
-    },
-    {
-      "atMs": 6360,
-      "msg": {
-        "type": "transcript.final",
-        "text": "I'm kind of freaking out.",
-        "ts": 1784388436278
-      },
-      "asrMs": 94
-    },
-    {
-      "atMs": 7034,
-      "msg": {
-        "type": "sentiment.update",
-        "score": -1,
-        "label": "frustrated",
-        "latencyMs": 674
-      }
-    },
-    {
-      "atMs": 7034,
-      "msg": {
-        "type": "alert.frustration",
-        "latencyMs": 674
-      }
-    },
-    {
-      "atMs": 7072,
-      "msg": {
-        "type": "sentiment.update",
-        "score": -1,
-        "label": "frustrated",
-        "latencyMs": 721
-      }
-    },
-    {
-      "atMs": 7098,
+      "atMs": 22015,
       "msg": {
         "type": "docs.update",
         "docs": [
           {
+            "id": 33,
+            "title": "Connecting a Custom Domain",
+            "snippet": "# Connecting a Custom Domain\n\nUse this procedure when a creator wants their storefront to serve on their own domain (for example `shop.theirhandle.com`) instead of the default `*.shopfolio.app` subdom",
+            "score": 0.433
+          },
+          {
             "id": 41,
             "title": "Storefront SSL / TLS Certificate Issues",
             "snippet": "# Storefront SSL / TLS Certificate Issues\n\nUse this procedure when a creator's custom-domain storefront shows a **\"your connection is not secure\"** warning, a certificate error, or the certificate is",
-            "score": 0.354
-          },
-          {
-            "id": 42,
-            "title": "Support Escalation and Outages",
-            "snippet": "# Support Escalation and Outages\n\nUse this procedure to decide when to escalate a Shopfolio support case beyond first-line help.\n\n## Escalate immediately\n- **Storefronts down for many creators at once",
-            "score": 0.338
+            "score": 0.422
           },
           {
             "id": 40,
             "title": "Customizing Your Storefront",
             "snippet": "# Customizing Your Storefront\n\nUse this procedure when a creator asks how to change the look of their link-in-bio page or pop-up shop, or how to embed it.\n\n## What's customizable\nThe storefront is a c",
-            "score": 0.327
+            "score": 0.421
+          },
+          {
+            "id": 42,
+            "title": "Support Escalation and Outages",
+            "snippet": "# Support Escalation and Outages\n\nUse this procedure to decide when to escalate a Shopfolio support case beyond first-line help.\n\n## Escalate immediately\n- **Storefronts down for many creators at once",
+            "score": 0.371
           }
         ]
       }
     },
     {
-      "atMs": 7242,
-      "msg": {
-        "type": "notes.update",
-        "markdown": "**Reason for call**\n- Storefront downtime\n\n**Key details**\n- Storefront has been down all day\n\n**Actions taken**\n- —\n\n**Follow-ups**\n- —"
-      }
-    },
-    {
-      "atMs": 7370,
+      "atMs": 22188,
       "msg": {
         "type": "transcript.interim",
-        "text": "I set up my",
-        "ts": 1784388437260
+        "text": "a couple days ago.",
+        "ts": 1784392115938,
+        "speaker": "customer"
       },
-      "asrMs": 102
+      "asrMs": 134
     },
     {
-      "atMs": 8353,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "I set up my own domain, shop",
-        "ts": 1784388438271
-      },
-      "asrMs": 83
-    },
-    {
-      "atMs": 9359,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "I set up my own domain, shop dot my handle dot",
-        "ts": 1784388439278
-      },
-      "asrMs": 86
-    },
-    {
-      "atMs": 10362,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "I set up my own domain, shop.myhandle.com, through",
-        "ts": 1784388440280
-      },
-      "asrMs": 88
-    },
-    {
-      "atMs": 11615,
-      "msg": {
-        "type": "transcript.final",
-        "text": "I set up my own domain, shop.myhandle.com.",
-        "ts": 1784388441533
-      },
-      "asrMs": 90
-    },
-    {
-      "atMs": 11657,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "Through the custom domain",
-        "ts": 1784388441576
-      },
-      "asrMs": 132
-    },
-    {
-      "atMs": 12498,
+      "atMs": 22460,
       "msg": {
         "type": "sentiment.update",
         "score": 0,
         "label": "neutral",
-        "latencyMs": 883
+        "latencyMs": 997
       }
     },
     {
-      "atMs": 12499,
-      "msg": {
-        "type": "notes.update",
-        "markdown": "**Reason for call**\n- Storefront downtime\n\n**Key details**\n- Storefront has been down all day\n- Customer set up own domain, shop.myhandle.com\n\n**Actions taken**\n- —\n\n**Follow-ups**\n- —"
-      }
-    },
-    {
-      "atMs": 12608,
+      "atMs": 23191,
       "msg": {
         "type": "transcript.interim",
-        "text": "Through the custom domain settings a couple days",
-        "ts": 1784388442527
+        "text": "a couple days ago. And now when",
+        "ts": 1784392116940,
+        "speaker": "customer"
       },
-      "asrMs": 82
+      "asrMs": 135
     },
     {
-      "atMs": 13613,
+      "atMs": 24197,
       "msg": {
         "type": "transcript.interim",
-        "text": "Through the custom domain settings a couple days ago. And now",
-        "ts": 1784388443531
+        "text": "a couple days ago. And now when anyone opens it, they",
+        "ts": 1784392117947,
+        "speaker": "customer"
       },
-      "asrMs": 85
+      "asrMs": 138
     },
     {
-      "atMs": 14616,
+      "atMs": 25202,
       "msg": {
         "type": "transcript.interim",
-        "text": "Through the custom domain settings a couple days ago. And now when anyone opens",
-        "ts": 1784388444534
+        "text": "a couple days ago. And now when anyone opens it, they just get this",
+        "ts": 1784392118952,
+        "speaker": "customer"
       },
-      "asrMs": 87
+      "asrMs": 143
     },
     {
-      "atMs": 15626,
+      "atMs": 26227,
       "msg": {
         "type": "transcript.final",
-        "text": "Through the custom domain settings a couple days ago. And now when anyone opens it,",
-        "ts": 1784388445544
+        "text": "a couple days ago. And now when anyone opens it, they just get this big",
+        "ts": 1784392119977,
+        "speaker": "customer"
       },
-      "asrMs": 96
+      "asrMs": 166
     },
     {
-      "atMs": 15627,
+      "atMs": 26695,
       "msg": {
         "type": "transcript.interim",
-        "text": "they just get this",
-        "ts": 1784388445545
+        "text": "your connection is not",
+        "ts": 1784392120445,
+        "speaker": "customer"
       },
-      "asrMs": 97
+      "asrMs": 133
     },
     {
-      "atMs": 16265,
+      "atMs": 27117,
       "msg": {
         "type": "sentiment.update",
-        "score": -1,
-        "label": "frustrated",
-        "latencyMs": 639
+        "score": -0.4,
+        "label": "negative",
+        "latencyMs": 890
       }
     },
     {
-      "atMs": 16612,
+      "atMs": 27309,
       "msg": {
-        "type": "transcript.interim",
-        "text": "they just get this big your connect",
-        "ts": 1784388446530
-      },
-      "asrMs": 80
+        "type": "notes.update",
+        "markdown": "**Reason for call**\n- Storefront down all day\n\n**Key details**\n- Customer set up own domain: shop.myhandle.com\n- Issue started a couple days ago\n- Users see a big error message when accessing the site\n\n**Actions taken**\n- —\n\n**Follow-ups**\n- —"
+      }
     },
     {
-      "atMs": 17628,
+      "atMs": 27696,
       "msg": {
         "type": "transcript.interim",
-        "text": "they just get this big your connection is not secure",
-        "ts": 1784388447546
+        "text": "your connection is not secure warning",
+        "ts": 1784392121445,
+        "speaker": "customer"
       },
-      "asrMs": 95
+      "asrMs": 133
     },
     {
-      "atMs": 18620,
+      "atMs": 28704,
       "msg": {
         "type": "transcript.interim",
-        "text": "they just get this big your connection is not secure warning, and the",
-        "ts": 1784388448539
+        "text": "your connection is not secure warning and the page won't even",
+        "ts": 1784392122453,
+        "speaker": "customer"
       },
-      "asrMs": 85
+      "asrMs": 139
     },
     {
-      "atMs": 19624,
+      "atMs": 29737,
       "msg": {
         "type": "transcript.final",
-        "text": "they just get this big your connection is not secure warning.",
-        "ts": 1784388449542
+        "text": "your connection is not secure warning and the page won't even load.",
+        "ts": 1784392123487,
+        "speaker": "customer"
       },
-      "asrMs": 87
+      "asrMs": 170
     },
     {
-      "atMs": 19629,
+      "atMs": 30454,
+      "msg": {
+        "type": "sentiment.update",
+        "score": -0.6,
+        "label": "negative",
+        "latencyMs": 716
+      }
+    },
+    {
+      "atMs": 30463,
+      "msg": {
+        "type": "transcript.final",
+        "text": "Got it.",
+        "ts": 1784392124213,
+        "speaker": "agent"
+      },
+      "asrMs": 144
+    },
+    {
+      "atMs": 31457,
       "msg": {
         "type": "transcript.interim",
-        "text": "And the page won't even load.",
-        "ts": 1784388449547
+        "text": "And on your dashboard,",
+        "ts": 1784392125207,
+        "speaker": "agent"
       },
-      "asrMs": 92
+      "asrMs": 137
     },
     {
-      "atMs": 19914,
+      "atMs": 32462,
+      "msg": {
+        "type": "transcript.interim",
+        "text": "And on your dashboard, what is the domain",
+        "ts": 1784392126212,
+        "speaker": "agent"
+      },
+      "asrMs": 140
+    },
+    {
+      "atMs": 33463,
+      "msg": {
+        "type": "transcript.interim",
+        "text": "And on your dashboard, what does the domain status say",
+        "ts": 1784392127212,
+        "speaker": "agent"
+      },
+      "asrMs": 140
+    },
+    {
+      "atMs": 34238,
+      "msg": {
+        "type": "transcript.final",
+        "text": "And on your dashboard, what does the domain status say right now?",
+        "ts": 1784392127987,
+        "speaker": "agent"
+      },
+      "asrMs": 163
+    },
+    {
+      "atMs": 35209,
+      "msg": {
+        "type": "transcript.interim",
+        "text": "The DNS",
+        "ts": 1784392128959,
+        "speaker": "agent"
+      },
+      "asrMs": 133
+    },
+    {
+      "atMs": 36215,
+      "msg": {
+        "type": "transcript.interim",
+        "text": "The DNS part says it's",
+        "ts": 1784392129965,
+        "speaker": "agent"
+      },
+      "asrMs": 137
+    },
+    {
+      "atMs": 37014,
+      "msg": {
+        "type": "transcript.final",
+        "text": "The DNS part says it's verified.",
+        "ts": 1784392130764,
+        "speaker": "customer"
+      },
+      "asrMs": 185
+    },
+    {
+      "atMs": 37668,
+      "msg": {
+        "type": "sentiment.update",
+        "score": 0,
+        "label": "neutral",
+        "latencyMs": 654
+      }
+    },
+    {
+      "atMs": 37966,
+      "msg": {
+        "type": "transcript.interim",
+        "text": "But the SSL certificate",
+        "ts": 1784392131716,
+        "speaker": "customer"
+      },
+      "asrMs": 136
+    },
+    {
+      "atMs": 38431,
+      "msg": {
+        "type": "notes.update",
+        "markdown": "**Reason for call**\n- Storefront down all day\n\n**Key details**\n- Customer set up own domain: shop.myhandle.com\n- Issue started a couple days ago\n- Users see a big error message when accessing the site\n- Your connection is not secure warning and the page won't even load\n- The DNS part says it's verified\n\n**Actions taken**\n- —\n\n**Follow-ups**\n- —"
+      }
+    },
+    {
+      "atMs": 38969,
+      "msg": {
+        "type": "transcript.interim",
+        "text": "But the SSL certificate never went active.",
+        "ts": 1784392132719,
+        "speaker": "customer"
+      },
+      "asrMs": 138
+    },
+    {
+      "atMs": 39969,
+      "msg": {
+        "type": "transcript.interim",
+        "text": "But the SSL certificate never went active. It's just stuck",
+        "ts": 1784392133719,
+        "speaker": "customer"
+      },
+      "asrMs": 137
+    },
+    {
+      "atMs": 41000,
+      "msg": {
+        "type": "transcript.final",
+        "text": "But the SSL certificate never went active. It's just stuck on pending.",
+        "ts": 1784392134750,
+        "speaker": "customer"
+      },
+      "asrMs": 166
+    },
+    {
+      "atMs": 41710,
+      "msg": {
+        "type": "sentiment.update",
+        "score": -0.6,
+        "label": "negative",
+        "latencyMs": 709
+      }
+    },
+    {
+      "atMs": 41722,
+      "msg": {
+        "type": "transcript.interim",
+        "text": "I've refreshed it",
+        "ts": 1784392135470,
+        "speaker": "customer"
+      },
+      "asrMs": 136
+    },
+    {
+      "atMs": 42725,
+      "msg": {
+        "type": "transcript.interim",
+        "text": "I've refreshed it, like, 50 times",
+        "ts": 1784392136475,
+        "speaker": "customer"
+      },
+      "asrMs": 138
+    },
+    {
+      "atMs": 43247,
+      "msg": {
+        "type": "transcript.final",
+        "text": "I've refreshed it, like, 50 times.",
+        "ts": 1784392136996,
+        "speaker": "customer"
+      },
+      "asrMs": 158
+    },
+    {
+      "atMs": 43936,
+      "msg": {
+        "type": "sentiment.update",
+        "score": -0.6,
+        "label": "negative",
+        "latencyMs": 690
+      }
+    },
+    {
+      "atMs": 43977,
+      "msg": {
+        "type": "transcript.interim",
+        "text": "Okay. That",
+        "ts": 1784392137726,
+        "speaker": "customer"
+      },
+      "asrMs": 137
+    },
+    {
+      "atMs": 44820,
+      "msg": {
+        "type": "notes.update",
+        "markdown": "**Reason for call**\n- Storefront down all day\n\n**Key details**\n- Customer set up own domain: shop.myhandle.com\n- Issue started a couple days ago\n- Users see a big error message when accessing the site\n- Your connection is not secure warning and the page won't even load\n- The DNS part says it's verified\n- SSL certificate never went active; it's stuck on pending\n- Customer has refreshed it multiple times\n\n**Actions taken**\n- —\n\n**Follow-ups**\n- —"
+      }
+    },
+    {
+      "atMs": 44979,
+      "msg": {
+        "type": "transcript.interim",
+        "text": "Okay. That points to the certificate",
+        "ts": 1784392138729,
+        "speaker": "customer"
+      },
+      "asrMs": 139
+    },
+    {
+      "atMs": 45991,
+      "msg": {
+        "type": "transcript.interim",
+        "text": "Okay. That points to the certificate not provisioning.",
+        "ts": 1784392139741,
+        "speaker": "customer"
+      },
+      "asrMs": 148
+    },
+    {
+      "atMs": 46513,
+      "msg": {
+        "type": "transcript.final",
+        "text": "Okay. That points to the certificate not provisioning.",
+        "ts": 1784392140262,
+        "speaker": "agent"
+      },
+      "asrMs": 170
+    },
+    {
+      "atMs": 47481,
+      "msg": {
+        "type": "transcript.interim",
+        "text": "We'll",
+        "ts": 1784392141230,
+        "speaker": "agent"
+      },
+      "asrMs": 136
+    },
+    {
+      "atMs": 48490,
+      "msg": {
+        "type": "transcript.final",
+        "text": "Bear with me one second while I check.",
+        "ts": 1784392142240,
+        "speaker": "agent"
+      },
+      "asrMs": 151
+    },
+    {
+      "atMs": 49475,
+      "msg": {
+        "type": "transcript.interim",
+        "text": "I mean,",
+        "ts": 1784392143225,
+        "speaker": "agent"
+      },
+      "asrMs": 135
+    },
+    {
+      "atMs": 50476,
+      "msg": {
+        "type": "transcript.interim",
+        "text": "I mean, the timing",
+        "ts": 1784392144226,
+        "speaker": "agent"
+      },
+      "asrMs": 134
+    },
+    {
+      "atMs": 51484,
+      "msg": {
+        "type": "transcript.interim",
+        "text": "I mean, the timing could not be worse.",
+        "ts": 1784392145234,
+        "speaker": "agent"
+      },
+      "asrMs": 141
+    },
+    {
+      "atMs": 52000,
+      "msg": {
+        "type": "transcript.final",
+        "text": "I mean, the timing could not be worse.",
+        "ts": 1784392145749,
+        "speaker": "customer"
+      },
+      "asrMs": 155
+    },
+    {
+      "atMs": 52301,
       "msg": {
         "type": "docs.update",
         "docs": [
@@ -319,478 +749,413 @@
             "id": 41,
             "title": "Storefront SSL / TLS Certificate Issues",
             "snippet": "# Storefront SSL / TLS Certificate Issues\n\nUse this procedure when a creator's custom-domain storefront shows a **\"your connection is not secure\"** warning, a certificate error, or the certificate is",
-            "score": 0.511
+            "score": 0.523
           },
           {
             "id": 33,
             "title": "Connecting a Custom Domain",
             "snippet": "# Connecting a Custom Domain\n\nUse this procedure when a creator wants their storefront to serve on their own domain (for example `shop.theirhandle.com`) instead of the default `*.shopfolio.app` subdom",
-            "score": 0.432
-          },
-          {
-            "id": 40,
-            "title": "Customizing Your Storefront",
-            "snippet": "# Customizing Your Storefront\n\nUse this procedure when a creator asks how to change the look of their link-in-bio page or pop-up shop, or how to embed it.\n\n## What's customizable\nThe storefront is a c",
-            "score": 0.379
-          },
-          {
-            "id": 42,
-            "title": "Support Escalation and Outages",
-            "snippet": "# Support Escalation and Outages\n\nUse this procedure to decide when to escalate a Shopfolio support case beyond first-line help.\n\n## Escalate immediately\n- **Storefronts down for many creators at once",
-            "score": 0.354
+            "score": 0.364
           }
         ]
       }
     },
     {
-      "atMs": 20364,
+      "atMs": 52866,
       "msg": {
         "type": "sentiment.update",
-        "score": -1,
-        "label": "frustrated",
-        "latencyMs": 740
+        "score": -0.6,
+        "label": "negative",
+        "latencyMs": 867
       }
     },
     {
-      "atMs": 20372,
+      "atMs": 52867,
       "msg": {
-        "type": "transcript.final",
-        "text": "And the page won't even load.",
-        "ts": 1784388450290
-      },
-      "asrMs": 84
-    },
-    {
-      "atMs": 20857,
-      "msg": {
-        "type": "notes.update",
-        "markdown": "**Reason for call**\n- Storefront downtime\n\n**Key details**\n- Storefront has been down all day\n- Customer set up own domain, shop.myhandle.com\n- Custom domain settings changed a couple days ago\n- Users receive \"your connection is not secure\" warning\n\n**Actions taken**\n- —\n\n**Follow-ups**\n- —"
+        "type": "alert.frustration",
+        "latencyMs": 867
       }
     },
     {
-      "atMs": 21180,
-      "msg": {
-        "type": "sentiment.update",
-        "score": -1,
-        "label": "frustrated",
-        "latencyMs": 808
-      }
-    },
-    {
-      "atMs": 21617,
+      "atMs": 52982,
       "msg": {
         "type": "transcript.interim",
-        "text": "The DNS",
-        "ts": 1784388451535
+        "text": "I've got a product",
+        "ts": 1784392146731,
+        "speaker": "customer"
       },
-      "asrMs": 78
+      "asrMs": 135
     },
     {
-      "atMs": 22630,
+      "atMs": 53985,
       "msg": {
         "type": "transcript.interim",
-        "text": "The DNS part says it's",
-        "ts": 1784388452548
+        "text": "I've got a product drop going out",
+        "ts": 1784392147735,
+        "speaker": "customer"
       },
-      "asrMs": 88
+      "asrMs": 134
     },
     {
-      "atMs": 23628,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "The DNS part says it's verified on my dashboard,",
-        "ts": 1784388453546
-      },
-      "asrMs": 83
-    },
-    {
-      "atMs": 24633,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "The DNS part says it's verified on my dashboard, but the SSL",
-        "ts": 1784388454551
-      },
-      "asrMs": 86
-    },
-    {
-      "atMs": 25647,
-      "msg": {
-        "type": "transcript.final",
-        "text": "The DNS part says it's verified on my dashboard.",
-        "ts": 1784388455565
-      },
-      "asrMs": 98
-    },
-    {
-      "atMs": 25663,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "But the SSL certificate",
-        "ts": 1784388455582
-      },
-      "asrMs": 114
-    },
-    {
-      "atMs": 26276,
-      "msg": {
-        "type": "sentiment.update",
-        "score": 0,
-        "label": "neutral",
-        "latencyMs": 628
-      }
-    },
-    {
-      "atMs": 26636,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "But the SSL certificate never went active.",
-        "ts": 1784388456551
-      },
-      "asrMs": 85
-    },
-    {
-      "atMs": 27116,
-      "msg": {
-        "type": "notes.update",
-        "markdown": "**Reason for call**\n- Storefront downtime\n\n**Key details**\n- Storefront has been down all day\n- Customer set up own domain, shop.myhandle.com\n- Custom domain settings changed a couple days ago\n- Users receive \"your connection is not secure\" warning\n- Page won't even load\n- DNS part says it's verified on my dashboard\n\n**Actions taken**\n- —\n\n**Follow-ups**\n- —"
-      }
-    },
-    {
-      "atMs": 27388,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "But the SSL certificate never went active. It's just stuck on",
-        "ts": 1784388457306
-      },
-      "asrMs": 86
-    },
-    {
-      "atMs": 27392,
-      "msg": {
-        "type": "transcript.final",
-        "text": "But the SSL certificate never went active. It's just stuck on pending.",
-        "ts": 1784388457311
-      },
-      "asrMs": 90
-    },
-    {
-      "atMs": 28000,
-      "msg": {
-        "type": "sentiment.update",
-        "score": -1,
-        "label": "frustrated",
-        "latencyMs": 588
-      }
-    },
-    {
-      "atMs": 28382,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "I've",
-        "ts": 1784388458299
-      },
-      "asrMs": 78
-    },
-    {
-      "atMs": 29391,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "I've refreshed it, like, fifty",
-        "ts": 1784388459306
-      },
-      "asrMs": 85
-    },
-    {
-      "atMs": 30394,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "I've refreshed it, like, 50 times, and the time",
-        "ts": 1784388460310
-      },
-      "asrMs": 87
-    },
-    {
-      "atMs": 31651,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "I've refreshed it, like, 50 times, and the timing could not be worse.",
-        "ts": 1784388461569
-      },
-      "asrMs": 91
-    },
-    {
-      "atMs": 32406,
-      "msg": {
-        "type": "transcript.final",
-        "text": "I've refreshed it, like, 50 times, and the timing could not be worse.",
-        "ts": 1784388462324
-      },
-      "asrMs": 95
-    },
-    {
-      "atMs": 33035,
-      "msg": {
-        "type": "sentiment.update",
-        "score": -1,
-        "label": "frustrated",
-        "latencyMs": 629
-      }
-    },
-    {
-      "atMs": 33388,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "I've",
-        "ts": 1784388463306
-      },
-      "asrMs": 75
-    },
-    {
-      "atMs": 34390,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "I've got a product drop",
-        "ts": 1784388464308
-      },
-      "asrMs": 76
-    },
-    {
-      "atMs": 35193,
-      "msg": {
-        "type": "notes.update",
-        "markdown": "**Reason for call**\n- Storefront downtime\n\n**Key details**\n- Storefront has been down all day\n- Customer set up own domain, shop.myhandle.com\n- Custom domain settings changed a couple days ago\n- Users receive \"your connection is not secure\" warning\n- Page won't even load\n- DNS part says it's verified on my dashboard\n- SSL certificate never went active; stuck on pending\n- Customer has refreshed it multiple times\n\n**Actions taken**\n- —\n\n**Follow-ups**\n- —"
-      }
-    },
-    {
-      "atMs": 35400,
+      "atMs": 54989,
       "msg": {
         "type": "transcript.interim",
         "text": "I've got a product drop going out to my followers",
-        "ts": 1784388465318
+        "ts": 1784392148738,
+        "speaker": "customer"
       },
-      "asrMs": 85
+      "asrMs": 137
     },
     {
-      "atMs": 35406,
+      "atMs": 55524,
       "msg": {
         "type": "transcript.final",
-        "text": "I've got a product drop going out to my followers tonight.",
-        "ts": 1784388465324
+        "text": "I've got a product drop going out to my followers tonight,",
+        "ts": 1784392149274,
+        "speaker": "customer"
       },
-      "asrMs": 91
+      "asrMs": 171
     },
     {
-      "atMs": 35999,
+      "atMs": 56178,
       "msg": {
         "type": "sentiment.update",
-        "score": -1,
-        "label": "frustrated",
-        "latencyMs": 592
+        "score": -0.3,
+        "label": "negative",
+        "latencyMs": 654
       }
     },
     {
-      "atMs": 36391,
+      "atMs": 56491,
       "msg": {
         "type": "transcript.interim",
-        "text": "And every single",
-        "ts": 1784388466309
+        "text": "and every single link",
+        "ts": 1784392150241,
+        "speaker": "customer"
       },
-      "asrMs": 74
+      "asrMs": 135
     },
     {
-      "atMs": 37404,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "And every single link in my buy",
-        "ts": 1784388467322
-      },
-      "asrMs": 86
-    },
-    {
-      "atMs": 38405,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "And every single link in my bio points to that",
-        "ts": 1784388468323
-      },
-      "asrMs": 84
-    },
-    {
-      "atMs": 39408,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "And every single link in my bio points to that storefront.",
-        "ts": 1784388469326
-      },
-      "asrMs": 86
-    },
-    {
-      "atMs": 40412,
-      "msg": {
-        "type": "transcript.final",
-        "text": "And every single link in my bio points to that storefront.",
-        "ts": 1784388470331
-      },
-      "asrMs": 88
-    },
-    {
-      "atMs": 40415,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "So right now, I'm",
-        "ts": 1784388470334
-      },
-      "asrMs": 91
-    },
-    {
-      "atMs": 41080,
-      "msg": {
-        "type": "sentiment.update",
-        "score": -1,
-        "label": "frustrated",
-        "latencyMs": 667
-      }
-    },
-    {
-      "atMs": 41080,
-      "msg": {
-        "type": "alert.frustration",
-        "latencyMs": 667
-      }
-    },
-    {
-      "atMs": 41658,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "So right now, I'm losing every sale",
-        "ts": 1784388471576
-      },
-      "asrMs": 84
-    },
-    {
-      "atMs": 42344,
+      "atMs": 56964,
       "msg": {
         "type": "notes.update",
-        "markdown": "**Reason for call**\n- Storefront downtime\n\n**Key details**\n- Storefront has been down all day\n- Customer set up own domain, shop.myhandle.com\n- Custom domain settings changed a couple days ago\n- Users receive \"your connection is not secure\" warning\n- Page won't even load\n- DNS part says it's verified on my dashboard\n- SSL certificate never went active; stuck on pending\n- Customer has refreshed it multiple times\n- Customer has a product drop going out to followers tonight\n- Every link in bio points to that storefront\n\n**Actions taken**\n- —\n\n**Follow-ups**\n- —"
+        "markdown": "**Reason for call**\n- Storefront down all day\n\n**Key details**\n- Customer set up own domain: shop.myhandle.com\n- Issue started a couple days ago\n- Users see a big error message when accessing the site\n- Your connection is not secure warning and the page won't even load\n- The DNS part says it's verified\n- SSL certificate never went active; it's stuck on pending\n- Customer has refreshed it multiple times\n- Timing is critical; product drop going out to followers tonight\n\n**Actions taken**\n- —\n\n**Follow-ups**\n- —"
       }
     },
     {
-      "atMs": 42404,
+      "atMs": 57491,
+      "msg": {
+        "type": "transcript.interim",
+        "text": "and every single link in my bio points",
+        "ts": 1784392151240,
+        "speaker": "customer"
+      },
+      "asrMs": 135
+    },
+    {
+      "atMs": 58495,
+      "msg": {
+        "type": "transcript.interim",
+        "text": "and every single link in my bio points to that storefront",
+        "ts": 1784392152244,
+        "speaker": "customer"
+      },
+      "asrMs": 137
+    },
+    {
+      "atMs": 58763,
       "msg": {
         "type": "transcript.final",
-        "text": "So right now, I'm losing every sale.",
-        "ts": 1784388472322
+        "text": "and every single link in my bio points to that storefront",
+        "ts": 1784392152512,
+        "speaker": "customer"
       },
-      "asrMs": 79
+      "asrMs": 155
     },
     {
-      "atMs": 43193,
+      "atMs": 59380,
       "msg": {
         "type": "sentiment.update",
-        "score": -1,
-        "label": "frustrated",
-        "latencyMs": 789
+        "score": -0.5,
+        "label": "negative",
+        "latencyMs": 618
       }
     },
     {
-      "atMs": 43403,
+      "atMs": 59744,
       "msg": {
         "type": "transcript.interim",
-        "text": "This is the",
-        "ts": 1784388473321
+        "text": "So right now, I'm losing",
+        "ts": 1784392153494,
+        "speaker": "customer"
       },
-      "asrMs": 77
+      "asrMs": 134
     },
     {
-      "atMs": 44411,
+      "atMs": 60748,
       "msg": {
         "type": "transcript.interim",
-        "text": "This is the third day I've had a",
-        "ts": 1784388474329
+        "text": "So right now, I'm losing every",
+        "ts": 1784392154497,
+        "speaker": "customer"
       },
-      "asrMs": 83
+      "asrMs": 137
     },
     {
-      "atMs": 45431,
+      "atMs": 61279,
+      "msg": {
+        "type": "transcript.final",
+        "text": "So right now I'm losing every sale.",
+        "ts": 1784392155028,
+        "speaker": "customer"
+      },
+      "asrMs": 168
+    },
+    {
+      "atMs": 61650,
+      "msg": {
+        "type": "docs.update",
+        "docs": [
+          {
+            "id": 41,
+            "title": "Storefront SSL / TLS Certificate Issues",
+            "snippet": "# Storefront SSL / TLS Certificate Issues\n\nUse this procedure when a creator's custom-domain storefront shows a **\"your connection is not secure\"** warning, a certificate error, or the certificate is",
+            "score": 0.549
+          },
+          {
+            "id": 42,
+            "title": "Support Escalation and Outages",
+            "snippet": "# Support Escalation and Outages\n\nUse this procedure to decide when to escalate a Shopfolio support case beyond first-line help.\n\n## Escalate immediately\n- **Storefronts down for many creators at once",
+            "score": 0.4
+          },
+          {
+            "id": 33,
+            "title": "Connecting a Custom Domain",
+            "snippet": "# Connecting a Custom Domain\n\nUse this procedure when a creator wants their storefront to serve on their own domain (for example `shop.theirhandle.com`) instead of the default `*.shopfolio.app` subdom",
+            "score": 0.39
+          },
+          {
+            "id": 39,
+            "title": "Scheduled Posts Not Publishing",
+            "snippet": "# Scheduled Posts Not Publishing\n\nUse this procedure when a creator's scheduled posts **don't go out** — they stay marked `pending` or `queued` past their scheduled time, or flip to `failed`.\n\n## How",
+            "score": 0.351
+          }
+        ]
+      }
+    },
+    {
+      "atMs": 61922,
+      "msg": {
+        "type": "sentiment.update",
+        "score": -0.6,
+        "label": "negative",
+        "latencyMs": 644
+      }
+    },
+    {
+      "atMs": 62243,
       "msg": {
         "type": "transcript.interim",
-        "text": "This is the third day I've had a ticket open and no",
-        "ts": 1784388475349
+        "text": "This is the third",
+        "ts": 1784392155992,
+        "speaker": "customer"
       },
-      "asrMs": 89
+      "asrMs": 132
     },
     {
-      "atMs": 46433,
+      "atMs": 63162,
+      "msg": {
+        "type": "notes.update",
+        "markdown": "**Reason for call**\n- Storefront down all day\n\n**Key details**\n- Customer set up own domain: shop.myhandle.com\n- Issue started a couple days ago\n- Users see a big error message when accessing the site\n- Your connection is not secure warning and the page won't even load\n- The DNS part says it's verified\n- SSL certificate never went active; it's stuck on pending\n- Customer has refreshed it multiple times\n- Timing is critical; product drop going out to followers tonight\n- Every single link in bio points to that storefront\n- Currently losing every sale\n\n**Actions taken**\n- —\n\n**Follow-ups**\n- —"
+      }
+    },
+    {
+      "atMs": 63257,
       "msg": {
         "type": "transcript.interim",
-        "text": "This is the third day I've had a ticket open and nobody has gotten back to",
-        "ts": 1784388476352
+        "text": "This is the third day I've had a ticket",
+        "ts": 1784392157007,
+        "speaker": "customer"
       },
-      "asrMs": 90
+      "asrMs": 136
     },
     {
-      "atMs": 46440,
+      "atMs": 64263,
+      "msg": {
+        "type": "transcript.interim",
+        "text": "This is the third day I've had a ticket open, and no",
+        "ts": 1784392158013,
+        "speaker": "customer"
+      },
+      "asrMs": 140
+    },
+    {
+      "atMs": 65266,
+      "msg": {
+        "type": "transcript.interim",
+        "text": "This is the third day I've had a ticket open, and nobody has gotten back",
+        "ts": 1784392159016,
+        "speaker": "customer"
+      },
+      "asrMs": 143
+    },
+    {
+      "atMs": 66055,
       "msg": {
         "type": "transcript.final",
         "text": "This is the third day I've had a ticket open, and nobody has gotten back to me.",
-        "ts": 1784388476358
+        "ts": 1784392159801,
+        "speaker": "customer"
       },
-      "asrMs": 97
+      "asrMs": 181
     },
     {
-      "atMs": 47155,
+      "atMs": 66817,
       "msg": {
         "type": "sentiment.update",
-        "score": -1,
+        "score": -0.8,
         "label": "frustrated",
-        "latencyMs": 715
+        "latencyMs": 766
       }
     },
     {
-      "atMs": 47430,
+      "atMs": 67014,
       "msg": {
         "type": "transcript.interim",
-        "text": "Honestly,",
-        "ts": 1784388477348
+        "text": "Honestly, I",
+        "ts": 1784392160764,
+        "speaker": "customer"
       },
-      "asrMs": 86
+      "asrMs": 138
     },
     {
-      "atMs": 48427,
-      "msg": {
-        "type": "notes.update",
-        "markdown": "**Reason for call**\n- Storefront downtime\n\n**Key details**\n- Storefront has been down all day\n- Customer set up own domain, shop.myhandle.com\n- Custom domain settings changed a couple days ago\n- Users receive \"your connection is not secure\" warning\n- Page won't even load\n- DNS part says it's verified on my dashboard\n- SSL certificate never went active; stuck on pending\n- Customer has refreshed it multiple times\n- Customer has a product drop going out to followers tonight\n- Every link in bio points to that storefront\n- Customer is losing every sale\n- This is the third day the customer has had a ticket open with no response\n\n**Actions taken**\n- —\n\n**Follow-ups**\n- —"
-      }
-    },
-    {
-      "atMs": 48432,
+      "atMs": 68019,
       "msg": {
         "type": "transcript.interim",
-        "text": "Honestly, I'm really frustrated",
-        "ts": 1784388478350
+        "text": "Honestly, I am really frustrated.",
+        "ts": 1784392161768,
+        "speaker": "customer"
       },
-      "asrMs": 86
+      "asrMs": 140
     },
     {
-      "atMs": 49437,
+      "atMs": 69023,
       "msg": {
         "type": "transcript.interim",
-        "text": "Honestly, I'm really frustrated at this point.",
-        "ts": 1784388479356
+        "text": "Honestly, I am really frustrated at this point.",
+        "ts": 1784392162773,
+        "speaker": "customer"
       },
-      "asrMs": 89
+      "asrMs": 144
     },
     {
-      "atMs": 50442,
+      "atMs": 69310,
       "msg": {
         "type": "transcript.final",
-        "text": "Honestly, I'm really frustrated at this point.",
-        "ts": 1784388480360
+        "text": "Honestly, I am really frustrated at this point.",
+        "ts": 1784392163060,
+        "speaker": "customer"
       },
-      "asrMs": 93
+      "asrMs": 181
     },
     {
-      "atMs": 50711,
+      "atMs": 70261,
+      "msg": {
+        "type": "transcript.interim",
+        "text": "That is completely",
+        "ts": 1784392164011,
+        "speaker": "customer"
+      },
+      "asrMs": 130
+    },
+    {
+      "atMs": 70518,
+      "msg": {
+        "type": "sentiment.update",
+        "score": -0.9,
+        "label": "frustrated",
+        "latencyMs": 1208
+      }
+    },
+    {
+      "atMs": 71032,
+      "msg": {
+        "type": "transcript.final",
+        "text": "That is completely fair.",
+        "ts": 1784392164782,
+        "speaker": "agent"
+      },
+      "asrMs": 150
+    },
+    {
+      "atMs": 71493,
+      "msg": {
+        "type": "notes.update",
+        "markdown": "**Reason for call**\n- Storefront down all day\n\n**Key details**\n- Customer set up own domain: shop.myhandle.com\n- Issue started a couple days ago\n- Users see a big error message when accessing the site\n- Your connection is not secure warning and the page won't even load\n- The DNS part says it's verified\n- SSL certificate never went active; it's stuck on pending\n- Customer has refreshed it multiple times\n- Timing is critical; product drop going out to followers tonight\n- Every single link in bio points to that storefront\n- Currently losing every sale\n- This is the third day I've had a ticket open, and nobody has gotten back to me.\n- Honestly, I am really frustrated at this point.\n\n**Actions taken**\n- —\n\n**Follow-ups**\n- —"
+      }
+    },
+    {
+      "atMs": 72019,
+      "msg": {
+        "type": "transcript.interim",
+        "text": "And I'm gonna stay on",
+        "ts": 1784392165769,
+        "speaker": "agent"
+      },
+      "asrMs": 135
+    },
+    {
+      "atMs": 73022,
+      "msg": {
+        "type": "transcript.interim",
+        "text": "And I'm gonna stay on this with you until it",
+        "ts": 1784392166771,
+        "speaker": "agent"
+      },
+      "asrMs": 137
+    },
+    {
+      "atMs": 74032,
+      "msg": {
+        "type": "transcript.interim",
+        "text": "And I'm gonna stay on this with you until it's working again.",
+        "ts": 1784392167781,
+        "speaker": "agent"
+      },
+      "asrMs": 145
+    },
+    {
+      "atMs": 74295,
+      "msg": {
+        "type": "transcript.final",
+        "text": "And I'm gonna stay on this with you until it's working again.",
+        "ts": 1784392168045,
+        "speaker": "agent"
+      },
+      "asrMs": 159
+    },
+    {
+      "atMs": 75275,
+      "msg": {
+        "type": "transcript.interim",
+        "text": "And on top of all",
+        "ts": 1784392169024,
+        "speaker": "agent"
+      },
+      "asrMs": 137
+    },
+    {
+      "atMs": 76040,
+      "msg": {
+        "type": "transcript.final",
+        "text": "And on top of all that,",
+        "ts": 1784392169790,
+        "speaker": "customer"
+      },
+      "asrMs": 152
+    },
+    {
+      "atMs": 76410,
       "msg": {
         "type": "docs.update",
         "docs": [
@@ -798,341 +1163,145 @@
             "id": 36,
             "title": "Link Click Analytics",
             "snippet": "# Link Click Analytics\n\nUse this procedure when a creator asks about clicks, why a link shows no data, or what the analytics do and don't track.\n\n## What we track\nEvery storefront and post link is ser",
-            "score": 0.403
+            "score": 0.402
           },
           {
             "id": 42,
             "title": "Support Escalation and Outages",
             "snippet": "# Support Escalation and Outages\n\nUse this procedure to decide when to escalate a Shopfolio support case beyond first-line help.\n\n## Escalate immediately\n- **Storefronts down for many creators at once",
-            "score": 0.392
-          },
-          {
-            "id": 39,
-            "title": "Scheduled Posts Not Publishing",
-            "snippet": "# Scheduled Posts Not Publishing\n\nUse this procedure when a creator's scheduled posts **don't go out** — they stay marked `pending` or `queued` past their scheduled time, or flip to `failed`.\n\n## How",
-            "score": 0.381
+            "score": 0.367
           },
           {
             "id": 40,
             "title": "Customizing Your Storefront",
             "snippet": "# Customizing Your Storefront\n\nUse this procedure when a creator asks how to change the look of their link-in-bio page or pop-up shop, or how to embed it.\n\n## What's customizable\nThe storefront is a c",
-            "score": 0.355
+            "score": 0.344
+          },
+          {
+            "id": 39,
+            "title": "Scheduled Posts Not Publishing",
+            "snippet": "# Scheduled Posts Not Publishing\n\nUse this procedure when a creator's scheduled posts **don't go out** — they stay marked `pending` or `queued` past their scheduled time, or flip to `failed`.\n\n## How",
+            "score": 0.344
           }
         ]
       }
     },
     {
-      "atMs": 51014,
+      "atMs": 76746,
       "msg": {
         "type": "sentiment.update",
-        "score": -1,
-        "label": "frustrated",
-        "latencyMs": 572
+        "score": -0.3,
+        "label": "negative",
+        "latencyMs": 706
       }
     },
     {
-      "atMs": 51178,
+      "atMs": 77045,
       "msg": {
         "type": "transcript.interim",
-        "text": "On top of all that,",
-        "ts": 1784388481096
+        "text": "the posts I scheduled for",
+        "ts": 1784392170778,
+        "speaker": "customer"
       },
-      "asrMs": 77
+      "asrMs": 155
     },
     {
-      "atMs": 51185,
+      "atMs": 78032,
+      "msg": {
+        "type": "transcript.interim",
+        "text": "the post I scheduled for this morning never went",
+        "ts": 1784392171782,
+        "speaker": "customer"
+      },
+      "asrMs": 140
+    },
+    {
+      "atMs": 78803,
       "msg": {
         "type": "transcript.final",
-        "text": "And on top of all that,",
-        "ts": 1784388481103
+        "text": "the post I scheduled for this morning never went out either.",
+        "ts": 1784392172553,
+        "speaker": "customer"
       },
-      "asrMs": 84
+      "asrMs": 160
     },
     {
-      "atMs": 51783,
+      "atMs": 79519,
       "msg": {
         "type": "sentiment.update",
-        "score": -1,
-        "label": "frustrated",
-        "latencyMs": 597
+        "score": -0.6,
+        "label": "negative",
+        "latencyMs": 716
       }
     },
     {
-      "atMs": 52433,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "the posts I scheduled",
-        "ts": 1784388482352
-      },
-      "asrMs": 81
-    },
-    {
-      "atMs": 53183,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "the posts I scheduled for this morning",
-        "ts": 1784388483101
-      },
-      "asrMs": 80
-    },
-    {
-      "atMs": 54439,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "the posts I scheduled for this morning never went out",
-        "ts": 1784388484357
-      },
-      "asrMs": 83
-    },
-    {
-      "atMs": 55212,
-      "msg": {
-        "type": "transcript.final",
-        "text": "the posts I scheduled for this morning never went out either.",
-        "ts": 1784388485130
-      },
-      "asrMs": 104
-    },
-    {
-      "atMs": 55804,
-      "msg": {
-        "type": "sentiment.update",
-        "score": -1,
-        "label": "frustrated",
-        "latencyMs": 593
-      }
-    },
-    {
-      "atMs": 56182,
+      "atMs": 79780,
       "msg": {
         "type": "transcript.interim",
         "text": "They're just",
-        "ts": 1784388486100
+        "ts": 1784392173530,
+        "speaker": "customer"
       },
-      "asrMs": 74
+      "asrMs": 136
     },
     {
-      "atMs": 57220,
+      "atMs": 80786,
       "msg": {
         "type": "transcript.interim",
         "text": "They're just sitting in the queue",
-        "ts": 1784388487138
+        "ts": 1784392174536,
+        "speaker": "customer"
       },
-      "asrMs": 79
+      "asrMs": 140
     },
     {
-      "atMs": 57758,
+      "atMs": 81197,
       "msg": {
         "type": "notes.update",
-        "markdown": "**Reason for call**\n- Storefront downtime\n\n**Key details**\n- Storefront has been down all day\n- Customer set up own domain, shop.myhandle.com\n- Custom domain settings changed a couple days ago\n- Users receive \"your connection is not secure\" warning\n- Page won't even load\n- DNS part says it's verified on my dashboard\n- SSL certificate never went active; stuck on pending\n- Customer has refreshed it multiple times\n- Customer has a product drop going out to followers tonight\n- Every link in bio points to that storefront\n- Customer is losing every sale\n- This is the third day the customer has had a ticket open with no response\n- Customer is really frustrated\n- Scheduled posts for this morning never went out\n\n**Actions taken**\n- —\n\n**Follow-ups**\n- —"
+        "markdown": "**Reason for call**\n- Storefront down all day\n\n**Key details**\n- Customer set up own domain: shop.myhandle.com\n- Issue started a couple days ago\n- Users see a big error message when accessing the site\n- Your connection is not secure warning and the page won't even load\n- The DNS part says it's verified\n- SSL certificate never went active; it's stuck on pending\n- Customer has refreshed it multiple times\n- Timing is critical; product drop going out to followers tonight\n- Every single link in bio points to that storefront\n- Currently losing every sale\n- This is the third day I've had a ticket open, and nobody has gotten back to me.\n- Honestly, I am really frustrated at this point.\n- The post I scheduled for this morning never went out either.\n\n**Actions taken**\n- —\n\n**Follow-ups**\n- —"
       }
     },
     {
-      "atMs": 58235,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "They're just sitting in the queue marked pending",
-        "ts": 1784388488148
-      },
-      "asrMs": 92
-    },
-    {
-      "atMs": 58235,
+      "atMs": 81817,
       "msg": {
         "type": "transcript.final",
-        "text": "They're just sitting in the queue marked pending",
-        "ts": 1784388488148
+        "text": "They're just sitting in the queue marked pending.",
+        "ts": 1784392175567,
+        "speaker": "customer"
       },
-      "asrMs": 92
+      "asrMs": 169
     },
     {
-      "atMs": 58468,
-      "msg": {
-        "type": "docs.update",
-        "docs": [
-          {
-            "id": 39,
-            "title": "Scheduled Posts Not Publishing",
-            "snippet": "# Scheduled Posts Not Publishing\n\nUse this procedure when a creator's scheduled posts **don't go out** — they stay marked `pending` or `queued` past their scheduled time, or flip to `failed`.\n\n## How",
-            "score": 0.437
-          },
-          {
-            "id": 42,
-            "title": "Support Escalation and Outages",
-            "snippet": "# Support Escalation and Outages\n\nUse this procedure to decide when to escalate a Shopfolio support case beyond first-line help.\n\n## Escalate immediately\n- **Storefronts down for many creators at once",
-            "score": 0.342
-          },
-          {
-            "id": 30,
-            "title": "Best-Time Slot Suggestions",
-            "snippet": "# Best-Time Slot Suggestions\n\nUse this procedure when a creator asks about the suggested posting times, or why a suggested slot changed.\n\n## What it does\nWhen scheduling a post, Shopfolio suggests **b",
-            "score": 0.326
-          }
-        ]
-      }
-    },
-    {
-      "atMs": 59084,
+      "atMs": 82531,
       "msg": {
         "type": "sentiment.update",
-        "score": -1,
-        "label": "frustrated",
-        "latencyMs": 854
+        "score": -0.4,
+        "label": "negative",
+        "latencyMs": 714
       }
     },
     {
-      "atMs": 59221,
+      "atMs": 82792,
       "msg": {
         "type": "transcript.interim",
         "text": "They never publish.",
-        "ts": 1784388489140
+        "ts": 1784392176540,
+        "speaker": "customer"
       },
-      "asrMs": 77
+      "asrMs": 142
     },
     {
-      "atMs": 60221,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "They never published. So can you",
-        "ts": 1784388490139
-      },
-      "asrMs": 76
-    },
-    {
-      "atMs": 61227,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "They never published. So can you please help me get the",
-        "ts": 1784388491146
-      },
-      "asrMs": 79
-    },
-    {
-      "atMs": 62232,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "They never published. So can you please help me get the certificate?",
-        "ts": 1784388492150
-      },
-      "asrMs": 82
-    },
-    {
-      "atMs": 63241,
+      "atMs": 83306,
       "msg": {
         "type": "transcript.final",
-        "text": "They never published. So can you please help me get the certificate?",
-        "ts": 1784388493159
+        "text": "They never published.",
+        "ts": 1784392177055,
+        "speaker": "customer"
       },
-      "asrMs": 89
+      "asrMs": 156
     },
     {
-      "atMs": 63244,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "To actually",
-        "ts": 1784388493163
-      },
-      "asrMs": 92
-    },
-    {
-      "atMs": 63885,
-      "msg": {
-        "type": "sentiment.update",
-        "score": -1,
-        "label": "frustrated",
-        "latencyMs": 644
-      }
-    },
-    {
-      "atMs": 64234,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "To actually provision and figure",
-        "ts": 1784388494153
-      },
-      "asrMs": 82
-    },
-    {
-      "atMs": 65488,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "To actually provision and figure out why my schedule",
-        "ts": 1784388495406
-      },
-      "asrMs": 84
-    },
-    {
-      "atMs": 65719,
-      "msg": {
-        "type": "notes.update",
-        "markdown": "**Reason for call**\n- Storefront downtime\n\n**Key details**\n- Storefront has been down all day\n- Customer set up own domain, shop.myhandle.com\n- Custom domain settings changed a couple days ago\n- Users receive \"your connection is not secure\" warning\n- Page won't even load\n- DNS part says it's verified on my dashboard\n- SSL certificate never went active; stuck on pending\n- Customer has refreshed it multiple times\n- Customer has a product drop going out to followers tonight\n- Every link in bio points to that storefront\n- Customer is losing every sale\n- This is the third day the customer has had a ticket open with no response\n- Customer is really frustrated\n- Scheduled posts for this morning never went out\n- They're just sitting in the queue marked pending\n- They never published. So can you please help me get the certificate?\n\n**Actions taken**\n- —\n\n**Follow-ups**\n- —"
-      }
-    },
-    {
-      "atMs": 66242,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "To actually provision and figure out why my scheduled posts are stuck?",
-        "ts": 1784388496160
-      },
-      "asrMs": 87
-    },
-    {
-      "atMs": 67242,
-      "msg": {
-        "type": "transcript.final",
-        "text": "To actually provision and figure out why my scheduled posts are stuck?",
-        "ts": 1784388497159
-      },
-      "asrMs": 85
-    },
-    {
-      "atMs": 67756,
-      "msg": {
-        "type": "sentiment.update",
-        "score": -1,
-        "label": "frustrated",
-        "latencyMs": 516
-      }
-    },
-    {
-      "atMs": 68233,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "I really, really",
-        "ts": 1784388498152
-      },
-      "asrMs": 76
-    },
-    {
-      "atMs": 69235,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "I really, really need my shop back",
-        "ts": 1784388499152
-      },
-      "asrMs": 77
-    },
-    {
-      "atMs": 69742,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "I really, really need my shop back up before tonight.",
-        "ts": 1784388499660
-      },
-      "asrMs": 83
-    },
-    {
-      "atMs": 69747,
-      "msg": {
-        "type": "transcript.final",
-        "text": "I really, really need my shop back up before tonight.",
-        "ts": 1784388499665
-      },
-      "asrMs": 88
-    },
-    {
-      "atMs": 70039,
+      "atMs": 83550,
       "msg": {
         "type": "docs.update",
         "docs": [
@@ -1140,44 +1309,128 @@
             "id": 39,
             "title": "Scheduled Posts Not Publishing",
             "snippet": "# Scheduled Posts Not Publishing\n\nUse this procedure when a creator's scheduled posts **don't go out** — they stay marked `pending` or `queued` past their scheduled time, or flip to `failed`.\n\n## How",
-            "score": 0.557
-          },
-          {
-            "id": 41,
-            "title": "Storefront SSL / TLS Certificate Issues",
-            "snippet": "# Storefront SSL / TLS Certificate Issues\n\nUse this procedure when a creator's custom-domain storefront shows a **\"your connection is not secure\"** warning, a certificate error, or the certificate is",
-            "score": 0.461
-          },
-          {
-            "id": 42,
-            "title": "Support Escalation and Outages",
-            "snippet": "# Support Escalation and Outages\n\nUse this procedure to decide when to escalate a Shopfolio support case beyond first-line help.\n\n## Escalate immediately\n- **Storefronts down for many creators at once",
-            "score": 0.449
+            "score": 0.47
           },
           {
             "id": 30,
             "title": "Best-Time Slot Suggestions",
             "snippet": "# Best-Time Slot Suggestions\n\nUse this procedure when a creator asks about the suggested posting times, or why a suggested slot changed.\n\n## What it does\nWhen scheduling a post, Shopfolio suggests **b",
-            "score": 0.374
+            "score": 0.328
+          },
+          {
+            "id": 42,
+            "title": "Support Escalation and Outages",
+            "snippet": "# Support Escalation and Outages\n\nUse this procedure to decide when to escalate a Shopfolio support case beyond first-line help.\n\n## Escalate immediately\n- **Storefronts down for many creators at once",
+            "score": 0.325
           }
         ]
       }
     },
     {
-      "atMs": 70286,
+      "atMs": 84030,
       "msg": {
         "type": "sentiment.update",
-        "score": -1,
-        "label": "frustrated",
-        "latencyMs": 537
+        "score": -0.6,
+        "label": "negative",
+        "latencyMs": 725
       }
     },
     {
-      "atMs": 72356,
+      "atMs": 84030,
       "msg": {
-        "type": "notes.update",
-        "markdown": "**Reason for call**\n- Storefront downtime\n\n**Key details**\n- Storefront has been down all day\n- Customer set up own domain, shop.myhandle.com\n- Custom domain settings changed a couple days ago\n- Users receive \"your connection is not secure\" warning\n- Page won't even load\n- DNS part says it's verified on my dashboard\n- SSL certificate never went active; stuck on pending\n- Customer has refreshed it multiple times\n- Customer has a product drop going out to followers tonight\n- Every link in bio points to that storefront\n- Customer is losing every sale\n- This is the third day the customer has had a ticket open with no response\n- Customer is really frustrated\n- Scheduled posts for this morning never went out\n- They're just sitting in the queue marked pending\n- They never published. So can you please help me get the certificate?\n- Customer needs shop back up before tonight\n- Customer wants to provision and figure out why scheduled posts are stuck\n\n**Actions taken**\n- —\n\n**Follow-ups**\n- —"
+        "type": "alert.frustration",
+        "latencyMs": 725
       }
+    },
+    {
+      "atMs": 84288,
+      "msg": {
+        "type": "transcript.interim",
+        "text": "Understood.",
+        "ts": 1784392178038,
+        "speaker": "customer"
+      },
+      "asrMs": 136
+    },
+    {
+      "atMs": 84550,
+      "msg": {
+        "type": "transcript.final",
+        "text": "Understood.",
+        "ts": 1784392178300,
+        "speaker": "agent"
+      },
+      "asrMs": 147
+    },
+    {
+      "atMs": 85536,
+      "msg": {
+        "type": "transcript.interim",
+        "text": "The storefronts",
+        "ts": 1784392179285,
+        "speaker": "agent"
+      },
+      "asrMs": 131
+    },
+    {
+      "atMs": 86306,
+      "msg": {
+        "type": "transcript.final",
+        "text": "The storefront certificate",
+        "ts": 1784392180055,
+        "speaker": "agent"
+      },
+      "asrMs": 149
+    },
+    {
+      "atMs": 87290,
+      "msg": {
+        "type": "transcript.interim",
+        "text": "and the stuck post.",
+        "ts": 1784392181039,
+        "speaker": "agent"
+      },
+      "asrMs": 132
+    },
+    {
+      "atMs": 88313,
+      "msg": {
+        "type": "transcript.final",
+        "text": "and the stuck posts.",
+        "ts": 1784392182062,
+        "speaker": "agent"
+      },
+      "asrMs": 153
+    },
+    {
+      "atMs": 89297,
+      "msg": {
+        "type": "transcript.interim",
+        "text": "Let me pull up your account",
+        "ts": 1784392183046,
+        "speaker": "agent"
+      },
+      "asrMs": 134
+    },
+    {
+      "atMs": 90298,
+      "msg": {
+        "type": "transcript.interim",
+        "text": "Let me pull up your account, and we'll take them one",
+        "ts": 1784392184048,
+        "speaker": "agent"
+      },
+      "asrMs": 134
+    },
+    {
+      "atMs": 91119,
+      "msg": {
+        "type": "transcript.final",
+        "text": "Let me pull up your account, and we'll take them one at a time.",
+        "ts": 1784392184869,
+        "speaker": "agent"
+      },
+      "asrMs": 205
     }
   ]
 }

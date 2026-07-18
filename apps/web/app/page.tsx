@@ -64,7 +64,7 @@ export default function Page() {
           grid row lets tall panels overflow and paint over the card below. */}
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
         <div className="h-[20rem] md:h-[30rem]">
-          <TranscriptPanel finals={state.finals} interim={state.interim} />
+          <TranscriptPanel finals={state.finals} interim={state.interim} interimSpeaker={state.interimSpeaker} />
         </div>
         <div className="h-[20rem] md:h-[30rem]">
           <NotesPanel notes={state.notes} drafting={state.notesDrafting} />

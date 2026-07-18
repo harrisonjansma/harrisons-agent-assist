@@ -14,6 +14,7 @@ import {
   type DocHit,
   type SentimentLabel,
   type ServerMessage,
+  type Speaker,
 } from "@call-copilot/shared/protocol";
 import {
   startMic,
@@ -29,6 +30,7 @@ export type Mode = "mic" | "sample";
 export interface TranscriptLine {
   text: string;
   ts: number;
+  speaker?: Speaker;
 }
 
 export interface CopilotState {
@@ -36,6 +38,7 @@ export interface CopilotState {
   mode: Mode | null;
   finals: TranscriptLine[];
   interim: string;
+  interimSpeaker: Speaker | null;
   notes: string;
   notesDrafting: boolean;
   docs: DocHit[];
@@ -49,7 +52,7 @@ export interface CopilotState {
 }
 
 const WS_URL = process.env.NEXT_PUBLIC_WS_URL ?? "ws://localhost:8080/ws";
-const SAMPLE_AUDIO_URL = "/sample-call.ogg";
+const SAMPLE_AUDIO_URL = "/sample-call.wav";
 const SAMPLE_REPLAY_URL = "/sample-replay.json";
 
 function median(nums: number[]): number | null {
@@ -64,6 +67,7 @@ const INITIAL: CopilotState = {
   mode: null,
   finals: [],
   interim: "",
+  interimSpeaker: null,
   notes: "",
   notesDrafting: false,
   docs: [],
@@ -132,14 +136,15 @@ export function useCopilot() {
       const asr = asrMs ?? Date.now() - lastChunkAtRef.current;
       switch (msg.type) {
         case "transcript.interim":
-          patch({ interim: msg.text, asrLatencyMs: asr });
+          patch({ interim: msg.text, interimSpeaker: msg.speaker ?? null, asrLatencyMs: asr });
           break;
         case "transcript.final":
           setState((s) => ({
             ...s,
             interim: "",
+            interimSpeaker: null,
             asrLatencyMs: asr,
-            finals: [...s.finals, { text: msg.text, ts: msg.ts }],
+            finals: [...s.finals, { text: msg.text, ts: msg.ts, speaker: msg.speaker }],
             notesDrafting: true,
           }));
           notesAwaitRef.current = true;
