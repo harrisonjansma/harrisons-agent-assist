@@ -3,54 +3,14 @@
  * endpoint at /ws. Each WS connection gets a Session (see session.ts).
  */
 import { createServer } from "node:http";
-import { readFileSync, readdirSync } from "node:fs";
-import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
 import { WebSocketServer, type WebSocket } from "ws";
-import matter from "gray-matter";
-import { serverDb, embed } from "@call-copilot/shared";
+import { serverDb } from "@call-copilot/shared";
 import { log } from "./logger.js";
-import { Session, defaultDeps, type SessionDeps } from "./session.js";
-import { DeepgramStream } from "./deepgram.js";
+import { Session } from "./session.js";
 import { allowSession, hashIp } from "./ratelimit.js";
 
 const PORT = Number(process.env.PORT ?? 8080);
 const START = Date.now();
-
-// TEMPORARY (removed after reseed + re-capture): OpenAI/Deepgram are reachable
-// only from prod. /reseed UPSERTS the corpus on title so existing doc IDs are
-// preserved (the cached sample fixture references them); ?capture=<token> on
-// /ws enables diarized linear16 capture of the two-voice WAV.
-const TEMP_TOKEN = "shopfolio-reseed-2026";
-
-async function reseedCorpus(): Promise<{ count: number }> {
-  const docsDir = join(dirname(fileURLToPath(import.meta.url)), "../../../supabase/seed/docs");
-  const files = readdirSync(docsDir).filter((f) => f.endsWith(".md"));
-  const docs = files.map((file) => {
-    const parsed = matter(readFileSync(join(docsDir, file), "utf8"));
-    const title = (parsed.data.title as string) ?? file.replace(/\.md$/, "");
-    return { title, body: parsed.content.trim() };
-  });
-  // Embed in batches to stay well under request limits, then upsert on title.
-  const bodies = docs.map((d) => d.body);
-  const embeddings: number[][] = [];
-  for (let i = 0; i < bodies.length; i += 32) {
-    const batch = await embed(bodies.slice(i, i + 32));
-    embeddings.push(...batch);
-  }
-  const rows = docs.map((d, i) => ({ title: d.title, body: d.body, embedding: embeddings[i] as number[] }));
-  const { error } = await serverDb().from("docs").upsert(rows, { onConflict: "title" });
-  if (error) throw error;
-  return { count: rows.length };
-}
-
-/** Deps that make a connection use diarization + raw linear16 (for capture). */
-function captureDeps(): SessionDeps {
-  return {
-    ...defaultDeps(),
-    createAsr: (h) => new DeepgramStream(h, { diarize: true, encoding: "linear16", sampleRate: 24000 }),
-  };
-}
 
 /**
  * Fail-fast config check. Missing keys otherwise surface only on the first
@@ -74,22 +34,6 @@ const server = createServer((req, res) => {
     res.end(JSON.stringify({ ok: true, uptime: Math.floor((Date.now() - START) / 1000) }));
     return;
   }
-  // TEMPORARY: reseed the corpus (upsert). Removed after asset regen.
-  const u = new URL(req.url ?? "/", "http://localhost");
-  if (u.pathname === "/reseed") {
-    if (u.searchParams.get("key") !== TEMP_TOKEN) return void res.writeHead(403).end();
-    void reseedCorpus()
-      .then(({ count }) => {
-        log.info({ count }, "reseed complete");
-        res.writeHead(200, { "content-type": "application/json" });
-        res.end(JSON.stringify({ ok: true, count }));
-      })
-      .catch((err) => {
-        log.error({ err }, "reseed failed");
-        res.writeHead(500).end(String(err));
-      });
-    return;
-  }
   res.writeHead(404).end();
 });
 
@@ -104,10 +48,7 @@ function clientIp(req: import("node:http").IncomingMessage): string {
 wss.on("connection", async (ws: WebSocket, req) => {
   const ipHash = hashIp(clientIp(req));
 
-  // TEMPORARY: token-gated diarized capture mode (two-voice sample re-capture).
-  const capture = new URL(req.url ?? "/", "http://localhost").searchParams.get("capture") === TEMP_TOKEN;
-
-  const gate = capture ? { allowed: true, retryAfterMs: 0 } : allowSession(ipHash);
+  const gate = allowSession(ipHash);
   if (!gate.allowed) {
     const mins = Math.ceil(gate.retryAfterMs / 60000);
     ws.send(
@@ -138,7 +79,7 @@ wss.on("connection", async (ws: WebSocket, req) => {
     return;
   }
 
-  const session = new Session(sessionId, ws, capture ? captureDeps() : undefined);
+  const session = new Session(sessionId, ws);
   session.send({ type: "session.started", sessionId });
   log.info({ session: sessionId }, "session started");
 
