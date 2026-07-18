@@ -84,20 +84,41 @@ const server = createServer((req, res) => {
     void (async () => {
       try {
         const { embed, serverDb } = await import("@call-copilot/shared");
-        const [emb] = await embed("I was charged twice and I want a refund");
         const db = serverDb();
-        const asArray = await db.rpc("match_docs", { query_embedding: emb, match_count: 12, min_score: 0 });
-        const asString = await db.rpc("match_docs", {
-          query_embedding: JSON.stringify(emb),
-          match_count: 12,
-          min_score: 0,
-        });
         const fmt = (r: { data: unknown; error: unknown }) =>
           r.error
             ? { error: String((r.error as { message?: string }).message ?? r.error) }
-            : (r.data as { title: string; score: number }[]).map((x) => `${x.title}:${x.score.toFixed(3)}`);
+            : (r.data as { title: string; score: number }[]).map((x) => `${x.title}:${Number(x.score).toFixed(3)}`);
+
+        // A) known-good doc embedding through the RPC (isolates PostgREST from OpenAI)
+        const docRow = await db.from("docs").select("embedding").eq("title", "Refunds and Double Charges").single();
+        const rawEmb = (docRow.data as { embedding: unknown } | null)?.embedding;
+        const docEmbStr = typeof rawEmb === "string" ? rawEmb : JSON.stringify(rawEmb);
+        const viaDocEmb = await db.rpc("match_docs", { query_embedding: docEmbStr, match_count: 3, min_score: -2 });
+
+        // B) live OpenAI query embedding, all scores (min_score -2)
+        const [emb] = await embed("I was charged twice and I want a refund");
+        const viaOpenAI = await db.rpc("match_docs", {
+          query_embedding: JSON.stringify(emb),
+          match_count: 3,
+          min_score: -2,
+        });
+
         res.writeHead(200, { "content-type": "application/json" });
-        res.end(JSON.stringify({ embLen: emb?.length, asArray: fmt(asArray), asString: fmt(asString) }, null, 2));
+        res.end(
+          JSON.stringify(
+            {
+              docEmbType: typeof rawEmb,
+              docEmbSample: docEmbStr?.slice(0, 40),
+              openaiEmbLen: emb?.length,
+              openaiEmbSample: emb?.slice(0, 4),
+              viaDocEmb: fmt(viaDocEmb),
+              viaOpenAI: fmt(viaOpenAI),
+            },
+            null,
+            2,
+          ),
+        );
       } catch (err) {
         res.writeHead(500).end(String(err));
       }
