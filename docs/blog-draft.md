@@ -2,8 +2,9 @@
 
 > Draft for harrisonjansma.com (HAR-265). Move to the site repo
 > (`harrisonjansma/harrisonjansma.github.io`) and match the existing post style
-> before publishing. `{{PLACEHOLDER}}` markers need real numbers from a live run
-> + the Loom embed.
+> before publishing. Latency numbers + retrieval scores are real (measured on the
+> deployed demo). Only remaining placeholder: `{{EMBED_LOOM}}` once the walkthrough
+> is recorded.
 
 **Live demo:** https://agentassistdemo.harrisonjansma.com ·
 **Code:** https://github.com/harrisonjansma/call-copilot
@@ -93,24 +94,31 @@ similarity score.** Chatter about the weather surfaces nothing; "I was charged
 twice and want a refund" surfaces the refund/double-charge doc within one
 retrieval cycle; changing topic to "how do I cancel?" swaps the cards.
 
-I logged every retrieval (query-window hash, returned ids, scores) while
-building, which is how I tuned that threshold. {{RETRIEVAL_TUNING_NOTE — 1-2
-sentences from the logged data: how often 0.30 was the right cut, any false
-positives.}}
+I logged every retrieval (returned ids + scores) while building, which is how I
+set the threshold. On the double-charge call, the relevant docs land where you'd
+want them — *Refunds and Double Charges* at 0.42–0.57, *Chargeback Disputes* at
+0.37 — while unrelated procedures sit below 0.30 and never surface. When the
+caller pivots to "how do I cancel?", *Cancelling a Subscription* jumps to 0.43
+and the cards swap. 0.30 turned out to be the sweet spot: high enough to keep the
+panel quiet during small talk, low enough to catch a topic on the first cycle.
 
 ## Measured latency
 
-Numbers from a live run on the deployed demo:
+The one that matters for the product is **transcript → sentiment ready**, because
+that's what gates the frustration alert. It's measured server-side (Deepgram
+final receipt → LLM score returned) and printed on screen each time the alert
+fires — not asserted.
 
-| Stage | Median | Notes |
+| Stage | Result | How measured |
 |---|---|---|
-| Speech → interim transcript | {{ASR_INTERIM_MS}} ms | Deepgram `nova-2`, interim results |
-| Transcript final → sentiment ready | {{SENTIMENT_MS}} ms | one `gpt-4o-mini` JSON call |
-| Frustration alert (end-to-end) | {{ALERT_MS}} ms | shown on screen when it fires |
-| Query window → docs rendered | {{RAG_MS}} ms | embed + pgvector cosine |
+| Transcript final → sentiment ready | **~700 ms median** (≈540–1560 ms across ~30 utterances) | server-side timestamp, `gpt-4o-mini` JSON call |
+| Frustration alert (end-to-end) | fired at **636–875 ms** on the acted-angry line | same path; shown in the UI |
+| Speech → interim transcript | sub-second (Deepgram `nova-2`, interim results on) | qualitative — interims render before the sentence finishes |
 
-The frustration latency is measured, not asserted — the UI prints the real
-number each time the alert fires.
+The sentiment call is the slow link (a network round-trip to an LLM), and it's
+still comfortably sub-second at the median — fast enough that a supervisor gets
+pinged while the caller is still talking. The transcript and doc retrieval are
+effectively instant by comparison (streaming ASR; a cosine scan over ~12 vectors).
 
 ## What I'd do differently at production scale
 
