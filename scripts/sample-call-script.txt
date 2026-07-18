@@ -1,0 +1,16 @@
+Sample-call script — Shopfolio support (single-voice caller monologue, ~60s).
+Generated to sample-call.ogg via OpenAI TTS (tts-1) and streamed through the
+live pipeline once to produce public/sample-replay.json. Fictional caller;
+Shopfolio is a real portfolio project (shopfolio.app).
+
+---
+
+Hi — yeah, so my storefront's been down basically all day and I'm kind of freaking out. I set up my own domain, shop dot my-handle dot com, through the custom domain settings a couple days ago, and now when anyone opens it they just get this big "your connection is not secure" warning and the page won't even load.
+
+The DNS part says it's verified on my dashboard, but the SSL certificate never went active — it's just stuck on pending. I've refreshed it like fifty times.
+
+And the timing could not be worse. I've got a product drop going out to my followers tonight, and every single link in my bio points to that storefront, so right now I'm losing every sale. This is the third day I've had a ticket open and nobody has gotten back to me. Honestly I'm really frustrated at this point.
+
+And on top of all that — the posts I scheduled for this morning never went out either. They're just sitting in the queue marked pending, they never published.
+
+So can you please help me get the certificate to actually provision, and figure out why my scheduled posts are stuck? I really, really need my shop back up before tonight.
