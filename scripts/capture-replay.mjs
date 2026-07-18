@@ -1,23 +1,26 @@
-// One-off: stream the sample-call audio through the LIVE worker pipeline once
-// and record every downstream event with its playback-relative timestamp, so
-// the browser can replay the exact same run without re-hitting Deepgram/OpenAI.
+// One-off: stream the two-voice sample WAV through the LIVE worker pipeline once
+// (with diarization enabled via ?capture=<token>) and record every downstream
+// event with its playback-relative timestamp + speaker, so the browser can
+// replay the exact run without re-hitting Deepgram/OpenAI.
 //
 //   node scripts/capture-replay.mjs [wsUrl]
 //
-// Writes apps/web/public/sample-replay.json. Uses Node 22's built-in WebSocket.
+// Reads apps/web/public/sample-call.wav, writes apps/web/public/sample-replay.json.
+// Uses Node 22's built-in WebSocket.
 import { readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
-const OGG = join(ROOT, "apps/web/public/sample-call.ogg");
+const WAV = join(ROOT, "apps/web/public/sample-call.wav");
 const OUT = join(ROOT, "apps/web/public/sample-replay.json");
-const WS_URL = process.argv[2] ?? "wss://call-copilotworker-production.up.railway.app/ws";
+const TOKEN = "shopfolio-reseed-2026";
+const WS_URL =
+  process.argv[2] ?? `wss://call-copilotworker-production.up.railway.app/ws?capture=${TOKEN}`;
 
 const CHUNK_MS = 250;
-const MAX_FRAME = 16 * 1024; // stay under the 32KB server cap
-const TRAILING_MS = 5000; // keep listening after the last byte for late events
+const TRAILING_MS = 6000; // keep listening after the last byte for late events
 const KEEP = new Set([
   "transcript.interim",
   "transcript.final",
@@ -27,32 +30,43 @@ const KEEP = new Set([
   "alert.frustration",
 ]);
 
-/** Duration of an Ogg Opus file: last page granulepos / 48000 (Opus granule is 48kHz). */
-function oggDurationMs(buf) {
-  const marker = Buffer.from("OggS");
-  let idx = buf.lastIndexOf(marker);
-  while (idx >= 0) {
-    const granule = buf.readBigUInt64LE(idx + 6);
-    if (granule !== 0xffffffffffffffffn && granule > 0n) {
-      return Number(granule) / 48000 * 1000;
+/** Parse a PCM WAV: returns { sampleRate, bytesPerSec, dataOffset, dataLen }. */
+function parseWav(buf) {
+  if (buf.toString("ascii", 0, 4) !== "RIFF" || buf.toString("ascii", 8, 12) !== "WAVE")
+    throw new Error("not a WAV file");
+  let p = 12;
+  let sampleRate = 24000, channels = 1, bits = 16, dataOffset = 44, dataLen = buf.length - 44;
+  while (p + 8 <= buf.length) {
+    const id = buf.toString("ascii", p, p + 4);
+    const size = buf.readUInt32LE(p + 4);
+    if (id === "fmt ") {
+      channels = buf.readUInt16LE(p + 10);
+      sampleRate = buf.readUInt32LE(p + 12);
+      bits = buf.readUInt16LE(p + 22);
+    } else if (id === "data") {
+      dataOffset = p + 8;
+      dataLen = size;
+      break;
     }
-    idx = buf.lastIndexOf(marker, idx - 1);
+    p += 8 + size + (size % 2);
   }
-  return 0;
+  const bytesPerSec = sampleRate * channels * (bits / 8);
+  return { sampleRate, bytesPerSec, dataOffset, dataLen };
 }
 
-const audio = readFileSync(OGG);
-const durationMs = Math.round(oggDurationMs(audio));
-if (!durationMs) throw new Error("could not read Ogg duration");
-const bytesPerMs = audio.length / durationMs;
-console.log(`audio: ${audio.length} bytes, ${(durationMs / 1000).toFixed(1)}s, ${WS_URL}`);
+const wav = readFileSync(WAV);
+const { bytesPerSec, dataOffset, dataLen } = parseWav(wav);
+const durationMs = Math.round((dataLen / bytesPerSec) * 1000);
+const pcm = wav.subarray(dataOffset, dataOffset + dataLen);
+const frameBytes = Math.round((bytesPerSec * CHUNK_MS) / 1000); // ~250ms of PCM
+console.log(`wav: ${dataLen} PCM bytes, ${(durationMs / 1000).toFixed(1)}s -> ${WS_URL}`);
 
 const events = [];
 let started = 0;
 let offset = 0;
 let pacer = null;
 let closeTimer = null;
-let lastSentAt = 0; // wall time of the most recent audio frame sent (for ASR latency)
+let lastSentAt = 0;
 
 const ws = new WebSocket(WS_URL);
 ws.binaryType = "arraybuffer";
@@ -60,8 +74,7 @@ ws.binaryType = "arraybuffer";
 function finish() {
   try { ws.close(); } catch {}
   events.sort((a, b) => a.atMs - b.atMs);
-  const fixture = { audioDurationMs: durationMs, capturedAt: null, events };
-  writeFileSync(OUT, JSON.stringify(fixture, null, 2));
+  writeFileSync(OUT, JSON.stringify({ audioDurationMs: durationMs, events }, null, 2));
   const counts = {};
   for (const e of events) counts[e.msg.type] = (counts[e.msg.type] ?? 0) + 1;
   console.log("wrote", OUT, "\nevent counts:", counts);
@@ -71,23 +84,21 @@ function finish() {
 ws.onopen = () => {
   started = Date.now();
   ws.send(JSON.stringify({ type: "start" }));
-  // Stream bytes paced to real time so event timings map to audio playback position.
   pacer = setInterval(() => {
     const elapsed = Date.now() - started;
-    const target = Math.min(audio.length, Math.ceil(elapsed * bytesPerMs));
+    const target = Math.min(pcm.length, Math.ceil((elapsed / 1000) * bytesPerSec));
     while (offset < target) {
-      const end = Math.min(offset + MAX_FRAME, target);
-      ws.send(audio.subarray(offset, end));
+      const end = Math.min(offset + frameBytes, target);
+      ws.send(pcm.subarray(offset, end));
       offset = end;
       lastSentAt = Date.now();
     }
-    if (offset >= audio.length) {
+    if (offset >= pcm.length) {
       clearInterval(pacer);
       pacer = null;
-      // let the tail of the transcript + downstream jobs land, then stop
       closeTimer = setTimeout(() => {
         try { ws.send(JSON.stringify({ type: "stop" })); } catch {}
-        setTimeout(finish, 500);
+        setTimeout(finish, 800);
       }, TRAILING_MS);
     }
   }, CHUNK_MS);
@@ -102,19 +113,20 @@ ws.onmessage = (ev) => {
     return;
   }
   const rec = { atMs: Date.now() - started, msg };
-  // Record the real ASR latency the same way the live client measures it
-  // (time since the most recent audio frame), so replay can show it honestly.
   if ((msg.type === "transcript.interim" || msg.type === "transcript.final") && lastSentAt) {
     rec.asrMs = Date.now() - lastSentAt;
   }
   events.push(rec);
-  if (msg.type === "transcript.final") console.log(`  [${Date.now() - started}ms] final: ${msg.text}`);
-  if (msg.type === "docs.update") console.log(`  [${Date.now() - started}ms] docs: ${msg.docs.map((d) => d.title + " " + d.score).join(", ")}`);
+  if (msg.type === "transcript.final")
+    console.log(`  [${Date.now() - started}ms] ${msg.speaker ?? "?"}: ${msg.text}`);
+  if (msg.type === "docs.update")
+    console.log(`  [${Date.now() - started}ms] docs: ${msg.docs.map((d) => d.title + " " + d.score).join(", ")}`);
+  if (msg.type === "sentiment.update")
+    console.log(`  [${Date.now() - started}ms] sentiment ${msg.score} ${msg.label}`);
   if (msg.type === "alert.frustration") console.log(`  [${Date.now() - started}ms] ALERT ${msg.latencyMs}ms`);
 };
 
-ws.onerror = (e) => { console.error("ws error", e.message ?? e); };
+ws.onerror = (e) => console.error("ws error", e.message ?? e);
 ws.onclose = () => { if (pacer) clearInterval(pacer); if (!closeTimer) finish(); };
 
-// hard cap
-setTimeout(() => { console.error("timeout"); finish(); }, durationMs + TRAILING_MS + 20000);
+setTimeout(() => { console.error("timeout"); finish(); }, durationMs + TRAILING_MS + 25000);

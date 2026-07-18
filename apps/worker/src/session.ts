@@ -4,7 +4,7 @@
  * cadence guards. One instance per connected browser tab.
  */
 import type { WebSocket } from "ws";
-import { LIMITS, type DocHit, type ServerMessage } from "@call-copilot/shared";
+import { LIMITS, type DocHit, type ServerMessage, type Speaker } from "@call-copilot/shared";
 import { log } from "./logger.js";
 import { DeepgramStream, type TranscriptEvent } from "./deepgram.js";
 import { generateNotes } from "./notes.js";
@@ -94,6 +94,10 @@ export class Session {
   // sentiment
   private frustration = new FrustrationDetector();
 
+  // diarization: first speaker index heard is treated as the agent (who greets
+  // first), the next as the customer. Absent on the single-speaker mic path.
+  private speakerOrder: number[] = [];
+
   constructor(
     id: string,
     private readonly ws: WebSocket,
@@ -154,30 +158,39 @@ export class Session {
     void this.close("asr-lost");
   }
 
+  /** Map a raw diarization index to a role (first heard = agent). */
+  private roleFor(speaker?: number): Speaker | undefined {
+    if (speaker == null) return undefined;
+    if (!this.speakerOrder.includes(speaker)) this.speakerOrder.push(speaker);
+    return this.speakerOrder[0] === speaker ? "agent" : "customer";
+  }
+
   private onTranscript(e: TranscriptEvent): void {
     if (!e.text) return;
+    const speaker = this.roleFor(e.speaker);
     if (!e.isFinal) {
-      this.send({ type: "transcript.interim", text: e.text, ts: e.receivedAt });
+      this.send({ type: "transcript.interim", text: e.text, ts: e.receivedAt, speaker });
       return;
     }
-    this.send({ type: "transcript.final", text: e.text, ts: e.receivedAt });
+    this.send({ type: "transcript.final", text: e.text, ts: e.receivedAt, speaker });
     this.finals.push(e.text);
     this.notesBuffer.push(e.text);
     this.ragFinalsSinceRun += 1;
 
-    void this.persistUtterance(e.text, e.receivedAt);
+    void this.persistUtterance(e.text, e.receivedAt, speaker);
     this.maybeRunNotes();
     this.maybeRunRag();
   }
 
-  private async persistUtterance(text: string, receivedAt: number): Promise<void> {
+  private async persistUtterance(text: string, receivedAt: number, speaker?: Speaker): Promise<void> {
     const id = await this.deps.store.insertUtterance(this.id, text).catch((err) => {
       log.error({ err, session: this.id }, "failed to insert utterance");
       return null;
     });
     if (id == null) return;
-    // sentiment runs fire-and-forget and updates the row it just inserted.
-    void this.runSentiment(id, text, receivedAt);
+    // The agent's lines shouldn't move the CUSTOMER sentiment gauge; only score
+    // the customer (and the single-speaker mic path, where speaker is undefined).
+    if (speaker !== "agent") void this.runSentiment(id, text, receivedAt);
   }
 
   // --- notes ---------------------------------------------------------------

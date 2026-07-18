@@ -18,6 +18,9 @@ export interface DocHit {
 
 export type SentimentLabel = "positive" | "neutral" | "negative" | "frustrated";
 
+/** Diarized speaker role. Absent on the live mic path (single speaker). */
+export type Speaker = "agent" | "customer";
+
 /** client -> server control messages (audio is sent as raw binary frames). */
 export type ClientMessage =
   | { type: "start"; sessionId?: string }
@@ -26,8 +29,8 @@ export type ClientMessage =
 /** server -> client events. */
 export type ServerMessage =
   | { type: "session.started"; sessionId: string }
-  | { type: "transcript.interim"; text: string; ts: number }
-  | { type: "transcript.final"; text: string; ts: number }
+  | { type: "transcript.interim"; text: string; ts: number; speaker?: Speaker }
+  | { type: "transcript.final"; text: string; ts: number; speaker?: Speaker }
   | { type: "notes.update"; markdown: string }
   | { type: "docs.update"; docs: DocHit[] }
   | { type: "sentiment.update"; score: number; label: SentimentLabel; latencyMs: number }

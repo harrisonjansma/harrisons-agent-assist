@@ -11,6 +11,8 @@ export interface TranscriptEvent {
   isFinal: boolean;
   /** ms since epoch when the worker received this from Deepgram */
   receivedAt: number;
+  /** Deepgram diarization speaker index (only when diarize is enabled). */
+  speaker?: number;
 }
 
 export interface DeepgramHandlers {
@@ -19,8 +21,46 @@ export interface DeepgramHandlers {
   onClose: () => void;
 }
 
-const DG_URL =
-  "wss://api.deepgram.com/v1/listen?model=nova-2&interim_results=true&smart_format=true&punctuate=true";
+/**
+ * Optional stream config. Defaults reproduce the live mic path exactly: no
+ * diarization and no encoding params (Deepgram auto-detects the webm/opus
+ * container). The two-voice sample capture opts into diarize + raw linear16.
+ */
+export interface DeepgramOptions {
+  diarize?: boolean;
+  /** e.g. "linear16" for raw PCM; omit for container passthrough. */
+  encoding?: string;
+  sampleRate?: number;
+}
+
+function buildUrl(opts?: DeepgramOptions): string {
+  const params = new URLSearchParams({
+    model: "nova-2",
+    interim_results: "true",
+    smart_format: "true",
+    punctuate: "true",
+  });
+  if (opts?.diarize) params.set("diarize", "true");
+  if (opts?.encoding) {
+    params.set("encoding", opts.encoding);
+    params.set("sample_rate", String(opts.sampleRate ?? 24000));
+    params.set("channels", "1");
+  }
+  return "wss://api.deepgram.com/v1/listen?" + params.toString();
+}
+
+/** Dominant diarization speaker across a segment's words (or undefined). */
+function segmentSpeaker(words: unknown): number | undefined {
+  if (!Array.isArray(words) || words.length === 0) return undefined;
+  const counts = new Map<number, number>();
+  for (const w of words as Array<{ speaker?: number }>) {
+    if (typeof w.speaker === "number") counts.set(w.speaker, (counts.get(w.speaker) ?? 0) + 1);
+  }
+  let best: number | undefined;
+  let bestN = -1;
+  for (const [spk, n] of counts) if (n > bestN) ((best = spk), (bestN = n));
+  return best;
+}
 
 export class DeepgramStream {
   private ws: WebSocket;
@@ -28,11 +68,11 @@ export class DeepgramStream {
   private open = false;
   private pending: Buffer[] = []; // frames buffered until the socket opens
 
-  constructor(handlers: DeepgramHandlers) {
+  constructor(handlers: DeepgramHandlers, opts?: DeepgramOptions) {
     const key = process.env.DEEPGRAM_API_KEY;
     if (!key) throw new Error("DEEPGRAM_API_KEY is not set");
 
-    this.ws = new WebSocket(DG_URL, { headers: { Authorization: `Token ${key}` } });
+    this.ws = new WebSocket(buildUrl(opts), { headers: { Authorization: `Token ${key}` } });
 
     this.ws.on("open", () => {
       this.open = true;
@@ -66,6 +106,7 @@ export class DeepgramStream {
           text,
           isFinal: Boolean(msg.is_final),
           receivedAt: Date.now(),
+          speaker: segmentSpeaker(alt?.words),
         });
       } catch (err) {
         log.warn({ err }, "deepgram: failed to parse message");
