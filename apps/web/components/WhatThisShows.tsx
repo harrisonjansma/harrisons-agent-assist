@@ -25,7 +25,7 @@ export function WhatThisShows() {
             intelligently</span> — composing those commodity models into a real-time product that fills an
             actual need: helping a support agent, live and mid-conversation, before a call goes sideways.
           </p>
-          <p className="leading-relaxed text-ink-faint">
+          <p className="leading-relaxed text-ink-muted">
             The engineering is in the orchestration, not the models: a single-WebSocket streaming design;
             cadence and debouncing so the LLM calls stay cheap; retrieval thresholds so the docs stay quiet
             until they&rsquo;re relevant; speaker diarization; sub-second transcript-to-alert latency; and a
