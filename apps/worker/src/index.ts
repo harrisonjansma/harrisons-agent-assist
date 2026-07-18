@@ -34,7 +34,6 @@ const server = createServer((req, res) => {
     res.end(JSON.stringify({ ok: true, uptime: Math.floor((Date.now() - START) / 1000) }));
     return;
   }
-  }
   res.writeHead(404).end();
 });
 
