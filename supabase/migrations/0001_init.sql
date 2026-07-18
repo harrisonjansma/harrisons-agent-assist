@@ -34,7 +34,7 @@ create table if not exists docs (
 );
 create unique index if not exists docs_title_key on docs(title);
 
--- Approximate-nearest-neighbour index for cosine similarity over embeddings.
--- ivfflat needs data present to build well; safe to (re)build after `pnpm seed`.
-create index if not exists docs_embedding_idx
-  on docs using ivfflat (embedding vector_cosine_ops) with (lists = 100);
+-- NOTE: no ANN index. With a small corpus (~12 docs) an exact sequential scan
+-- is instant and correct; an ivfflat index at this scale returns approximate
+-- (mostly empty) results. Add an HNSW index only if the corpus grows large.
+-- (See migration 0005 — an earlier ivfflat index was dropped for this reason.)
