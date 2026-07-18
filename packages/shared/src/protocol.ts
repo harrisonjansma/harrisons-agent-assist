@@ -14,6 +14,12 @@ export interface DocHit {
   title: string;
   snippet: string;
   score: number;
+  /**
+   * Full doc body, present only in the cached sample replay so the card can
+   * expand without a live `/api/docs` fetch (keeps the sample self-contained
+   * and DB-independent). Live mic mode omits this and fetches by `id`.
+   */
+  body?: string;
 }
 
 export type SentimentLabel = "positive" | "neutral" | "negative" | "frustrated";

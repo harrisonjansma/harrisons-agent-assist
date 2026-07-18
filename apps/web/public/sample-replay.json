@@ -1,1474 +1,861 @@
 {
-  "audioDurationMs": 91338,
-  "events": [
-    {
-      "atMs": 1076,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "Thanks for calling Shop",
-        "ts": 1784395801353,
-        "speaker": "agent"
-      },
-      "asrMs": 73
-    },
-    {
-      "atMs": 2083,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "Thanks for calling ShopFolio support.",
-        "ts": 1784395802361,
-        "speaker": "agent"
-      },
-      "asrMs": 78
-    },
-    {
-      "atMs": 2351,
-      "msg": {
-        "type": "transcript.final",
-        "text": "Thanks for calling ShopFolio support.",
-        "ts": 1784395802629,
-        "speaker": "agent"
-      },
-      "asrMs": 95
-    },
-    {
-      "atMs": 3363,
-      "msg": {
-        "type": "transcript.final",
-        "text": "This is Alex.",
-        "ts": 1784395803641,
-        "speaker": "agent"
-      },
-      "asrMs": 107
-    },
-    {
-      "atMs": 4340,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "How can I help today?",
-        "ts": 1784395804618,
-        "speaker": "agent"
-      },
-      "asrMs": 83
-    },
-    {
-      "atMs": 4606,
-      "msg": {
-        "type": "transcript.final",
-        "text": "How can I help today?",
-        "ts": 1784395804884,
-        "speaker": "agent"
-      },
-      "asrMs": 98
-    },
-    {
-      "atMs": 5602,
-      "msg": {
-        "type": "transcript.final",
-        "text": "Hi.",
-        "ts": 1784395805880,
-        "speaker": "agent"
-      },
-      "asrMs": 92
-    },
-    {
-      "atMs": 6596,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "Yeah. So my store",
-        "ts": 1784395806874,
-        "speaker": "agent"
-      },
-      "asrMs": 82
-    },
-    {
-      "atMs": 7605,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "Yeah. So my storefront's been down basically",
-        "ts": 1784395807883,
-        "speaker": "agent"
-      },
-      "asrMs": 89
-    },
-    {
-      "atMs": 8610,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "Yeah. So my storefront's been down basically all day, and I'm kinda",
-        "ts": 1784395808888,
-        "speaker": "agent"
-      },
-      "asrMs": 94
-    },
-    {
-      "atMs": 9617,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "Yeah. So my storefront's been down basically all day, and I'm kind of freaking out.",
-        "ts": 1784395809896,
-        "speaker": "agent"
-      },
-      "asrMs": 99
-    },
-    {
-      "atMs": 9885,
-      "msg": {
-        "type": "transcript.final",
-        "text": "Yeah. So my storefront's been down basically all day, and I'm kind of freaking out.",
-        "ts": 1784395810164,
-        "speaker": "customer"
-      },
-      "asrMs": 117
-    },
-    {
-      "atMs": 10855,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "I'm really sorry to hear",
-        "ts": 1784395811134,
-        "speaker": "customer"
-      },
-      "asrMs": 86
-    },
-    {
-      "atMs": 11375,
-      "msg": {
-        "type": "transcript.final",
-        "text": "I'm really sorry to hear that.",
-        "ts": 1784395811654,
-        "speaker": "agent"
-      },
-      "asrMs": 105
-    },
-    {
-      "atMs": 12364,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "Let's get it sorted.",
-        "ts": 1784395812643,
-        "speaker": "agent"
-      },
-      "asrMs": 92
-    },
-    {
-      "atMs": 12387,
-      "msg": {
-        "type": "sentiment.update",
-        "score": -0.7,
-        "label": "frustrated",
-        "latencyMs": 2502
-      }
-    },
-    {
-      "atMs": 12388,
-      "msg": {
-        "type": "alert.frustration",
-        "latencyMs": 2502
-      }
-    },
-    {
-      "atMs": 12883,
-      "msg": {
-        "type": "transcript.final",
-        "text": "Let's get it sorted.",
-        "ts": 1784395813162,
-        "speaker": "agent"
-      },
-      "asrMs": 109
-    },
-    {
-      "atMs": 13862,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "Seeing?",
-        "ts": 1784395814141,
-        "speaker": "agent"
-      },
-      "asrMs": 89
-    },
-    {
-      "atMs": 14373,
-      "msg": {
-        "type": "transcript.final",
-        "text": "Can you tell me what you're seeing?",
-        "ts": 1784395814652,
-        "speaker": "agent"
-      },
-      "asrMs": 100
-    },
-    {
-      "atMs": 15366,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "So",
-        "ts": 1784395815645,
-        "speaker": "agent"
-      },
-      "asrMs": 90
-    },
-    {
-      "atMs": 16368,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "So I set up my own",
-        "ts": 1784395816647,
-        "speaker": "agent"
-      },
-      "asrMs": 90
-    },
-    {
-      "atMs": 17395,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "So I set up my own domain, shop dot",
-        "ts": 1784395817652,
-        "speaker": "agent"
-      },
-      "asrMs": 114
-    },
-    {
-      "atMs": 18380,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "So I set up my own domain, shop dot my handle dot",
-        "ts": 1784395818660,
-        "speaker": "agent"
-      },
-      "asrMs": 98
-    },
-    {
-      "atMs": 19439,
-      "msg": {
-        "type": "transcript.final",
-        "text": "So I set up my own domain, shop.myhandle.com,",
-        "ts": 1784395819718,
-        "speaker": "customer"
-      },
-      "asrMs": 115
-    },
-    {
-      "atMs": 19906,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "through the custom",
-        "ts": 1784395820186,
-        "speaker": "customer"
-      },
-      "asrMs": 81
-    },
-    {
-      "atMs": 20591,
-      "msg": {
-        "type": "notes.update",
-        "markdown": "**Reason for call**  \nStorefront down all day  \n\n**Key details**  \n- Storefront down all day  \n- Custom domain: shop.myhandle.com  \n- Urgent resolution needed  \n- Impacting sales  \n- Customer anxious  \n\n**Actions taken**  \n—  \n\n**Follow-ups**  \n—"
-      }
-    },
-    {
-      "atMs": 20720,
-      "msg": {
-        "type": "sentiment.update",
-        "score": 0,
-        "label": "neutral",
-        "latencyMs": 1282
-      }
-    },
-    {
-      "atMs": 20906,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "through the custom domain settings",
-        "ts": 1784395821186,
-        "speaker": "customer"
-      },
-      "asrMs": 81
-    },
-    {
-      "atMs": 21183,
-      "msg": {
-        "type": "transcript.final",
-        "text": "through the custom domain settings,",
-        "ts": 1784395821462,
-        "speaker": "customer"
-      },
-      "asrMs": 107
-    },
-    {
-      "atMs": 21583,
-      "msg": {
-        "type": "docs.update",
-        "docs": [
-          {
-            "id": 33,
-            "title": "Connecting a Custom Domain",
-            "snippet": "# Connecting a Custom Domain\n\nUse this procedure when a creator wants their storefront to serve on their own domain (for example `shop.theirhandle.com`) instead of the default `*.shopfolio.app` subdom",
-            "score": 0.433
-          },
-          {
-            "id": 41,
-            "title": "Storefront SSL / TLS Certificate Issues",
-            "snippet": "# Storefront SSL / TLS Certificate Issues\n\nUse this procedure when a creator's custom-domain storefront shows a **\"your connection is not secure\"** warning, a certificate error, or the certificate is",
-            "score": 0.422
-          },
-          {
-            "id": 40,
-            "title": "Customizing Your Storefront",
-            "snippet": "# Customizing Your Storefront\n\nUse this procedure when a creator asks how to change the look of their link-in-bio page or pop-up shop, or how to embed it.\n\n## What's customizable\nThe storefront is a c",
-            "score": 0.421
-          },
-          {
-            "id": 42,
-            "title": "Support Escalation and Outages",
-            "snippet": "# Support Escalation and Outages\n\nUse this procedure to decide when to escalate a Shopfolio support case beyond first-line help.\n\n## Escalate immediately\n- **Storefronts down for many creators at once",
-            "score": 0.371
-          }
-        ]
-      }
-    },
-    {
-      "atMs": 21957,
-      "msg": {
-        "type": "sentiment.update",
-        "score": 0,
-        "label": "neutral",
-        "latencyMs": 775
-      }
-    },
-    {
-      "atMs": 22168,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "a couple days ago.",
-        "ts": 1784395822448,
-        "speaker": "customer"
-      },
-      "asrMs": 91
-    },
-    {
-      "atMs": 23161,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "a couple days ago. And now when",
-        "ts": 1784395823440,
-        "speaker": "customer"
-      },
-      "asrMs": 83
-    },
-    {
-      "atMs": 24173,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "a couple days ago. And now when anyone opens it, they",
-        "ts": 1784395824453,
-        "speaker": "customer"
-      },
-      "asrMs": 92
-    },
-    {
-      "atMs": 25174,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "a couple days ago. And now when anyone opens it, they just get this big",
-        "ts": 1784395825454,
-        "speaker": "customer"
-      },
-      "asrMs": 90
-    },
-    {
-      "atMs": 26208,
-      "msg": {
-        "type": "transcript.final",
-        "text": "a couple days ago. And now when anyone opens it, they just get this big",
-        "ts": 1784395826488,
-        "speaker": "customer"
-      },
-      "asrMs": 121
-    },
-    {
-      "atMs": 26675,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "your connection is not",
-        "ts": 1784395826955,
-        "speaker": "customer"
-      },
-      "asrMs": 87
-    },
-    {
-      "atMs": 27034,
-      "msg": {
-        "type": "sentiment.update",
-        "score": -0.4,
-        "label": "negative",
-        "latencyMs": 826
-      }
-    },
-    {
-      "atMs": 27710,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "your connection is not secure warning and",
-        "ts": 1784395827952,
-        "speaker": "customer"
-      },
-      "asrMs": 121
-    },
-    {
-      "atMs": 27761,
-      "msg": {
-        "type": "notes.update",
-        "markdown": "**Reason for call**  \nStorefront down all day  \n\n**Key details**  \n- Storefront down all day  \n- Custom domain: shop.myhandle.com  \n- Urgent resolution needed  \n- Impacting sales  \n- Issue started a couple days ago  \n\n**Actions taken**  \n—  \n\n**Follow-ups**  \n—"
-      }
-    },
-    {
-      "atMs": 28680,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "your connection is not secure warning and the page won't even",
-        "ts": 1784395828960,
-        "speaker": "customer"
-      },
-      "asrMs": 89
-    },
-    {
-      "atMs": 29709,
-      "msg": {
-        "type": "transcript.final",
-        "text": "your connection is not secure warning and the page won't even load.",
-        "ts": 1784395829989,
-        "speaker": "customer"
-      },
-      "asrMs": 118
-    },
-    {
-      "atMs": 30434,
-      "msg": {
-        "type": "transcript.final",
-        "text": "Got it.",
-        "ts": 1784395830715,
-        "speaker": "agent"
-      },
-      "asrMs": 93
-    },
-    {
-      "atMs": 30588,
-      "msg": {
-        "type": "sentiment.update",
-        "score": -0.6,
-        "label": "negative",
-        "latencyMs": 880
-      }
-    },
-    {
-      "atMs": 31431,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "And on your dashboard,",
-        "ts": 1784395831711,
-        "speaker": "agent"
-      },
-      "asrMs": 89
-    },
-    {
-      "atMs": 32429,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "And on your dashboard, what is the domain",
-        "ts": 1784395832709,
-        "speaker": "agent"
-      },
-      "asrMs": 86
-    },
-    {
-      "atMs": 33430,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "And on your dashboard, what does the domain status say",
-        "ts": 1784395833711,
-        "speaker": "agent"
-      },
-      "asrMs": 88
-    },
-    {
-      "atMs": 34200,
-      "msg": {
-        "type": "transcript.final",
-        "text": "And on your dashboard, what does the domain status say right now?",
-        "ts": 1784395834481,
-        "speaker": "agent"
-      },
-      "asrMs": 108
-    },
-    {
-      "atMs": 35174,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "The DNS",
-        "ts": 1784395835455,
-        "speaker": "agent"
-      },
-      "asrMs": 81
-    },
-    {
-      "atMs": 36180,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "The DNS part says it's",
-        "ts": 1784395836461,
-        "speaker": "agent"
-      },
-      "asrMs": 84
-    },
-    {
-      "atMs": 36948,
-      "msg": {
-        "type": "transcript.final",
-        "text": "The DNS part says it's verified.",
-        "ts": 1784395837229,
-        "speaker": "customer"
-      },
-      "asrMs": 101
-    },
-    {
-      "atMs": 37306,
-      "msg": {
-        "type": "docs.update",
-        "docs": [
-          {
-            "id": 41,
-            "title": "Storefront SSL / TLS Certificate Issues",
-            "snippet": "# Storefront SSL / TLS Certificate Issues\n\nUse this procedure when a creator's custom-domain storefront shows a **\"your connection is not secure\"** warning, a certificate error, or the certificate is",
-            "score": 0.535
-          },
-          {
-            "id": 33,
-            "title": "Connecting a Custom Domain",
-            "snippet": "# Connecting a Custom Domain\n\nUse this procedure when a creator wants their storefront to serve on their own domain (for example `shop.theirhandle.com`) instead of the default `*.shopfolio.app` subdom",
-            "score": 0.476
-          },
-          {
-            "id": 40,
-            "title": "Customizing Your Storefront",
-            "snippet": "# Customizing Your Storefront\n\nUse this procedure when a creator asks how to change the look of their link-in-bio page or pop-up shop, or how to embed it.\n\n## What's customizable\nThe storefront is a c",
-            "score": 0.378
-          },
-          {
-            "id": 82,
-            "title": "Storefront SEO and Metadata",
-            "snippet": "# Storefront SEO and Metadata\n\nUse this procedure when a creator wants their storefront to rank or preview better — page titles, descriptions, or social share cards look wrong.\n\n## What we control\n- E",
-            "score": 0.355
-          }
-        ]
-      }
-    },
-    {
-      "atMs": 37881,
-      "msg": {
-        "type": "sentiment.update",
-        "score": 0,
-        "label": "neutral",
-        "latencyMs": 933
-      }
-    },
-    {
-      "atMs": 37933,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "But the SSL certificate",
-        "ts": 1784395838214,
-        "speaker": "customer"
-      },
-      "asrMs": 85
-    },
-    {
-      "atMs": 38753,
-      "msg": {
-        "type": "notes.update",
-        "markdown": "**Reason for call**  \nStorefront down all day  \n\n**Key details**  \n- Storefront down all day  \n- Custom domain: shop.myhandle.com  \n- Connection not secure warning  \n- DNS verified  \n- Urgent resolution needed  \n\n**Actions taken**  \n—  \n\n**Follow-ups**  \n—"
-      }
-    },
-    {
-      "atMs": 38938,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "But the SSL certificate never went active.",
-        "ts": 1784395839219,
-        "speaker": "customer"
-      },
-      "asrMs": 88
-    },
-    {
-      "atMs": 39943,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "But the SSL certificate never went active. It's just stuck",
-        "ts": 1784395840224,
-        "speaker": "customer"
-      },
-      "asrMs": 92
-    },
-    {
-      "atMs": 40714,
-      "msg": {
-        "type": "transcript.final",
-        "text": "But the SSL certificate never went active. It's just stuck on pending.",
-        "ts": 1784395840995,
-        "speaker": "customer"
-      },
-      "asrMs": 110
-    },
-    {
-      "atMs": 41397,
-      "msg": {
-        "type": "sentiment.update",
-        "score": -0.6,
-        "label": "negative",
-        "latencyMs": 683
-      }
-    },
-    {
-      "atMs": 41687,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "I've refreshed it",
-        "ts": 1784395841968,
-        "speaker": "customer"
-      },
-      "asrMs": 81
-    },
-    {
-      "atMs": 42761,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "I've refreshed it, like, 50 times",
-        "ts": 1784395843043,
-        "speaker": "customer"
-      },
-      "asrMs": 87
-    },
-    {
-      "atMs": 43031,
-      "msg": {
-        "type": "transcript.final",
-        "text": "I've refreshed it, like, 50 times.",
-        "ts": 1784395843312,
-        "speaker": "customer"
-      },
-      "asrMs": 108
-    },
-    {
-      "atMs": 43777,
-      "msg": {
-        "type": "sentiment.update",
-        "score": -0.6,
-        "label": "negative",
-        "latencyMs": 746
-      }
-    },
-    {
-      "atMs": 44008,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "Okay. That point",
-        "ts": 1784395844289,
-        "speaker": "customer"
-      },
-      "asrMs": 84
-    },
-    {
-      "atMs": 44506,
-      "msg": {
-        "type": "notes.update",
-        "markdown": "**Reason for call**  \nStorefront down all day  \n\n**Key details**  \n- Storefront down all day  \n- Custom domain: shop.myhandle.com  \n- SSL certificate pending  \n- Connection not secure warning  \n- DNS verified  \n\n**Actions taken**  \n—  \n\n**Follow-ups**  \n—"
-      }
-    },
-    {
-      "atMs": 45013,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "Okay. That points to the certificate",
-        "ts": 1784395845294,
-        "speaker": "customer"
-      },
-      "asrMs": 87
-    },
-    {
-      "atMs": 46017,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "Okay. That points to the certificate not provisioning.",
-        "ts": 1784395846298,
-        "speaker": "customer"
-      },
-      "asrMs": 92
-    },
-    {
-      "atMs": 46540,
-      "msg": {
-        "type": "transcript.final",
-        "text": "Okay. That points to the certificate not provisioning.",
-        "ts": 1784395846821,
-        "speaker": "agent"
-      },
-      "asrMs": 115
-    },
-    {
-      "atMs": 47529,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "With me one second while",
-        "ts": 1784395847811,
-        "speaker": "agent"
-      },
-      "asrMs": 102
-    },
-    {
-      "atMs": 48542,
-      "msg": {
-        "type": "transcript.final",
-        "text": "Bear with me one second while I check.",
-        "ts": 1784395848824,
-        "speaker": "agent"
-      },
-      "asrMs": 113
-    },
-    {
-      "atMs": 49521,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "I mean,",
-        "ts": 1784395849803,
-        "speaker": "agent"
-      },
-      "asrMs": 91
-    },
-    {
-      "atMs": 50517,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "I mean, the timing",
-        "ts": 1784395850798,
-        "speaker": "agent"
-      },
-      "asrMs": 86
-    },
-    {
-      "atMs": 51524,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "I mean, the timing could not be worse.",
-        "ts": 1784395851806,
-        "speaker": "agent"
-      },
-      "asrMs": 93
-    },
-    {
-      "atMs": 52039,
-      "msg": {
-        "type": "transcript.final",
-        "text": "I mean, the timing could not be worse.",
-        "ts": 1784395852320,
-        "speaker": "customer"
-      },
-      "asrMs": 107
-    },
-    {
-      "atMs": 52337,
-      "msg": {
-        "type": "docs.update",
-        "docs": [
-          {
-            "id": 41,
-            "title": "Storefront SSL / TLS Certificate Issues",
-            "snippet": "# Storefront SSL / TLS Certificate Issues\n\nUse this procedure when a creator's custom-domain storefront shows a **\"your connection is not secure\"** warning, a certificate error, or the certificate is",
-            "score": 0.523
-          },
-          {
-            "id": 33,
-            "title": "Connecting a Custom Domain",
-            "snippet": "# Connecting a Custom Domain\n\nUse this procedure when a creator wants their storefront to serve on their own domain (for example `shop.theirhandle.com`) instead of the default `*.shopfolio.app` subdom",
-            "score": 0.364
-          }
-        ]
-      }
-    },
-    {
-      "atMs": 53015,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "I've got a product",
-        "ts": 1784395853297,
-        "speaker": "customer"
-      },
-      "asrMs": 81
-    },
-    {
-      "atMs": 53805,
-      "msg": {
-        "type": "sentiment.update",
-        "score": -0.6,
-        "label": "negative",
-        "latencyMs": 1767
-      }
-    },
-    {
-      "atMs": 53805,
-      "msg": {
-        "type": "alert.frustration",
-        "latencyMs": 1767
-      }
-    },
-    {
-      "atMs": 54019,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "I've got a product drop going out to",
-        "ts": 1784395854301,
-        "speaker": "customer"
-      },
-      "asrMs": 84
-    },
-    {
-      "atMs": 55026,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "I've got a product drop going out to my followers tonight",
-        "ts": 1784395855308,
-        "speaker": "customer"
-      },
-      "asrMs": 87
-    },
-    {
-      "atMs": 55555,
-      "msg": {
-        "type": "transcript.final",
-        "text": "I've got a product drop going out to my followers tonight,",
-        "ts": 1784395855837,
-        "speaker": "customer"
-      },
-      "asrMs": 114
-    },
-    {
-      "atMs": 56229,
-      "msg": {
-        "type": "sentiment.update",
-        "score": -0.3,
-        "label": "negative",
-        "latencyMs": 674
-      }
-    },
-    {
-      "atMs": 56297,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "and every single link",
-        "ts": 1784395856580,
-        "speaker": "customer"
-      },
-      "asrMs": 87
-    },
-    {
-      "atMs": 57297,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "and every single link in my bio",
-        "ts": 1784395857580,
-        "speaker": "customer"
-      },
-      "asrMs": 87
-    },
-    {
-      "atMs": 57330,
-      "msg": {
-        "type": "notes.update",
-        "markdown": "**Reason for call**  \nStorefront down all day  \n\n**Key details**  \n- Custom domain: shop.myhandle.com  \n- SSL certificate pending  \n- Connection not secure warning  \n- DNS verified  \n- Product drop tonight  \n\n**Actions taken**  \n—  \n\n**Follow-ups**  \n—"
-      }
-    },
-    {
-      "atMs": 58305,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "and every single link in my bio points to that storefront",
-        "ts": 1784395858588,
-        "speaker": "customer"
-      },
-      "asrMs": 87
-    },
-    {
-      "atMs": 58828,
-      "msg": {
-        "type": "transcript.final",
-        "text": "and every single link in my bio points to that storefront",
-        "ts": 1784395859111,
-        "speaker": "customer"
-      },
-      "asrMs": 109
-    },
-    {
-      "atMs": 59537,
-      "msg": {
-        "type": "sentiment.update",
-        "score": -0.5,
-        "label": "negative",
-        "latencyMs": 706
-      }
-    },
-    {
-      "atMs": 59807,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "so right now I'm losing",
-        "ts": 1784395860089,
-        "speaker": "customer"
-      },
-      "asrMs": 87
-    },
-    {
-      "atMs": 60813,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "So right now, I'm losing every sale.",
-        "ts": 1784395861096,
-        "speaker": "customer"
-      },
-      "asrMs": 89
-    },
-    {
-      "atMs": 61337,
-      "msg": {
-        "type": "transcript.final",
-        "text": "So right now I'm losing every sale.",
-        "ts": 1784395861620,
-        "speaker": "customer"
-      },
-      "asrMs": 112
-    },
-    {
-      "atMs": 61704,
-      "msg": {
-        "type": "docs.update",
-        "docs": [
-          {
-            "id": 41,
-            "title": "Storefront SSL / TLS Certificate Issues",
-            "snippet": "# Storefront SSL / TLS Certificate Issues\n\nUse this procedure when a creator's custom-domain storefront shows a **\"your connection is not secure\"** warning, a certificate error, or the certificate is",
-            "score": 0.55
-          },
-          {
-            "id": 42,
-            "title": "Support Escalation and Outages",
-            "snippet": "# Support Escalation and Outages\n\nUse this procedure to decide when to escalate a Shopfolio support case beyond first-line help.\n\n## Escalate immediately\n- **Storefronts down for many creators at once",
-            "score": 0.4
-          },
-          {
-            "id": 33,
-            "title": "Connecting a Custom Domain",
-            "snippet": "# Connecting a Custom Domain\n\nUse this procedure when a creator wants their storefront to serve on their own domain (for example `shop.theirhandle.com`) instead of the default `*.shopfolio.app` subdom",
-            "score": 0.39
-          },
-          {
-            "id": 51,
-            "title": "Fixing Broken or 404 Links",
-            "snippet": "# Fixing Broken or 404 Links\n\nUse this procedure when a creator's product link returns a 404, redirects to a homepage, or shows as `broken` in their Library.\n\n## How link checking works\n- Shopfolio pe",
-            "score": 0.379
-          }
-        ]
-      }
-    },
-    {
-      "atMs": 62272,
-      "msg": {
-        "type": "sentiment.update",
-        "score": -0.6,
-        "label": "negative",
-        "latencyMs": 935
-      }
-    },
-    {
-      "atMs": 62309,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "This is the third day",
-        "ts": 1784395862592,
-        "speaker": "customer"
-      },
-      "asrMs": 82
-    },
-    {
-      "atMs": 62478,
-      "msg": {
-        "type": "notes.update",
-        "markdown": "**Reason for call**  \nStorefront down all day  \n\n**Key details**  \n- Custom domain: shop.myhandle.com  \n- SSL certificate pending  \n- Connection not secure warning  \n- DNS verified  \n- Links in bio point to storefront  \n\n**Actions taken**  \n—  \n\n**Follow-ups**  \n—"
-      }
-    },
-    {
-      "atMs": 63317,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "This is the third day I've had a ticket open",
-        "ts": 1784395863600,
-        "speaker": "customer"
-      },
-      "asrMs": 89
-    },
-    {
-      "atMs": 64326,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "This is the third day I've had a ticket open, and nobody",
-        "ts": 1784395864607,
-        "speaker": "customer"
-      },
-      "asrMs": 95
-    },
-    {
-      "atMs": 65342,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "This is the third day I've had a ticket open, and nobody has gotten back to",
-        "ts": 1784395865622,
-        "speaker": "customer"
-      },
-      "asrMs": 107
-    },
-    {
-      "atMs": 65854,
-      "msg": {
-        "type": "transcript.final",
-        "text": "This is the third day I've had a ticket open, and nobody has gotten back to me.",
-        "ts": 1784395866136,
-        "speaker": "customer"
-      },
-      "asrMs": 117
-    },
-    {
-      "atMs": 66628,
-      "msg": {
-        "type": "sentiment.update",
-        "score": -0.8,
-        "label": "frustrated",
-        "latencyMs": 775
-      }
-    },
-    {
-      "atMs": 66821,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "Honestly,",
-        "ts": 1784395867104,
-        "speaker": "customer"
-      },
-      "asrMs": 83
-    },
-    {
-      "atMs": 67828,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "Honestly, I am really frustrated.",
-        "ts": 1784395868111,
-        "speaker": "customer"
-      },
-      "asrMs": 89
-    },
-    {
-      "atMs": 68838,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "Honestly, I am really frustrated at this point.",
-        "ts": 1784395869121,
-        "speaker": "customer"
-      },
-      "asrMs": 95
-    },
-    {
-      "atMs": 69114,
-      "msg": {
-        "type": "transcript.final",
-        "text": "Honestly, I am really frustrated at this point.",
-        "ts": 1784395869398,
-        "speaker": "customer"
-      },
-      "asrMs": 122
-    },
-    {
-      "atMs": 69907,
-      "msg": {
-        "type": "sentiment.update",
-        "score": -0.9,
-        "label": "frustrated",
-        "latencyMs": 792
-      }
-    },
-    {
-      "atMs": 70075,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "That is completely",
-        "ts": 1784395870358,
-        "speaker": "customer"
-      },
-      "asrMs": 81
-    },
-    {
-      "atMs": 70723,
-      "msg": {
-        "type": "notes.update",
-        "markdown": "**Reason for call**  \nStorefront down all day  \n\n**Key details**  \n- Custom domain: shop.myhandle.com  \n- SSL certificate pending  \n- Connection not secure warning  \n- DNS verified  \n- Third day with open ticket  \n\n**Actions taken**  \n—  \n\n**Follow-ups**  \n—"
-      }
-    },
-    {
-      "atMs": 70842,
-      "msg": {
-        "type": "transcript.final",
-        "text": "That is completely fair.",
-        "ts": 1784395871125,
-        "speaker": "agent"
-      },
-      "asrMs": 98
-    },
-    {
-      "atMs": 71834,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "And I'm gonna stay",
-        "ts": 1784395872118,
-        "speaker": "agent"
-      },
-      "asrMs": 83
-    },
-    {
-      "atMs": 72842,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "And I'm gonna stay on this with you until",
-        "ts": 1784395873125,
-        "speaker": "agent"
-      },
-      "asrMs": 88
-    },
-    {
-      "atMs": 73852,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "And I'm gonna stay on this with you until it's working again.",
-        "ts": 1784395874136,
-        "speaker": "agent"
-      },
-      "asrMs": 95
-    },
-    {
-      "atMs": 74118,
-      "msg": {
-        "type": "transcript.final",
-        "text": "And I'm gonna stay on this with you until it's working again.",
-        "ts": 1784395874401,
-        "speaker": "agent"
-      },
-      "asrMs": 110
-    },
-    {
-      "atMs": 75099,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "And on top of",
-        "ts": 1784395875382,
-        "speaker": "agent"
-      },
-      "asrMs": 87
-    },
-    {
-      "atMs": 75860,
-      "msg": {
-        "type": "transcript.final",
-        "text": "And on top of all that,",
-        "ts": 1784395876144,
-        "speaker": "customer"
-      },
-      "asrMs": 98
-    },
-    {
-      "atMs": 76143,
-      "msg": {
-        "type": "docs.update",
-        "docs": [
-          {
-            "id": 36,
-            "title": "Link Click Analytics",
-            "snippet": "# Link Click Analytics\n\nUse this procedure when a creator asks about clicks, why a link shows no data, or what the analytics do and don't track.\n\n## What we track\nEvery storefront and post link is ser",
-            "score": 0.402
-          },
-          {
-            "id": 42,
-            "title": "Support Escalation and Outages",
-            "snippet": "# Support Escalation and Outages\n\nUse this procedure to decide when to escalate a Shopfolio support case beyond first-line help.\n\n## Escalate immediately\n- **Storefronts down for many creators at once",
-            "score": 0.367
-          },
-          {
-            "id": 51,
-            "title": "Fixing Broken or 404 Links",
-            "snippet": "# Fixing Broken or 404 Links\n\nUse this procedure when a creator's product link returns a 404, redirects to a homepage, or shows as `broken` in their Library.\n\n## How link checking works\n- Shopfolio pe",
-            "score": 0.351
-          },
-          {
-            "id": 40,
-            "title": "Customizing Your Storefront",
-            "snippet": "# Customizing Your Storefront\n\nUse this procedure when a creator asks how to change the look of their link-in-bio page or pop-up shop, or how to embed it.\n\n## What's customizable\nThe storefront is a c",
-            "score": 0.344
-          }
-        ]
-      }
-    },
-    {
-      "atMs": 76635,
-      "msg": {
-        "type": "sentiment.update",
-        "score": -0.3,
-        "label": "negative",
-        "latencyMs": 775
-      }
-    },
-    {
-      "atMs": 76849,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "the posts I scheduled",
-        "ts": 1784395877133,
-        "speaker": "customer"
-      },
-      "asrMs": 87
-    },
-    {
-      "atMs": 77854,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "the post I scheduled for this morning never went",
-        "ts": 1784395878138,
-        "speaker": "customer"
-      },
-      "asrMs": 89
-    },
-    {
-      "atMs": 78622,
-      "msg": {
-        "type": "transcript.final",
-        "text": "the post I scheduled for this morning never went out either.",
-        "ts": 1784395878906,
-        "speaker": "customer"
-      },
-      "asrMs": 107
-    },
-    {
-      "atMs": 79434,
-      "msg": {
-        "type": "sentiment.update",
-        "score": -0.6,
-        "label": "negative",
-        "latencyMs": 812
-      }
-    },
-    {
-      "atMs": 79604,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "They're",
-        "ts": 1784395879888,
-        "speaker": "customer"
-      },
-      "asrMs": 88
-    },
-    {
-      "atMs": 80606,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "They're just sitting in the queue",
-        "ts": 1784395880891,
-        "speaker": "customer"
-      },
-      "asrMs": 89
-    },
-    {
-      "atMs": 81642,
-      "msg": {
-        "type": "transcript.final",
-        "text": "They're just sitting in the queue marked pending.",
-        "ts": 1784395881926,
-        "speaker": "customer"
-      },
-      "asrMs": 124
-    },
-    {
-      "atMs": 81839,
-      "msg": {
-        "type": "notes.update",
-        "markdown": "**Reason for call**  \nStorefront down all day  \n\n**Key details**  \n- Custom domain: shop.myhandle.com  \n- SSL certificate pending  \n- Connection not secure warning  \n- DNS verified  \n- Scheduled post not sent  \n\n**Actions taken**  \n—  \n\n**Follow-ups**  \n—"
-      }
-    },
-    {
-      "atMs": 82461,
-      "msg": {
-        "type": "sentiment.update",
-        "score": -0.5,
-        "label": "negative",
-        "latencyMs": 819
-      }
-    },
-    {
-      "atMs": 82600,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "They never pub",
-        "ts": 1784395882884,
-        "speaker": "customer"
-      },
-      "asrMs": 81
-    },
-    {
-      "atMs": 83366,
-      "msg": {
-        "type": "transcript.final",
-        "text": "They never published.",
-        "ts": 1784395883651,
-        "speaker": "customer"
-      },
-      "asrMs": 97
-    },
-    {
-      "atMs": 83641,
-      "msg": {
-        "type": "docs.update",
-        "docs": [
-          {
-            "id": 39,
-            "title": "Scheduled Posts Not Publishing",
-            "snippet": "# Scheduled Posts Not Publishing\n\nUse this procedure when a creator's scheduled posts **don't go out** — they stay marked `pending` or `queued` past their scheduled time, or flip to `failed`.\n\n## How",
-            "score": 0.47
-          },
-          {
-            "id": 76,
-            "title": "Publishing Pins to Pinterest",
-            "snippet": "# Publishing Pins to Pinterest\n\nUse this procedure when a creator's pins don't reach Pinterest — they stay `queued`, flip to `failed`, or appear in Shopfolio but not on the Pinterest board.\n\n## How pu",
-            "score": 0.35
-          },
-          {
-            "id": 30,
-            "title": "Best-Time Slot Suggestions",
-            "snippet": "# Best-Time Slot Suggestions\n\nUse this procedure when a creator asks about the suggested posting times, or why a suggested slot changed.\n\n## What it does\nWhen scheduling a post, Shopfolio suggests **b",
-            "score": 0.328
-          },
-          {
-            "id": 42,
-            "title": "Support Escalation and Outages",
-            "snippet": "# Support Escalation and Outages\n\nUse this procedure to decide when to escalate a Shopfolio support case beyond first-line help.\n\n## Escalate immediately\n- **Storefronts down for many creators at once",
-            "score": 0.325
-          }
-        ]
-      }
-    },
-    {
-      "atMs": 84056,
-      "msg": {
-        "type": "sentiment.update",
-        "score": -0.6,
-        "label": "negative",
-        "latencyMs": 689
-      }
-    },
-    {
-      "atMs": 84056,
-      "msg": {
-        "type": "alert.frustration",
-        "latencyMs": 689
-      }
-    },
-    {
-      "atMs": 84356,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "Understood.",
-        "ts": 1784395884640,
-        "speaker": "customer"
-      },
-      "asrMs": 85
-    },
-    {
-      "atMs": 84625,
-      "msg": {
-        "type": "transcript.final",
-        "text": "Understood.",
-        "ts": 1784395884910,
-        "speaker": "agent"
-      },
-      "asrMs": 104
-    },
-    {
-      "atMs": 85602,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "The storefronts are",
-        "ts": 1784395885887,
-        "speaker": "agent"
-      },
-      "asrMs": 80
-    },
-    {
-      "atMs": 86359,
-      "msg": {
-        "type": "transcript.final",
-        "text": "The storefront certificate",
-        "ts": 1784395886644,
-        "speaker": "agent"
-      },
-      "asrMs": 84
-    },
-    {
-      "atMs": 87361,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "and the stuck post.",
-        "ts": 1784395887646,
-        "speaker": "agent"
-      },
-      "asrMs": 83
-    },
-    {
-      "atMs": 88122,
-      "msg": {
-        "type": "transcript.final",
-        "text": "and the stuck posts.",
-        "ts": 1784395888407,
-        "speaker": "agent"
-      },
-      "asrMs": 91
-    },
-    {
-      "atMs": 89110,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "Me pull up your account",
-        "ts": 1784395889395,
-        "speaker": "agent"
-      },
-      "asrMs": 79
-    },
-    {
-      "atMs": 90118,
-      "msg": {
-        "type": "transcript.interim",
-        "text": "Let me pull up your account, and we'll take them one",
-        "ts": 1784395890403,
-        "speaker": "agent"
-      },
-      "asrMs": 86
-    },
-    {
-      "atMs": 91146,
-      "msg": {
-        "type": "transcript.final",
-        "text": "Let me pull up your account, and we'll take them one at a time.",
-        "ts": 1784395891431,
-        "speaker": "agent"
-      },
-      "asrMs": 111
-    }
-  ]
+"audioDurationMs": 100459,
+"events": [
+{
+"atMs": 2188,
+"msg": {
+"type": "transcript.interim",
+"text": "Thanks for calling Shopfolio",
+"ts": 1784400002188,
+"speaker": "agent"
+},
+"asrMs": 88
+},
+{
+"atMs": 3590,
+"msg": {
+"type": "transcript.final",
+"text": "Thanks for calling Shopfolio support, this is Maya.",
+"ts": 1784400003590,
+"speaker": "agent"
+},
+"asrMs": 88
+},
+{
+"atMs": 4843,
+"msg": {
+"type": "transcript.interim",
+"text": "Who do I have the",
+"ts": 1784400004843,
+"speaker": "agent"
+},
+"asrMs": 104
+},
+{
+"atMs": 6940,
+"msg": {
+"type": "transcript.final",
+"text": "Who do I have the pleasure of helping today?",
+"ts": 1784400006940,
+"speaker": "agent"
+},
+"asrMs": 104
+},
+{
+"atMs": 8575,
+"msg": {
+"type": "transcript.interim",
+"text": "Hi, it's Amy — I",
+"ts": 1784400008575,
+"speaker": "customer"
+},
+"asrMs": 76
+},
+{
+"atMs": 10346,
+"msg": {
+"type": "transcript.final",
+"text": "Hi, it's Amy — I run the fashion storefront.",
+"ts": 1784400010346,
+"speaker": "customer"
+},
+"asrMs": 76
+},
+{
+"atMs": 11166,
+"msg": {
+"type": "sentiment.update",
+"score": 0.0,
+"label": "neutral",
+"latencyMs": 1180
+}
+},
+{
+"atMs": 13038,
+"msg": {
+"type": "transcript.interim",
+"text": "I'm honestly kind of panicking, because my affiliate income",
+"ts": 1784400013038,
+"speaker": "customer"
+},
+"asrMs": 121
+},
+{
+"atMs": 15492,
+"msg": {
+"type": "transcript.final",
+"text": "I'm honestly kind of panicking, because my affiliate income just fell off a cliff this week,",
+"ts": 1784400015492,
+"speaker": "customer"
+},
+"asrMs": 121
+},
+{
+"atMs": 16272,
+"msg": {
+"type": "sentiment.update",
+"score": -0.5,
+"label": "negative",
+"latencyMs": 880
+}
+},
+{
+"atMs": 18030,
+"msg": {
+"type": "transcript.interim",
+"text": "and I have a big campaign",
+"ts": 1784400018030,
+"speaker": "customer"
+},
+"asrMs": 95
+},
+{
+"atMs": 19433,
+"msg": {
+"type": "transcript.final",
+"text": "and I have a big campaign going out this weekend.",
+"ts": 1784400019433,
+"speaker": "customer"
+},
+"asrMs": 95
+},
+{
+"atMs": 20193,
+"msg": {
+"type": "sentiment.update",
+"score": -0.55,
+"label": "negative",
+"latencyMs": 840
+}
+},
+{
+"atMs": 20333,
+"msg": {
+"type": "docs.update",
+"docs": [
+{
+"id": 9001,
+"title": "Amazon Associate Tag Setup",
+"snippet": "# Amazon Associate Tag Setup\n\nUse this procedure when a creator's Amazon links aren't carrying their associate tag, or they ask how commissions work.\n\n## How it works\nWhen a captured product",
+"score": 0.41,
+"body": "# Amazon Associate Tag Setup\n\nUse this procedure when a creator's Amazon links aren't carrying their associate tag, or they ask how commissions work.\n\n## How it works\nWhen a captured product URL is a real `amazon.com` link, Shopfolio automatically appends the creator's **associate tag** so qualifying purchases are attributed to them. Non-Amazon merchants carry **no** commission — Shopfolio does not mint or inject affiliate links for other retailers.\n\n## Setup\n1. In **Settings → Integrations → Amazon**, have the creator paste their Amazon Associates **tracking ID** (the `tag=` value).\n2. Save. From then on, new Amazon captures get the tag applied at redirect time on the `/r/<code>` link.\n\n## Troubleshooting\n1. **Tag missing on a link:** confirm the tracking ID is saved and the destination is a genuine `amazon.com` URL (shortened `amzn.to` links should be expanded first).\n2. **Links captured before the tag was added:** re-save the item to re-apply, or bulk **Re-apply tag** from the library.\n\n## Notes\n- Shopfolio takes no cut; the associate relationship is directly between the creator and Amazon."
+},
+{
+"id": 36,
+"title": "Link Click Analytics",
+"snippet": "# Link Click Analytics\n\nUse this procedure when a creator asks about clicks, why a link shows no data, or what the analytics do and don't track.\n\n## What we track\nEvery storefront and post l",
+"score": 0.37,
+"body": "# Link Click Analytics\n\nUse this procedure when a creator asks about clicks, why a link shows no data, or what the analytics do and don't track.\n\n## What we track\nEvery storefront and post link is served through a tracked `/r/<code>` redirect. We count **click-throughs** — opens per link, over time, by referrer. That's it.\n\n## What we do NOT track\nShopfolio does **not** track sales, revenue, or dollar amounts. Click analytics are revenue-free by design. If a creator expects to see earnings, explain that monetization is intentionally out of scope and only click data is available.\n\n## Troubleshooting \"no clicks\"\n1. Confirm the link in the creator's bio/post is the `/r/<code>` short link, not the raw destination URL — raw links bypass tracking.\n2. Analytics roll up on a short delay; brand-new links can read zero for a few minutes.\n3. Ad blockers and some in-app browsers suppress the redirect ping, so counts are a floor, not an exact number.\n\n## Escalate when\n- A link that clearly gets traffic reports zero for more than an hour."
+},
+{
+"id": 42,
+"title": "Support Escalation and Outages",
+"snippet": "# Support Escalation and Outages\n\nUse this procedure to decide when to escalate a Shopfolio support case beyond first-line help.\n\n## Escalate immediately\n- **Storefronts down for many creato",
+"score": 0.33,
+"body": "# Support Escalation and Outages\n\nUse this procedure to decide when to escalate a Shopfolio support case beyond first-line help.\n\n## Escalate immediately\n- **Storefronts down for many creators at once** — a custom-domain edge or certificate incident affecting more than one account.\n- **The publish queue is backed up across creators** — jobs stuck `processing` or `pending` platform-wide (see *Scheduled Posts Not Publishing*).\n- **A real billing charge naming Shopfolio** — even though billing isn't live (see *Billing and Subscription*).\n- **Any suspected data exposure or account takeover.**\n\n## Handle first, escalate only if unresolved\n- Single custom-domain SSL/DNS setup (see *Storefront SSL / TLS Certificate Issues*) — escalate only if a corrected, unproxied record still won't provision after 2+ hours.\n- Individual capture, import, or analytics quirks.\n\n## What to include when you escalate\n1. Creator's account email and the affected domain or post/link.\n2. Exact state shown in the dashboard (`DNS pending`, `verifying`, `pending`, `failed`, etc.) and timestamps.\n3. What you already tried and the result.\n\n## Tone\nLead with the impact on the creator's audience or drop, not the internal cause. Give a concrete next-check time rather than an open-ended \"we're looking into it.\""
+},
+{
+"id": 51,
+"title": "Fixing Broken or 404 Links",
+"snippet": "# Fixing Broken or 404 Links\n\nUse this procedure when a creator's product link returns a 404, redirects to a homepage, or shows as `broken` in their Library.\n\n## How link checking works\n- Sh",
+"score": 0.29,
+"body": "# Fixing Broken or 404 Links\n\nUse this procedure when a creator's product link returns a 404, redirects to a homepage, or shows as `broken` in their Library.\n\n## How link checking works\n- Shopfolio periodically re-checks destination links and flags each as `ok`, `redirected`, or `broken` on the Library card.\n- A `broken` flag means the merchant returned a 404 or the URL no longer resolves.\n\n## Steps to fix\n1. Open **Library** and filter by **Link status → Broken**.\n2. For each item, open the destination to confirm it's dead, then paste a working replacement URL and save.\n3. If the product moved, capture the new page with the Chrome extension to refresh image and price too.\n\n## Common issues\n- **`redirected` but works:** the merchant added tracking or region redirects — usually safe to leave.\n- **Whole retailer flagged:** the merchant changed its URL structure; use bulk retargeting (see *Bulk Editing and Retargeting Links*).\n\n## Escalate when\n- Links report `broken` in Shopfolio but load fine in a browser (possible checker false-positive)."
+}
+]
+}
+},
+{
+"atMs": 20683,
+"msg": {
+"type": "notes.update",
+"markdown": "**Reason for call**  \nAffiliate income dropped sharply  \n\n**Key details**  \n- Amazon earnings fell to zero  \n- Big campaign launching this weekend  \n\n**Actions taken**  \n—  \n\n**Follow-ups**  \n—"
+}
+},
+{
+"atMs": 21654,
+"msg": {
+"type": "transcript.interim",
+"text": "Okay, I'm going to get",
+"ts": 1784400021654,
+"speaker": "agent"
+},
+"asrMs": 112
+},
+{
+"atMs": 22890,
+"msg": {
+"type": "transcript.final",
+"text": "Okay, I'm going to get this sorted with you.",
+"ts": 1784400022890,
+"speaker": "agent"
+},
+"asrMs": 112
+},
+{
+"atMs": 26552,
+"msg": {
+"type": "transcript.interim",
+"text": "When you say it fell off — is it earnings,",
+"ts": 1784400026552,
+"speaker": "agent"
+},
+"asrMs": 83
+},
+{
+"atMs": 29374,
+"msg": {
+"type": "transcript.final",
+"text": "When you say it fell off — is it earnings, or is it the click tracking that looks off?",
+"ts": 1784400029374,
+"speaker": "agent"
+},
+"asrMs": 83
+},
+{
+"atMs": 29686,
+"msg": {
+"type": "transcript.interim",
+"text": "Both, I",
+"ts": 1784400029686,
+"speaker": "customer"
+},
+"asrMs": 88
+},
+{
+"atMs": 30204,
+"msg": {
+"type": "transcript.final",
+"text": "Both, I think?",
+"ts": 1784400030204,
+"speaker": "customer"
+},
+"asrMs": 88
+},
+{
+"atMs": 30924,
+"msg": {
+"type": "sentiment.update",
+"score": -0.45,
+"label": "negative",
+"latencyMs": 760
+}
+},
+{
+"atMs": 31844,
+"msg": {
+"type": "transcript.interim",
+"text": "My Amazon products stopped",
+"ts": 1784400031844,
+"speaker": "customer"
+},
+"asrMs": 104
+},
+{
+"atMs": 35073,
+"msg": {
+"type": "transcript.final",
+"text": "My Amazon products stopped earning completely. Like zero.",
+"ts": 1784400035073,
+"speaker": "customer"
+},
+"asrMs": 104
+},
+{
+"atMs": 35773,
+"msg": {
+"type": "sentiment.update",
+"score": -0.75,
+"label": "frustrated",
+"latencyMs": 720
+}
+},
+{
+"atMs": 35774,
+"msg": {
+"type": "alert.frustration",
+"latencyMs": 720
+}
+},
+{
+"atMs": 35973,
+"msg": {
+"type": "docs.update",
+"docs": [
+{
+"id": 9001,
+"title": "Amazon Associate Tag Setup",
+"snippet": "# Amazon Associate Tag Setup\n\nUse this procedure when a creator's Amazon links aren't carrying their associate tag, or they ask how commissions work.\n\n## How it works\nWhen a captured product",
+"score": 0.57,
+"body": "# Amazon Associate Tag Setup\n\nUse this procedure when a creator's Amazon links aren't carrying their associate tag, or they ask how commissions work.\n\n## How it works\nWhen a captured product URL is a real `amazon.com` link, Shopfolio automatically appends the creator's **associate tag** so qualifying purchases are attributed to them. Non-Amazon merchants carry **no** commission — Shopfolio does not mint or inject affiliate links for other retailers.\n\n## Setup\n1. In **Settings → Integrations → Amazon**, have the creator paste their Amazon Associates **tracking ID** (the `tag=` value).\n2. Save. From then on, new Amazon captures get the tag applied at redirect time on the `/r/<code>` link.\n\n## Troubleshooting\n1. **Tag missing on a link:** confirm the tracking ID is saved and the destination is a genuine `amazon.com` URL (shortened `amzn.to` links should be expanded first).\n2. **Links captured before the tag was added:** re-save the item to re-apply, or bulk **Re-apply tag** from the library.\n\n## Notes\n- Shopfolio takes no cut; the associate relationship is directly between the creator and Amazon."
+},
+{
+"id": 9002,
+"title": "Capturing Products with the Extension",
+"snippet": "# Capturing Products with the Extension\n\nUse this procedure when a creator can't save a product while browsing, or asks how capture works.\n\n## How capture works\nEvery capture path — the Chro",
+"score": 0.42,
+"body": "# Capturing Products with the Extension\n\nUse this procedure when a creator can't save a product while browsing, or asks how capture works.\n\n## How capture works\nEvery capture path — the Chrome extension, the PWA share sheet, manual add, CSV import, and user-initiated page snapshots — funnels through a single `captureLink()` entry point. It fetches the page, pulls the title, image, price, and canonical URL, and drops the item into the creator's library as a draft.\n\n## Troubleshooting\n1. **\"Couldn't read this page\":** some merchants block server-side fetches. Have the creator use the **extension** (which reads the page they're already on) or the **snapshot** option rather than pasting a bare URL.\n2. **Wrong image or price:** open the item and use **Edit → Re-fetch**, or set the fields manually. Manual edits are never overwritten by a later re-fetch.\n3. **Extension not capturing:** confirm it's signed into the same workspace and has permission for the current site; pin it and retry.\n\n## Notes\n- Captured items are private drafts until added to a post or storefront.\n- Amazon URLs get the creator's associate tag automatically (see *Amazon Associate Tag Setup*)."
+},
+{
+"id": 36,
+"title": "Link Click Analytics",
+"snippet": "# Link Click Analytics\n\nUse this procedure when a creator asks about clicks, why a link shows no data, or what the analytics do and don't track.\n\n## What we track\nEvery storefront and post l",
+"score": 0.38,
+"body": "# Link Click Analytics\n\nUse this procedure when a creator asks about clicks, why a link shows no data, or what the analytics do and don't track.\n\n## What we track\nEvery storefront and post link is served through a tracked `/r/<code>` redirect. We count **click-throughs** — opens per link, over time, by referrer. That's it.\n\n## What we do NOT track\nShopfolio does **not** track sales, revenue, or dollar amounts. Click analytics are revenue-free by design. If a creator expects to see earnings, explain that monetization is intentionally out of scope and only click data is available.\n\n## Troubleshooting \"no clicks\"\n1. Confirm the link in the creator's bio/post is the `/r/<code>` short link, not the raw destination URL — raw links bypass tracking.\n2. Analytics roll up on a short delay; brand-new links can read zero for a few minutes.\n3. Ad blockers and some in-app browsers suppress the redirect ping, so counts are a floor, not an exact number.\n\n## Escalate when\n- A link that clearly gets traffic reports zero for more than an hour."
+},
+{
+"id": 42,
+"title": "Support Escalation and Outages",
+"snippet": "# Support Escalation and Outages\n\nUse this procedure to decide when to escalate a Shopfolio support case beyond first-line help.\n\n## Escalate immediately\n- **Storefronts down for many creato",
+"score": 0.31,
+"body": "# Support Escalation and Outages\n\nUse this procedure to decide when to escalate a Shopfolio support case beyond first-line help.\n\n## Escalate immediately\n- **Storefronts down for many creators at once** — a custom-domain edge or certificate incident affecting more than one account.\n- **The publish queue is backed up across creators** — jobs stuck `processing` or `pending` platform-wide (see *Scheduled Posts Not Publishing*).\n- **A real billing charge naming Shopfolio** — even though billing isn't live (see *Billing and Subscription*).\n- **Any suspected data exposure or account takeover.**\n\n## Handle first, escalate only if unresolved\n- Single custom-domain SSL/DNS setup (see *Storefront SSL / TLS Certificate Issues*) — escalate only if a corrected, unproxied record still won't provision after 2+ hours.\n- Individual capture, import, or analytics quirks.\n\n## What to include when you escalate\n1. Creator's account email and the affected domain or post/link.\n2. Exact state shown in the dashboard (`DNS pending`, `verifying`, `pending`, `failed`, etc.) and timestamps.\n3. What you already tried and the result.\n\n## Tone\nLead with the impact on the creator's audience or drop, not the internal cause. Give a concrete next-check time rather than an open-ended \"we're looking into it.\""
+}
+]
+}
+},
+{
+"atMs": 36105,
+"msg": {
+"type": "transcript.interim",
+"text": "And I swear I",
+"ts": 1784400036105,
+"speaker": "customer"
+},
+"asrMs": 76
+},
+{
+"atMs": 37176,
+"msg": {
+"type": "transcript.final",
+"text": "And I swear I didn't change anything.",
+"ts": 1784400037176,
+"speaker": "customer"
+},
+"asrMs": 76
+},
+{
+"atMs": 37876,
+"msg": {
+"type": "sentiment.update",
+"score": -0.6,
+"label": "negative",
+"latencyMs": 700
+}
+},
+{
+"atMs": 38426,
+"msg": {
+"type": "notes.update",
+"markdown": "**Reason for call**  \nAffiliate income dropped sharply  \n\n**Key details**  \n- Amazon products earning zero  \n- No settings changed on creator side  \n- Campaign launching this weekend  \n\n**Actions taken**  \n—  \n\n**Follow-ups**  \n—"
+}
+},
+{
+"atMs": 41014,
+"msg": {
+"type": "transcript.interim",
+"text": "Got it — that pattern almost always means your",
+"ts": 1784400041014,
+"speaker": "agent"
+},
+"asrMs": 121
+},
+{
+"atMs": 45220,
+"msg": {
+"type": "transcript.final",
+"text": "Got it — that pattern almost always means your Amazon Associate tag dropped off the links.",
+"ts": 1784400045220,
+"speaker": "agent"
+},
+"asrMs": 121
+},
+{
+"atMs": 46750,
+"msg": {
+"type": "transcript.interim",
+"text": "Let me pull up your storefront",
+"ts": 1784400046750,
+"speaker": "agent"
+},
+"asrMs": 95
+},
+{
+"atMs": 48263,
+"msg": {
+"type": "transcript.final",
+"text": "Let me pull up your storefront settings while we talk.",
+"ts": 1784400048263,
+"speaker": "agent"
+},
+"asrMs": 95
+},
+{
+"atMs": 48465,
+"msg": {
+"type": "transcript.interim",
+"text": "Ugh,",
+"ts": 1784400048465,
+"speaker": "customer"
+},
+"asrMs": 112
+},
+{
+"atMs": 48872,
+"msg": {
+"type": "transcript.final",
+"text": "Ugh, okay.",
+"ts": 1784400048872,
+"speaker": "customer"
+},
+"asrMs": 112
+},
+{
+"atMs": 49563,
+"msg": {
+"type": "notes.update",
+"markdown": "**Reason for call**  \nAffiliate income dropped sharply  \n\n**Key details**  \n- Amazon products earning zero  \n- Suspected missing Associate tag  \n- No settings changed on creator side  \n- Campaign launching this weekend  \n\n**Actions taken**  \n- Checking storefront link settings  \n\n**Follow-ups**  \n—"
+}
+},
+{
+"atMs": 51453,
+"msg": {
+"type": "transcript.interim",
+"text": "But then the other thing — even my non-Amazon",
+"ts": 1784400051453,
+"speaker": "customer"
+},
+"asrMs": 83
+},
+{
+"atMs": 54170,
+"msg": {
+"type": "transcript.final",
+"text": "But then the other thing — even my non-Amazon links, the click analytics just show zero.",
+"ts": 1784400054170,
+"speaker": "customer"
+},
+"asrMs": 83
+},
+{
+"atMs": 54648,
+"msg": {
+"type": "transcript.interim",
+"text": "Nothing's",
+"ts": 1784400054648,
+"speaker": "customer"
+},
+"asrMs": 88
+},
+{
+"atMs": 54910,
+"msg": {
+"type": "sentiment.update",
+"score": -0.65,
+"label": "negative",
+"latencyMs": 800
+}
+},
+{
+"atMs": 55070,
+"msg": {
+"type": "docs.update",
+"docs": [
+{
+"id": 36,
+"title": "Link Click Analytics",
+"snippet": "# Link Click Analytics\n\nUse this procedure when a creator asks about clicks, why a link shows no data, or what the analytics do and don't track.\n\n## What we track\nEvery storefront and post l",
+"score": 0.59,
+"body": "# Link Click Analytics\n\nUse this procedure when a creator asks about clicks, why a link shows no data, or what the analytics do and don't track.\n\n## What we track\nEvery storefront and post link is served through a tracked `/r/<code>` redirect. We count **click-throughs** — opens per link, over time, by referrer. That's it.\n\n## What we do NOT track\nShopfolio does **not** track sales, revenue, or dollar amounts. Click analytics are revenue-free by design. If a creator expects to see earnings, explain that monetization is intentionally out of scope and only click data is available.\n\n## Troubleshooting \"no clicks\"\n1. Confirm the link in the creator's bio/post is the `/r/<code>` short link, not the raw destination URL — raw links bypass tracking.\n2. Analytics roll up on a short delay; brand-new links can read zero for a few minutes.\n3. Ad blockers and some in-app browsers suppress the redirect ping, so counts are a floor, not an exact number.\n\n## Escalate when\n- A link that clearly gets traffic reports zero for more than an hour."
+},
+{
+"id": 9001,
+"title": "Amazon Associate Tag Setup",
+"snippet": "# Amazon Associate Tag Setup\n\nUse this procedure when a creator's Amazon links aren't carrying their associate tag, or they ask how commissions work.\n\n## How it works\nWhen a captured product",
+"score": 0.44,
+"body": "# Amazon Associate Tag Setup\n\nUse this procedure when a creator's Amazon links aren't carrying their associate tag, or they ask how commissions work.\n\n## How it works\nWhen a captured product URL is a real `amazon.com` link, Shopfolio automatically appends the creator's **associate tag** so qualifying purchases are attributed to them. Non-Amazon merchants carry **no** commission — Shopfolio does not mint or inject affiliate links for other retailers.\n\n## Setup\n1. In **Settings → Integrations → Amazon**, have the creator paste their Amazon Associates **tracking ID** (the `tag=` value).\n2. Save. From then on, new Amazon captures get the tag applied at redirect time on the `/r/<code>` link.\n\n## Troubleshooting\n1. **Tag missing on a link:** confirm the tracking ID is saved and the destination is a genuine `amazon.com` URL (shortened `amzn.to` links should be expanded first).\n2. **Links captured before the tag was added:** re-save the item to re-apply, or bulk **Re-apply tag** from the library.\n\n## Notes\n- Shopfolio takes no cut; the associate relationship is directly between the creator and Amazon."
+},
+{
+"id": 51,
+"title": "Fixing Broken or 404 Links",
+"snippet": "# Fixing Broken or 404 Links\n\nUse this procedure when a creator's product link returns a 404, redirects to a homepage, or shows as `broken` in their Library.\n\n## How link checking works\n- Sh",
+"score": 0.36,
+"body": "# Fixing Broken or 404 Links\n\nUse this procedure when a creator's product link returns a 404, redirects to a homepage, or shows as `broken` in their Library.\n\n## How link checking works\n- Shopfolio periodically re-checks destination links and flags each as `ok`, `redirected`, or `broken` on the Library card.\n- A `broken` flag means the merchant returned a 404 or the URL no longer resolves.\n\n## Steps to fix\n1. Open **Library** and filter by **Link status → Broken**.\n2. For each item, open the destination to confirm it's dead, then paste a working replacement URL and save.\n3. If the product moved, capture the new page with the Chrome extension to refresh image and price too.\n\n## Common issues\n- **`redirected` but works:** the merchant added tracking or region redirects — usually safe to leave.\n- **Whole retailer flagged:** the merchant changed its URL structure; use bulk retargeting (see *Bulk Editing and Retargeting Links*).\n\n## Escalate when\n- Links report `broken` in Shopfolio but load fine in a browser (possible checker false-positive)."
+},
+{
+"id": 82,
+"title": "Storefront SEO and Metadata",
+"snippet": "# Storefront SEO and Metadata\n\nUse this procedure when a creator wants their storefront to rank or preview better — page titles, descriptions, or social share cards look wrong.\n\n## What we c",
+"score": 0.3,
+"body": "# Storefront SEO and Metadata\n\nUse this procedure when a creator wants their storefront to rank or preview better — page titles, descriptions, or social share cards look wrong.\n\n## What we control\n- Each storefront has an SEO title, meta description, and an Open Graph image used for link previews.\n- We auto-generate a sitemap and serve it to search engines behind Cloudflare.\n\n## Steps\n1. In **Storefront → SEO**, have the creator set the page title (under ~60 characters) and meta description (under ~155).\n2. Upload or confirm the Open Graph image — this is what shows when the link is shared on social.\n3. Save; changes are live immediately, but search engines re-crawl on their own schedule.\n\n## Common issues\n- **Share preview shows old image:** the social platform cached it — use that platform's URL debugger to refresh.\n- **Not appearing in search:** new storefronts take days to index; confirm the storefront isn't set to private.\n\n## Escalate when\n- The sitemap returns an error or search engines report crawl failures on the domain."
+}
+]
+}
+},
+{
+"atMs": 56526,
+"msg": {
+"type": "transcript.final",
+"text": "Nothing's counting.",
+"ts": 1784400056526,
+"speaker": "customer"
+},
+"asrMs": 88
+},
+{
+"atMs": 57226,
+"msg": {
+"type": "sentiment.update",
+"score": -0.6,
+"label": "negative",
+"latencyMs": 690
+}
+},
+{
+"atMs": 57776,
+"msg": {
+"type": "notes.update",
+"markdown": "**Reason for call**  \nAffiliate income dropped sharply  \n\n**Key details**  \n- Amazon earnings zero — tag likely dropped  \n- Click analytics also reading zero  \n- No settings changed on creator side  \n- Campaign launching this weekend  \n\n**Actions taken**  \n- Checking storefront link settings  \n\n**Follow-ups**  \n—"
+}
+},
+{
+"atMs": 57835,
+"msg": {
+"type": "transcript.interim",
+"text": "That's a separate piece, and",
+"ts": 1784400057835,
+"speaker": "agent"
+},
+"asrMs": 104
+},
+{
+"atMs": 59127,
+"msg": {
+"type": "transcript.final",
+"text": "That's a separate piece, and it's a good clue.",
+"ts": 1784400059127,
+"speaker": "agent"
+},
+"asrMs": 104
+},
+{
+"atMs": 62261,
+"msg": {
+"type": "transcript.interim",
+"text": "If click tracking flatlined at the same time, your",
+"ts": 1784400062261,
+"speaker": "agent"
+},
+"asrMs": 76
+},
+{
+"atMs": 65103,
+"msg": {
+"type": "transcript.final",
+"text": "If click tracking flatlined at the same time, your storefront domain may have lost its tracking connection.",
+"ts": 1784400065103,
+"speaker": "agent"
+},
+"asrMs": 76
+},
+{
+"atMs": 68277,
+"msg": {
+"type": "transcript.interim",
+"text": "I can walk you",
+"ts": 1784400068277,
+"speaker": "agent"
+},
+"asrMs": 121
+},
+{
+"atMs": 69403,
+"msg": {
+"type": "transcript.final",
+"text": "I can walk you through re-verifying it.",
+"ts": 1784400069403,
+"speaker": "agent"
+},
+"asrMs": 121
+},
+{
+"atMs": 70703,
+"msg": {
+"type": "notes.update",
+"markdown": "**Reason for call**  \nAffiliate income dropped sharply  \n\n**Key details**  \n- Amazon earnings zero — tag likely dropped  \n- Click tracking flatlined to zero  \n- Storefront domain tracking may be disconnected  \n- Campaign launching this weekend  \n\n**Actions taken**  \n- Checking storefront link settings  \n\n**Follow-ups**  \n- Re-verify domain tracking connection"
+}
+},
+{
+"atMs": 70704,
+"msg": {
+"type": "transcript.final",
+"text": "Please.",
+"ts": 1784400070704,
+"speaker": "customer"
+},
+"asrMs": 95
+},
+{
+"atMs": 71293,
+"msg": {
+"type": "transcript.interim",
+"text": "And — sorry,",
+"ts": 1784400071293,
+"speaker": "customer"
+},
+"asrMs": 112
+},
+{
+"atMs": 72401,
+"msg": {
+"type": "transcript.final",
+"text": "And — sorry, one more —",
+"ts": 1784400072401,
+"speaker": "customer"
+},
+"asrMs": 112
+},
+{
+"atMs": 74816,
+"msg": {
+"type": "transcript.interim",
+"text": "I tried importing my new LTK links this",
+"ts": 1784400074816,
+"speaker": "customer"
+},
+"asrMs": 83
+},
+{
+"atMs": 76994,
+"msg": {
+"type": "transcript.final",
+"text": "I tried importing my new LTK links this morning and the import just hangs forever.",
+"ts": 1784400076994,
+"speaker": "customer"
+},
+"asrMs": 83
+},
+{
+"atMs": 77714,
+"msg": {
+"type": "sentiment.update",
+"score": -0.7,
+"label": "frustrated",
+"latencyMs": 770
+}
+},
+{
+"atMs": 77715,
+"msg": {
+"type": "alert.frustration",
+"latencyMs": 770
+}
+},
+{
+"atMs": 77860,
+"msg": {
+"type": "transcript.interim",
+"text": "Spinning wheel,",
+"ts": 1784400077860,
+"speaker": "customer"
+},
+"asrMs": 88
+},
+{
+"atMs": 77944,
+"msg": {
+"type": "docs.update",
+"docs": [
+{
+"id": 9003,
+"title": "Importing from LTK and ShopMy",
+"snippet": "# Importing from LTK and ShopMy\n\nUse this procedure when a creator wants to bring an existing catalog over from LTK, ShopMy, or a similar tool.\n\n## What's supported\nThese are **import-only**",
+"score": 0.62,
+"body": "# Importing from LTK and ShopMy\n\nUse this procedure when a creator wants to bring an existing catalog over from LTK, ShopMy, or a similar tool.\n\n## What's supported\nThese are **import-only** sources. Shopfolio can pull a creator's existing products and links in as captured items so they can rebuild their storefront here. There is **no live, two-way integration** — we don't sync back, and we don't post to those platforms.\n\n## How to import\n1. Export the catalog from the source tool (CSV or the platform's export), or paste the profile/collection URL.\n2. In **Library → Import**, choose the source and upload the file or URL. Items come in as drafts through the same `captureLink()` path.\n3. Review and fix any items that failed to fetch, then add them to a storefront or post.\n\n## Notes\n- Amazon links in the import get the creator's associate tag applied (see *Amazon Associate Tag Setup*); other merchants carry no commission.\n- Because it's import-only, disconnecting the source later doesn't remove already-imported items.\n\n## Escalate when\n- A large import (1000+ items) stalls partway."
+},
+{
+"id": 9004,
+"title": "Bulk Editing and Retargeting Links",
+"snippet": "# Bulk Editing and Retargeting Links\n\nUse this procedure when a creator needs to change many links at once — for example swapping an affiliate tag or retargeting a whole retailer that change",
+"score": 0.41,
+"body": "# Bulk Editing and Retargeting Links\n\nUse this procedure when a creator needs to change many links at once — for example swapping an affiliate tag or retargeting a whole retailer that changed URLs.\n\n## What bulk editing can do\n- Select multiple Library items and apply one change: append or replace an affiliate tag, swap a domain, or move them to a collection.\n- Changes preview before they apply so the creator can confirm the count.\n\n## Steps\n1. In **Library**, use the checkboxes (or **Select all** with a filter) to choose the items.\n2. Open **Bulk actions → Retarget links** and choose the operation (e.g. replace `oldshop.com` with `newshop.com`).\n3. Review the preview count and confirm — the change runs in the background and updates each card's link status.\n\n## Common issues\n- **Some items skipped:** their URLs didn't match the find pattern; narrow the filter and retry.\n- **Wrong tag applied:** re-run with the correct tag — bulk edits are not versioned, so double-check before confirming.\n\n## Escalate when\n- A bulk operation reports success but the Library still shows old links after a refresh."
+},
+{
+"id": 9002,
+"title": "Capturing Products with the Extension",
+"snippet": "# Capturing Products with the Extension\n\nUse this procedure when a creator can't save a product while browsing, or asks how capture works.\n\n## How capture works\nEvery capture path — the Chro",
+"score": 0.37,
+"body": "# Capturing Products with the Extension\n\nUse this procedure when a creator can't save a product while browsing, or asks how capture works.\n\n## How capture works\nEvery capture path — the Chrome extension, the PWA share sheet, manual add, CSV import, and user-initiated page snapshots — funnels through a single `captureLink()` entry point. It fetches the page, pulls the title, image, price, and canonical URL, and drops the item into the creator's library as a draft.\n\n## Troubleshooting\n1. **\"Couldn't read this page\":** some merchants block server-side fetches. Have the creator use the **extension** (which reads the page they're already on) or the **snapshot** option rather than pasting a bare URL.\n2. **Wrong image or price:** open the item and use **Edit → Re-fetch**, or set the fields manually. Manual edits are never overwritten by a later re-fetch.\n3. **Extension not capturing:** confirm it's signed into the same workspace and has permission for the current site; pin it and retry.\n\n## Notes\n- Captured items are private drafts until added to a post or storefront.\n- Amazon URLs get the creator's associate tag automatically (see *Amazon Associate Tag Setup*)."
+},
+{
+"id": 42,
+"title": "Support Escalation and Outages",
+"snippet": "# Support Escalation and Outages\n\nUse this procedure to decide when to escalate a Shopfolio support case beyond first-line help.\n\n## Escalate immediately\n- **Storefronts down for many creato",
+"score": 0.32,
+"body": "# Support Escalation and Outages\n\nUse this procedure to decide when to escalate a Shopfolio support case beyond first-line help.\n\n## Escalate immediately\n- **Storefronts down for many creators at once** — a custom-domain edge or certificate incident affecting more than one account.\n- **The publish queue is backed up across creators** — jobs stuck `processing` or `pending` platform-wide (see *Scheduled Posts Not Publishing*).\n- **A real billing charge naming Shopfolio** — even though billing isn't live (see *Billing and Subscription*).\n- **Any suspected data exposure or account takeover.**\n\n## Handle first, escalate only if unresolved\n- Single custom-domain SSL/DNS setup (see *Storefront SSL / TLS Certificate Issues*) — escalate only if a corrected, unproxied record still won't provision after 2+ hours.\n- Individual capture, import, or analytics quirks.\n\n## What to include when you escalate\n1. Creator's account email and the affected domain or post/link.\n2. Exact state shown in the dashboard (`DNS pending`, `verifying`, `pending`, `failed`, etc.) and timestamps.\n3. What you already tried and the result.\n\n## Tone\nLead with the impact on the creator's audience or drop, not the internal cause. Give a concrete next-check time rather than an open-ended \"we're looking into it.\""
+}
+]
+}
+},
+{
+"atMs": 79432,
+"msg": {
+"type": "transcript.final",
+"text": "Spinning wheel, never finishes.",
+"ts": 1784400079432,
+"speaker": "customer"
+},
+"asrMs": 88
+},
+{
+"atMs": 80132,
+"msg": {
+"type": "sentiment.update",
+"score": -0.55,
+"label": "negative",
+"latencyMs": 710
+}
+},
+{
+"atMs": 80732,
+"msg": {
+"type": "notes.update",
+"markdown": "**Reason for call**  \nAffiliate income dropped sharply  \n\n**Key details**  \n- Amazon earnings zero — tag likely dropped  \n- Click tracking reading zero  \n- LTK import hanging — never finishes  \n- Campaign launching this weekend  \n\n**Actions taken**  \n- Checking storefront link settings  \n\n**Follow-ups**  \n- Re-verify domain tracking connection"
+}
+},
+{
+"atMs": 81017,
+"msg": {
+"type": "transcript.interim",
+"text": "No need to apologize, this is",
+"ts": 1784400081017,
+"speaker": "agent"
+},
+"asrMs": 104
+},
+{
+"atMs": 82586,
+"msg": {
+"type": "transcript.final",
+"text": "No need to apologize, this is exactly what I'm here for.",
+"ts": 1784400082586,
+"speaker": "agent"
+},
+"asrMs": 104
+},
+{
+"atMs": 85056,
+"msg": {
+"type": "transcript.interim",
+"text": "The LTK import hang is a known one when a",
+"ts": 1784400085056,
+"speaker": "agent"
+},
+"asrMs": 76
+},
+{
+"atMs": 87807,
+"msg": {
+"type": "transcript.final",
+"text": "The LTK import hang is a known one when a batch is too large — there's a workaround.",
+"ts": 1784400087807,
+"speaker": "agent"
+},
+"asrMs": 76
+},
+{
+"atMs": 91163,
+"msg": {
+"type": "transcript.interim",
+"text": "Let's do it in order: fix the Amazon tag first so",
+"ts": 1784400091163,
+"speaker": "agent"
+},
+"asrMs": 121
+},
+{
+"atMs": 94555,
+"msg": {
+"type": "transcript.final",
+"text": "Let's do it in order: fix the Amazon tag first so this weekend's campaign actually earns, then tracking, then LTK.",
+"ts": 1784400094555,
+"speaker": "agent"
+},
+"asrMs": 121
+},
+{
+"atMs": 94812,
+"msg": {
+"type": "transcript.interim",
+"text": "Sound",
+"ts": 1784400094812,
+"speaker": "agent"
+},
+"asrMs": 95
+},
+{
+"atMs": 95219,
+"msg": {
+"type": "transcript.final",
+"text": "Sound good?",
+"ts": 1784400095219,
+"speaker": "agent"
+},
+"asrMs": 95
+},
+{
+"atMs": 95836,
+"msg": {
+"type": "transcript.interim",
+"text": "Yes.",
+"ts": 1784400095836,
+"speaker": "customer"
+},
+"asrMs": 112
+},
+{
+"atMs": 95905,
+"msg": {
+"type": "notes.update",
+"markdown": "**Reason for call**  \nAffiliate income dropped sharply  \n\n**Key details**  \n- Amazon earnings zero — tag likely dropped  \n- Click tracking reading zero  \n- LTK import hangs on large batch  \n- Campaign launching this weekend  \n\n**Actions taken**  \n- Checking storefront link settings  \n\n**Follow-ups**  \n- Fix Associate tag first, then re-verify tracking  \n- Retry LTK import in smaller batches"
+}
+},
+{
+"atMs": 96986,
+"msg": {
+"type": "transcript.final",
+"text": "Yes. Okay.",
+"ts": 1784400096986,
+"speaker": "customer"
+},
+"asrMs": 112
+},
+{
+"atMs": 98129,
+"msg": {
+"type": "transcript.interim",
+"text": "I feel a lot better",
+"ts": 1784400098129,
+"speaker": "customer"
+},
+"asrMs": 83
+},
+{
+"atMs": 99254,
+"msg": {
+"type": "transcript.final",
+"text": "I feel a lot better already — thank you.",
+"ts": 1784400099254,
+"speaker": "customer"
+},
+"asrMs": 83
+},
+{
+"atMs": 99954,
+"msg": {
+"type": "sentiment.update",
+"score": 0.4,
+"label": "positive",
+"latencyMs": 680
+}
+}
+]
 }
