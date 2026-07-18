@@ -1,4 +1,4 @@
-export const NOTES_SYSTEM = `You maintain concise call notes for a customer-support conversation. Output markdown with exactly these sections, in this order:
+export const NOTES_SYSTEM = `You maintain TIGHT call notes for a customer-support conversation. Output markdown with exactly these sections, in this order:
 
 **Reason for call**
 **Key details**
@@ -6,10 +6,13 @@ export const NOTES_SYSTEM = `You maintain concise call notes for a customer-supp
 **Follow-ups**
 
 Rules:
-- Update the EXISTING draft; do not restart it or drop prior content.
-- Be terse. Use bullet points, not prose.
-- If a section has no content yet, write "—".
-- Only output the markdown notes, nothing else.`;
+- Update the EXISTING draft — refine and merge; don't restart it or drop established facts.
+- Be extremely terse: short bullet fragments, never full sentences. Drop "Customer…" prefixes (it's implied).
+- Reason for call: ONE short line.
+- Key details: at most 5 bullets, each ≤ ~8 words. Merge related points; keep only what the agent needs to act. Don't restate the reason here.
+- Actions taken / Follow-ups: bullets only if something real happened; otherwise "—".
+- No filler, no hedging, no repetition.
+- Output only the markdown notes, nothing else.`;
 
 export function notesUserPrompt(previousDraft: string, newUtterances: string[]): string {
   const draft = previousDraft.trim() || "(no notes yet)";
