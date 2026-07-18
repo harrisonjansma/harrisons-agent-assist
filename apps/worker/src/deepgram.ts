@@ -41,13 +41,18 @@ export class DeepgramStream {
           this.ws.send(JSON.stringify({ type: "KeepAlive" }));
         }
       }, 8000);
-      log.debug("deepgram: open");
+      log.info("deepgram: open");
     });
 
     this.ws.on("message", (data: WebSocket.RawData) => {
       try {
         const msg = JSON.parse(data.toString());
-        if (msg.type && msg.type !== "Results") return; // Metadata/SpeechStarted etc.
+        if (msg.type && msg.type !== "Results") {
+          if (msg.type !== "Metadata" && msg.type !== "SpeechStarted") {
+            log.info({ dg: msg.type, msg: JSON.stringify(msg).slice(0, 300) }, "deepgram non-results message");
+          }
+          return; // Metadata/SpeechStarted etc.
+        }
         const alt = msg.channel?.alternatives?.[0];
         const text: string = alt?.transcript ?? "";
         if (!text) return;
@@ -66,11 +71,11 @@ export class DeepgramStream {
       handlers.onError(err instanceof Error ? err : new Error(String(err)));
     });
 
-    this.ws.on("close", () => {
+    this.ws.on("close", (code: number, reason: Buffer) => {
       this.open = false;
       if (this.keepAlive) clearInterval(this.keepAlive);
+      log.info({ code, reason: reason?.toString().slice(0, 200) }, "deepgram: close");
       handlers.onClose();
-      log.debug("deepgram: close");
     });
   }
 
