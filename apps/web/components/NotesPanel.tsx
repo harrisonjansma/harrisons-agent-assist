@@ -24,7 +24,7 @@ export function NotesPanel({ notes, drafting }: { notes: string; drafting: boole
   ) : null;
 
   return (
-    <Panel title="Call notes" accent="#7c6cff" right={spinner}>
+    <Panel title="Call notes" accent="#7c3aed" right={spinner}>
       <div className={`scroll-thin h-full overflow-y-auto rounded-lg ${flash ? "animate-flash" : ""}`}>
         {notes ? (
           <Markdown source={notes} />

@@ -90,13 +90,17 @@ export function TranscriptPanel({
   };
 
   useEffect(() => {
-    if (pinnedRef.current) endRef.current?.scrollIntoView({ behavior: "smooth" });
+    // Only auto-scroll once there's content — otherwise this fires on mount and
+    // scrolls the whole page down past the header (empty transcript).
+    if ((finals.length || interim) && pinnedRef.current) {
+      endRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
   }, [finals, interim]);
 
   const empty = finals.length === 0 && !interim;
 
   return (
-    <Panel title="Transcript" accent="#4f8cff">
+    <Panel title="Transcript" accent="#4f46e5">
       <div ref={wrapRef} onScroll={onScroll} className="scroll-thin h-full space-y-2 overflow-y-auto pr-1">
         {empty && (
           <Empty
