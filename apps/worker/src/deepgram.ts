@@ -26,6 +26,7 @@ export class DeepgramStream {
   private ws: WebSocket;
   private keepAlive: NodeJS.Timeout | null = null;
   private open = false;
+  private pending: Buffer[] = []; // frames buffered until the socket opens
 
   constructor(handlers: DeepgramHandlers) {
     const key = process.env.DEEPGRAM_API_KEY;
@@ -35,13 +36,18 @@ export class DeepgramStream {
 
     this.ws.on("open", () => {
       this.open = true;
+      // Flush frames that arrived before the socket opened. Critical: the very
+      // first frame carries the webm/ogg container header — without it Deepgram
+      // receives a headerless mid-stream and can't decode anything.
+      for (const f of this.pending) this.ws.send(f);
+      log.info({ flushed: this.pending.length }, "deepgram: open");
+      this.pending = [];
       // Deepgram closes idle sockets; keep it warm during pauses.
       this.keepAlive = setInterval(() => {
         if (this.ws.readyState === WebSocket.OPEN) {
           this.ws.send(JSON.stringify({ type: "KeepAlive" }));
         }
       }, 8000);
-      log.info("deepgram: open");
     });
 
     this.ws.on("message", (data: WebSocket.RawData) => {
@@ -81,7 +87,12 @@ export class DeepgramStream {
 
   /** Forward a binary audio frame from the client to Deepgram. */
   send(frame: Buffer): void {
-    if (this.ws.readyState === WebSocket.OPEN) this.ws.send(frame);
+    if (this.open && this.ws.readyState === WebSocket.OPEN) {
+      this.ws.send(frame);
+    } else if (this.pending.length < 400) {
+      // buffer until the socket opens (keeps the container header, cap ~memory)
+      this.pending.push(frame);
+    }
   }
 
   isOpen(): boolean {
