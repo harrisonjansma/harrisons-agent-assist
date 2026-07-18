@@ -45,10 +45,12 @@ sub-second frustration alert. Built solo (Next.js, Deepgram, pgvector, Railway).
 
 - **0:00** — cold open on the live demo already running the sample call:
   "This is a real-time call copilot I built solo on Railway and Supabase."
-- **0:15** — point at the transcript streaming in.
+- **0:15** — point at the transcript streaming in (a Shopfolio storefront-down call).
 - **0:30** — notes drafting themselves in the middle panel.
-- **0:45** — doc cards swapping as the caller changes topic (refund → cancel).
+- **0:45** — doc cards swapping as the caller changes topic (SSL/domain → stuck publish queue).
 - **1:00** — the frustration alert firing, with the on-screen latency number.
+- Note: the sample call is a cached replay of one real pipeline run (deterministic,
+  free to re-watch); demo the microphone briefly for the fully-live path.
 - **1:15** — one architecture sentence: "browser → WebSocket → Deepgram, fanned
   out to an LLM, pgvector, and a second LLM — all in about a second." Then:
   "Code's on GitHub, full write-up on my site." End.
