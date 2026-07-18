@@ -4,26 +4,74 @@
  * cadence guards. One instance per connected browser tab.
  */
 import type { WebSocket } from "ws";
-import { LIMITS, serverDb, type ServerMessage } from "@call-copilot/shared";
+import { LIMITS, type DocHit, type ServerMessage } from "@call-copilot/shared";
 import { log } from "./logger.js";
 import { DeepgramStream, type TranscriptEvent } from "./deepgram.js";
 import { generateNotes } from "./notes.js";
 import { retrieveDocs, docsKey } from "./rag.js";
-import { scoreSentiment, FrustrationDetector } from "./sentiment.js";
+import { scoreSentiment, FrustrationDetector, type SentimentResult } from "./sentiment.js";
+import { supabaseStore, type SessionStore } from "./store.js";
 
-// Cadence / cost guards (ADR + issue specs).
-const NOTES_MIN_NEW_FINALS = 2;
-const NOTES_MIN_INTERVAL_MS = 5000;
-const NOTES_MAX_REGENS = 40;
-const RAG_EVERY_N_FINALS = 3;
-const RAG_MIN_INTERVAL_MS = 5000;
-const RAG_WINDOW = 6; // last N utterances embedded as the query
+/** Streaming ASR seam — DeepgramStream is the production implementation. */
+export interface AsrStream {
+  send(frame: Buffer): void;
+  isOpen(): boolean;
+  close(): void;
+}
+export interface AsrHandlers {
+  onTranscript: (e: TranscriptEvent) => void;
+  onError: (err: Error) => void;
+  onClose: () => void;
+}
+
+/** Everything the Session talks to the outside world through. */
+export interface SessionDeps {
+  createAsr: (h: AsrHandlers) => AsrStream;
+  generateNotes: (previousDraft: string, newUtterances: string[]) => Promise<string>;
+  retrieveDocs: (windowText: string) => Promise<DocHit[]>;
+  scoreSentiment: (prior: string[], latest: string) => Promise<SentimentResult>;
+  store: SessionStore;
+  config?: Partial<Cadence>;
+}
+
+/** Cadence / cost guards (ADR + issue specs); overridable for tests. */
+export interface Cadence {
+  notesMinNewFinals: number;
+  notesMinIntervalMs: number;
+  notesMaxRegens: number;
+  ragEveryNFinals: number;
+  ragMinIntervalMs: number;
+  ragWindow: number;
+}
+
+const DEFAULT_CADENCE: Cadence = {
+  notesMinNewFinals: 2,
+  notesMinIntervalMs: 5000,
+  notesMaxRegens: 40,
+  ragEveryNFinals: 3,
+  ragMinIntervalMs: 5000,
+  ragWindow: 6,
+};
+
+/** Production wiring: Deepgram + OpenAI + Supabase. */
+export function defaultDeps(): SessionDeps {
+  return {
+    createAsr: (h) => new DeepgramStream(h),
+    generateNotes,
+    retrieveDocs,
+    scoreSentiment,
+    store: supabaseStore(),
+  };
+}
 
 export class Session {
   readonly id: string;
   private closed = false;
 
-  private dg: DeepgramStream | null = null;
+  private readonly deps: SessionDeps;
+  private readonly cadence: Cadence;
+
+  private dg: AsrStream | null = null;
   private dgReconnectUsed = false;
   private hardStopTimer: NodeJS.Timeout;
 
@@ -49,8 +97,11 @@ export class Session {
   constructor(
     id: string,
     private readonly ws: WebSocket,
+    deps: SessionDeps = defaultDeps(),
   ) {
     this.id = id;
+    this.deps = deps;
+    this.cadence = { ...DEFAULT_CADENCE, ...deps.config };
     this.hardStopTimer = setTimeout(() => {
       this.send({ type: "error", code: "session_expired", message: "3-minute demo limit reached." });
       void this.close("hard-stop");
@@ -74,7 +125,7 @@ export class Session {
   }
 
   private openDeepgram(): void {
-    this.dg = new DeepgramStream({
+    this.dg = this.deps.createAsr({
       onTranscript: (e) => this.onTranscript(e),
       onError: () => {
         /* handled on close */
@@ -113,25 +164,21 @@ export class Session {
   }
 
   private async persistUtterance(text: string, receivedAt: number): Promise<void> {
-    const { data, error } = await serverDb()
-      .from("utterances")
-      .insert({ session_id: this.id, text })
-      .select("id")
-      .single();
-    if (error) {
-      log.error({ error, session: this.id }, "failed to insert utterance");
-      return;
-    }
+    const id = await this.deps.store.insertUtterance(this.id, text).catch((err) => {
+      log.error({ err, session: this.id }, "failed to insert utterance");
+      return null;
+    });
+    if (id == null) return;
     // sentiment runs fire-and-forget and updates the row it just inserted.
-    void this.runSentiment(data.id as number, text, receivedAt);
+    void this.runSentiment(id, text, receivedAt);
   }
 
   // --- notes ---------------------------------------------------------------
   private maybeRunNotes(): void {
     if (this.notesInflight) return;
-    if (this.notesRegens >= NOTES_MAX_REGENS) return;
-    if (this.notesBuffer.length < NOTES_MIN_NEW_FINALS) return;
-    if (Date.now() - this.notesLastRunAt < NOTES_MIN_INTERVAL_MS) return;
+    if (this.notesRegens >= this.cadence.notesMaxRegens) return;
+    if (this.notesBuffer.length < this.cadence.notesMinNewFinals) return;
+    if (Date.now() - this.notesLastRunAt < this.cadence.notesMinIntervalMs) return;
     void this.runNotes();
   }
 
@@ -140,14 +187,12 @@ export class Session {
     this.notesLastRunAt = Date.now();
     const batch = this.notesBuffer.splice(0);
     try {
-      const md = await generateNotes(this.notesDraft, batch);
+      const md = await this.deps.generateNotes(this.notesDraft, batch);
       this.notesDraft = md;
       this.notesRegens += 1;
       this.send({ type: "notes.update", markdown: md });
-      await serverDb()
-        .from("notes")
-        .upsert({ session_id: this.id, markdown: md, updated_at: new Date().toISOString() });
-      if (this.notesRegens >= NOTES_MAX_REGENS) {
+      await this.deps.store.upsertNotes(this.id, md);
+      if (this.notesRegens >= this.cadence.notesMaxRegens) {
         log.info({ session: this.id }, "notes finalized (regen cap)");
       }
     } catch (err) {
@@ -162,8 +207,8 @@ export class Session {
   // --- rag ------------------------------------------------------------------
   private maybeRunRag(): void {
     if (this.ragInflight) return;
-    if (this.ragFinalsSinceRun < RAG_EVERY_N_FINALS) return;
-    if (Date.now() - this.ragLastRunAt < RAG_MIN_INTERVAL_MS) return;
+    if (this.ragFinalsSinceRun < this.cadence.ragEveryNFinals) return;
+    if (Date.now() - this.ragLastRunAt < this.cadence.ragMinIntervalMs) return;
     void this.runRag();
   }
 
@@ -171,9 +216,9 @@ export class Session {
     this.ragInflight = true;
     this.ragLastRunAt = Date.now();
     this.ragFinalsSinceRun = 0;
-    const windowText = this.finals.slice(-RAG_WINDOW).join(" ");
+    const windowText = this.finals.slice(-this.cadence.ragWindow).join(" ");
     try {
-      const docs = await retrieveDocs(windowText);
+      const docs = await this.deps.retrieveDocs(windowText);
       const key = docsKey(docs);
       log.info({ session: this.id, ids: docs.map((d) => d.id), scores: docs.map((d) => d.score) }, "rag retrieval");
       if (key !== this.lastDocsKey) {
@@ -191,13 +236,13 @@ export class Session {
   private async runSentiment(utteranceId: number, text: string, receivedAt: number): Promise<void> {
     try {
       const prior = this.finals.slice(-3, -1); // two lines before the latest
-      const result = await scoreSentiment(prior, text);
+      const result = await this.deps.scoreSentiment(prior, text);
       const latencyMs = Date.now() - receivedAt;
       this.send({ type: "sentiment.update", score: result.score, label: result.label, latencyMs });
       if (this.frustration.push(result)) {
         this.send({ type: "alert.frustration", latencyMs });
       }
-      await serverDb().from("utterances").update({ sentiment: result.score }).eq("id", utteranceId);
+      await this.deps.store.updateUtteranceSentiment(utteranceId, result.score);
     } catch (err) {
       log.error({ err, session: this.id }, "sentiment scoring failed");
     }
@@ -211,7 +256,7 @@ export class Session {
     this.dg?.close();
     log.info({ session: this.id, reason }, "session closed");
     try {
-      await serverDb().from("sessions").update({ ended_at: new Date().toISOString() }).eq("id", this.id);
+      await this.deps.store.endSession(this.id);
     } catch (err) {
       log.error({ err, session: this.id }, "failed to set ended_at");
     }
