@@ -79,6 +79,31 @@ const server = createServer((req, res) => {
     })();
     return;
   }
+  // TEMPORARY: diagnose RAG — compare array vs stringified embedding passing.
+  if (req.url === "/test-rag") {
+    void (async () => {
+      try {
+        const { embed, serverDb } = await import("@call-copilot/shared");
+        const [emb] = await embed("I was charged twice and I want a refund");
+        const db = serverDb();
+        const asArray = await db.rpc("match_docs", { query_embedding: emb, match_count: 12, min_score: 0 });
+        const asString = await db.rpc("match_docs", {
+          query_embedding: JSON.stringify(emb),
+          match_count: 12,
+          min_score: 0,
+        });
+        const fmt = (r: { data: unknown; error: unknown }) =>
+          r.error
+            ? { error: String((r.error as { message?: string }).message ?? r.error) }
+            : (r.data as { title: string; score: number }[]).map((x) => `${x.title}:${x.score.toFixed(3)}`);
+        res.writeHead(200, { "content-type": "application/json" });
+        res.end(JSON.stringify({ embLen: emb?.length, asArray: fmt(asArray), asString: fmt(asString) }, null, 2));
+      } catch (err) {
+        res.writeHead(500).end(String(err));
+      }
+    })();
+    return;
+  }
   res.writeHead(404).end();
 });
 
