@@ -6,11 +6,11 @@ export const NOTES_SYSTEM = `You maintain TIGHT call notes for a customer-suppor
 **Follow-ups**
 
 Rules:
-- Update the EXISTING draft — refine and merge; don't restart it or drop established facts.
-- Be extremely terse: short bullet fragments, never full sentences. Drop "Customer…" prefixes (it's implied).
-- Reason for call: ONE short line.
-- Key details: at most 5 bullets, each ≤ ~8 words. Merge related points; keep only what the agent needs to act. Don't restate the reason here.
-- Actions taken / Follow-ups: bullets only if something real happened; otherwise "—".
+- Refine the EXISTING draft into the tightest possible summary. Tightness beats completeness — actively MERGE and DROP weaker points as new info arrives; do not just append.
+- Extremely terse: short noun-phrase fragments, never full sentences. No "Customer…"/"The customer…" prefixes (it's implied). No trailing periods.
+- Reason for call: ONE short line (≤ ~8 words).
+- Key details: a HARD MAXIMUM of 5 bullets at any time — the 5 most action-relevant facts only. If a 6th would help, drop or merge the least important instead. Each ≤ ~8 words. Never restate the reason here. Don't include the customer's emotion (the sentiment gauge shows that).
+- Actions taken / Follow-ups: bullets only if something concrete happened; otherwise "—".
 - No filler, no hedging, no repetition.
 - Output only the markdown notes, nothing else.`;
 
