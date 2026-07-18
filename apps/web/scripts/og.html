@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { background: #0f172a; }
+  html, body { width: 1200px; height: 630px; }
+  body {
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 55%, #1d4ed8 140%);
+    color: #f8fafc;
+    padding: 66px 80px;
+  }
+  .eyebrow { font-size: 26px; letter-spacing: .14em; text-transform: uppercase; color: #93c5fd; font-weight: 600; }
+  h1 { font-size: 82px; line-height: 1.02; font-weight: 800; margin-top: 20px; letter-spacing: -.02em; }
+  .sub { font-size: 30px; color: #cbd5e1; margin-top: 24px; max-width: 900px; line-height: 1.34; }
+  .pills { display: flex; gap: 14px; margin-top: 38px; flex-wrap: wrap; }
+  .pill { font-size: 24px; padding: 12px 22px; border-radius: 999px; background: rgba(148,163,184,.16); border: 1px solid rgba(148,163,184,.28); color: #e2e8f0; }
+  .foot { display: flex; align-items: center; justify-content: space-between; font-size: 26px; color: #94a3b8; margin-top: 52px; }
+  .foot b { color: #f8fafc; }
+  .dot { display:inline-block; width:14px; height:14px; border-radius:50%; background:#22c55e; margin-right:12px; box-shadow:0 0 0 6px rgba(34,197,94,.18); }
+</style>
+</head>
+<body>
+  <div class="eyebrow">Real-time agent assist</div>
+  <h1>Live Call Copilot</h1>
+  <div class="sub">Streaming transcript, self-drafting call notes, live RAG over procedure docs, and a sub-second frustration alert — in the browser.</div>
+  <div class="pills">
+    <div class="pill">Deepgram ASR</div>
+    <div class="pill">RAG · pgvector</div>
+    <div class="pill">Sentiment ~1s</div>
+    <div class="pill">Next.js · Node · Supabase</div>
+  </div>
+  <div class="foot">
+    <span><span class="dot"></span>agentassistdemo.harrisonjansma.com</span>
+    <span>built by <b>Harrison Jansma</b></span>
+  </div>
+</body>
+</html>

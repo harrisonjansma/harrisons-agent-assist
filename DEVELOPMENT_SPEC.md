@@ -108,6 +108,32 @@ Steps (done in HAR-259, step 6):
 
 ---
 
+## 3.2 Implementation status (2026-07-18)
+
+The monorepo and full pipeline are **built and pushed** on branch
+`claude/linear-dev-items-spec-3y97k8`. `pnpm -r build` is green and `pnpm test`
+passes (14 unit tests).
+
+| Item | Code | Verified |
+|---|---|---|
+| HAR-259 scaffold + deploy skeleton | ✅ | ✅ worker `/healthz` 200, WS session writes `sessions` row w/ `ended_at` against live Supabase |
+| HAR-260 mic → Deepgram → transcript | ✅ | ⚠️ code + unit tests; live ASR unverified (see constraint) |
+| HAR-261 live notes | ✅ | ⚠️ orchestration built; live LLM unverified |
+| HAR-262 RAG pgvector | ✅ | ⚠️ schema + `match_docs` + corpus + seed built; embeddings unrun |
+| HAR-263 sentiment + alert | ✅ | ✅ `FrustrationDetector` unit-tested; live LLM unverified |
+| HAR-264 sample-call + hardening | ✅ | ⚠️ rate-limit unit-tested; `sample-call.webm` asset still needed |
+| HAR-265 launch (Loom/blog/links) | ⛔ not started | — |
+| HAR-266 LiveKit stretch | ⛔ not started | — |
+
+**Blocking constraint — this sandbox cannot reach Deepgram/OpenAI keys.** The
+keys live in BWS, but this environment's egress policy blocks the Bitwarden host
+(`CONNECT tunnel failed, 403` to `identity.bitwarden.com`), so the corpus could
+not be seeded and the LLM/ASR paths could not be exercised here. This is a
+sandbox limitation only — on Railway the worker reaches those APIs normally.
+**Remaining to go live:** (1) seed the corpus (`pnpm seed` with `OPENAI_API_KEY`),
+(2) add `apps/web/public/sample-call.webm`, (3) create the two Railway services +
+Cloudflare DNS (§3.1), (4) smoke-test the full flow, then HAR-265.
+
 ## 4. Development items
 
 Ordered by dependency. IDs link to Linear. **Priority:** 🔴 High · 🟡 Medium.
