@@ -12,6 +12,22 @@ import { allowSession, hashIp } from "./ratelimit.js";
 const PORT = Number(process.env.PORT ?? 8080);
 const START = Date.now();
 
+/**
+ * Fail-fast config check. Missing keys otherwise surface only on the first
+ * session (Deepgram/OpenAI/DB call), so the worker would look healthy while
+ * every call dies. Log loudly at boot instead of debugging it live.
+ */
+function checkEnv(): void {
+  const required = ["DEEPGRAM_API_KEY", "OPENAI_API_KEY", "SUPABASE_URL", "SUPABASE_SERVICE_ROLE_KEY"];
+  const missing = required.filter((k) => !process.env[k]);
+  if (missing.length) {
+    log.error({ missing }, "missing required env vars — sessions will fail until these are set");
+  } else {
+    log.info("env check: all required vars present");
+  }
+}
+checkEnv();
+
 const server = createServer((req, res) => {
   if (req.url === "/healthz") {
     res.writeHead(200, { "content-type": "application/json" });
