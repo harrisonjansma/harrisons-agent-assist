@@ -9,6 +9,7 @@ import { NotesPanel } from "../components/NotesPanel";
 import { DocsPanel } from "../components/DocsPanel";
 import { SentimentGauge, FrustrationBanner } from "../components/SentimentGauge";
 import { HowItWorks } from "../components/HowItWorks";
+import { Disclaimer } from "../components/Disclaimer";
 
 export default function Page() {
   const { state, start, stop } = useCopilot();
@@ -17,6 +18,8 @@ export default function Page() {
   return (
     <main className="mx-auto flex min-h-screen max-w-6xl flex-col gap-5 px-4 py-6 sm:px-6 sm:py-9">
       <Header />
+
+      <Disclaimer />
 
       {/* Console: controls + gauge + live stats in one frame */}
       <section className="card animate-rise p-4 sm:p-5">

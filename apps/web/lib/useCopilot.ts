@@ -39,7 +39,7 @@ export interface CopilotState {
 }
 
 const WS_URL = process.env.NEXT_PUBLIC_WS_URL ?? "ws://localhost:8080/ws";
-const SAMPLE_URL = "/sample-call.webm";
+const SAMPLE_URL = "/sample-call.ogg";
 
 function median(nums: number[]): number | null {
   if (nums.length === 0) return null;
@@ -69,6 +69,7 @@ export function useCopilot() {
   const [state, setState] = useState<CopilotState>(INITIAL);
   const wsRef = useRef<WebSocket | null>(null);
   const audioRef = useRef<AudioSource | null>(null);
+  const audioElRef = useRef<HTMLAudioElement | null>(null);
   const lastChunkAtRef = useRef<number>(0);
   const sentimentLatenciesRef = useRef<number[]>([]);
   const startedAtRef = useRef<number>(0);
@@ -80,6 +81,14 @@ export function useCopilot() {
   const cleanup = useCallback(() => {
     audioRef.current?.stop();
     audioRef.current = null;
+    if (audioElRef.current) {
+      try {
+        audioElRef.current.pause();
+      } catch {
+        /* noop */
+      }
+      audioElRef.current = null;
+    }
     if (timerRef.current) clearInterval(timerRef.current);
     timerRef.current = null;
     if (wsRef.current && wsRef.current.readyState <= WebSocket.OPEN) {
@@ -103,6 +112,19 @@ export function useCopilot() {
       setState({ ...INITIAL, conn: "connecting", mode });
       sentimentLatenciesRef.current = [];
       notesAwaitRef.current = false;
+
+      // Start audible playback of the sample call synchronously, inside this
+      // click gesture — browser autoplay policy requires play() to be initiated
+      // by the gesture, not later on ws.onopen. Byte-streaming is paced to this
+      // element's clock (see streamSampleFile).
+      if (mode === "sample") {
+        const el = new Audio(SAMPLE_URL);
+        el.preload = "auto";
+        audioElRef.current = el;
+        void el.play().catch(() => {
+          /* autoplay blocked — transcript still runs, just not audible */
+        });
+      }
 
       const ws = new WebSocket(WS_URL);
       ws.binaryType = "arraybuffer";
@@ -135,7 +157,7 @@ export function useCopilot() {
           if (mode === "mic") {
             audioRef.current = await startMic(onChunk);
           } else {
-            audioRef.current = await streamSampleFile(SAMPLE_URL, onChunk, () => {
+            audioRef.current = await streamSampleFile(SAMPLE_URL, audioElRef.current, onChunk, () => {
               // let trailing transcripts land, then end
               setTimeout(stop, 2500);
             });
@@ -201,6 +223,14 @@ export function useCopilot() {
         if (wsRef.current === ws) {
           audioRef.current?.stop();
           audioRef.current = null;
+          if (audioElRef.current) {
+            try {
+              audioElRef.current.pause();
+            } catch {
+              /* noop */
+            }
+            audioElRef.current = null;
+          }
           if (timerRef.current) clearInterval(timerRef.current);
           setState((s) => (s.conn === "error" || s.conn === "ended" ? s : { ...s, conn: "ended", interim: "" }));
         }

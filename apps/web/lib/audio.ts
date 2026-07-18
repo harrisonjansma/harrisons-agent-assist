@@ -46,13 +46,22 @@ export async function startMic(onChunk: (b: Blob) => void): Promise<AudioSource>
 }
 
 /**
- * Streams a pre-recorded webm file (public/sample-call.webm) through the same
- * pipeline. We pipe the container bytes sequentially on a fixed cadence — no
- * decoding — which reproduces a continuous stream for Deepgram. The mic path is
- * never touched, so this works even with no microphone (iOS Safari, recruiters).
+ * Streams the pre-recorded sample call (public/sample-call.ogg) through the same
+ * pipeline while ALSO playing it audibly, so a visitor with no microphone hears
+ * the call they're watching get transcribed.
+ *
+ * The container bytes are piped sequentially — no decoding — but paced to the
+ * <audio> element's playback clock so Deepgram receives the audio at real time
+ * and roughly in sync with what the listener hears. If the browser blocked
+ * autoplay (no gesture, muted tab), the element stays paused and we fall back to
+ * a fixed cadence so the transcript still works — it just won't be audible.
+ *
+ * `audioEl` is created and .play()'d by the caller *inside the click gesture*
+ * (autoplay policy requires that); this function only drives byte delivery.
  */
 export async function streamSampleFile(
   url: string,
+  audioEl: HTMLAudioElement | null,
   onChunk: (b: Blob) => void,
   onEnd: () => void,
 ): Promise<AudioSource> {
@@ -60,27 +69,61 @@ export async function streamSampleFile(
   if (!res.ok) throw new Error(`sample file not found (${res.status})`);
   const buf = new Uint8Array(await res.arrayBuffer());
 
-  // ~8KB per 250ms tick keeps frames well under the 32KB cap.
+  // ~8KB per tick keeps frames well under the 32KB cap.
   const chunkBytes = 8 * 1024;
   let offset = 0;
   let stopped = false;
+  let ended = false;
+
+  // True only while audio is genuinely playing with a known duration; that lets
+  // us sync byte delivery to it. Otherwise we fall back to a fixed cadence.
+  const playing = () =>
+    !!audioEl && !audioEl.paused && Number.isFinite(audioEl.duration) && audioEl.duration > 0;
+
+  if (audioEl) audioEl.addEventListener("ended", () => (ended = true), { once: true });
+
+  const send = (to: number) => {
+    while (offset < to && !stopped) {
+      const end = Math.min(offset + chunkBytes, to);
+      onChunk(new Blob([buf.subarray(offset, end)], { type: "audio/ogg" }));
+      offset = end;
+    }
+  };
 
   const timer = setInterval(() => {
     if (stopped) return;
+
+    if (playing()) {
+      // Stay a chunk ahead of the playhead so Deepgram is never starved.
+      const frac = Math.min(1, audioEl!.currentTime / audioEl!.duration);
+      send(Math.min(buf.length, Math.ceil(frac * buf.length) + chunkBytes));
+      if (offset >= buf.length && ended) {
+        clearInterval(timer);
+        onEnd();
+      }
+      return;
+    }
+
+    // Fallback / audio finished: drain remaining bytes at a fixed rate.
+    send(Math.min(buf.length, offset + chunkBytes));
     if (offset >= buf.length) {
       clearInterval(timer);
       onEnd();
-      return;
     }
-    const slice = buf.subarray(offset, Math.min(offset + chunkBytes, buf.length));
-    offset += chunkBytes;
-    onChunk(new Blob([slice], { type: "audio/webm" }));
   }, LIMITS.CHUNK_MS);
 
   return {
     stop: () => {
       stopped = true;
       clearInterval(timer);
+      if (audioEl) {
+        try {
+          audioEl.pause();
+          audioEl.currentTime = 0;
+        } catch {
+          /* noop */
+        }
+      }
     },
   };
 }
