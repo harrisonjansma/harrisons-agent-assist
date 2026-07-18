@@ -35,6 +35,15 @@ async function main(): Promise<void> {
     log.error({ dir: DOCS_DIR }, "no seed docs found");
     process.exit(1);
   }
+
+  // Idempotent + cheap: skip if already fully seeded (set SEED_FORCE=1 to re-embed).
+  // This lets the seed run safely as a pre-deploy step on every deploy.
+  const { count } = await serverDb().from("docs").select("*", { count: "exact", head: true });
+  if (!process.env.SEED_FORCE && typeof count === "number" && count >= docs.length) {
+    log.info({ count }, "docs already seeded — skipping (set SEED_FORCE=1 to re-embed)");
+    process.exit(0);
+  }
+
   log.info({ count: docs.length }, "embedding docs");
 
   const embeddings = await embed(docs.map((d) => d.body));

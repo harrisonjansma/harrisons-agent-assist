@@ -52,7 +52,9 @@ pnpm --filter @call-copilot/shared build
 # apply DB schema (Supabase CLI, or run supabase/migrations/*.sql in order)
 supabase db push
 
-pnpm seed                     # embed + load the docs corpus
+pnpm --filter @call-copilot/worker seed:dev   # embed + load the docs corpus (local, via tsx)
+# in prod the compiled `pnpm --filter @call-copilot/worker seed` runs as a
+# Railway pre-deploy step and is idempotent (skips if already seeded)
 
 pnpm dev:worker               # ws://localhost:8080/ws  + GET /healthz
 pnpm dev:web                  # http://localhost:3000
