@@ -2,134 +2,161 @@
 "audioDurationMs": 100459,
 "events": [
 {
-"atMs": 2188,
+"atMs": 1584,
 "msg": {
 "type": "transcript.interim",
-"text": "Thanks for calling Shopfolio",
-"ts": 1784400002188,
+"text": "Thank you for",
+"ts": 1784400001584,
 "speaker": "agent"
 },
 "asrMs": 88
 },
 {
-"atMs": 3590,
+"atMs": 3010,
 "msg": {
 "type": "transcript.final",
-"text": "Thanks for calling Shopfolio support, this is Maya.",
-"ts": 1784400003590,
+"text": "Thank you for calling Shopfolio Support.",
+"ts": 1784400003010,
 "speaker": "agent"
 },
 "asrMs": 88
 },
 {
-"atMs": 4843,
+"atMs": 3575,
+"msg": {
+"type": "transcript.interim",
+"text": "This is",
+"ts": 1784400003575,
+"speaker": "agent"
+},
+"asrMs": 104
+},
+{
+"atMs": 3930,
+"msg": {
+"type": "transcript.final",
+"text": "This is James.",
+"ts": 1784400003930,
+"speaker": "agent"
+},
+"asrMs": 104
+},
+{
+"atMs": 5039,
 "msg": {
 "type": "transcript.interim",
 "text": "Who do I have the",
-"ts": 1784400004843,
+"ts": 1784400005039,
 "speaker": "agent"
 },
-"asrMs": 104
+"asrMs": 76
 },
 {
-"atMs": 6940,
+"atMs": 5970,
 "msg": {
 "type": "transcript.final",
 "text": "Who do I have the pleasure of helping today?",
-"ts": 1784400006940,
+"ts": 1784400005970,
 "speaker": "agent"
 },
-"asrMs": 104
+"asrMs": 76
 },
 {
-"atMs": 8575,
+"atMs": 7259,
 "msg": {
 "type": "transcript.interim",
-"text": "Hi, it's Amy — I",
-"ts": 1784400008575,
+"text": "Hi, it's",
+"ts": 1784400007259,
 "speaker": "customer"
 },
-"asrMs": 76
+"asrMs": 121
 },
 {
-"atMs": 10346,
+"atMs": 7830,
 "msg": {
 "type": "transcript.final",
-"text": "Hi, it's Amy — I run the fashion storefront.",
-"ts": 1784400010346,
+"text": "Hi, it's Amy.",
+"ts": 1784400007830,
 "speaker": "customer"
 },
-"asrMs": 76
+"asrMs": 121
 },
 {
-"atMs": 11166,
+"atMs": 8590,
 "msg": {
 "type": "sentiment.update",
 "score": 0.0,
 "label": "neutral",
-"latencyMs": 1180
+"latencyMs": 1150
 }
 },
 {
-"atMs": 13038,
+"atMs": 8812,
 "msg": {
 "type": "transcript.interim",
-"text": "I'm honestly kind of panicking, because my affiliate income",
-"ts": 1784400013038,
-"speaker": "customer"
-},
-"asrMs": 121
-},
-{
-"atMs": 15492,
-"msg": {
-"type": "transcript.final",
-"text": "I'm honestly kind of panicking, because my affiliate income just fell off a cliff this week,",
-"ts": 1784400015492,
-"speaker": "customer"
-},
-"asrMs": 121
-},
-{
-"atMs": 16272,
-"msg": {
-"type": "sentiment.update",
-"score": -0.5,
-"label": "negative",
-"latencyMs": 880
-}
-},
-{
-"atMs": 18030,
-"msg": {
-"type": "transcript.interim",
-"text": "and I have a big campaign",
-"ts": 1784400018030,
+"text": "I run the",
+"ts": 1784400008812,
 "speaker": "customer"
 },
 "asrMs": 95
 },
 {
-"atMs": 19433,
+"atMs": 9410,
 "msg": {
 "type": "transcript.final",
-"text": "and I have a big campaign going out this weekend.",
-"ts": 1784400019433,
+"text": "I run the fashion storefront.",
+"ts": 1784400009410,
 "speaker": "customer"
 },
 "asrMs": 95
 },
 {
-"atMs": 20193,
+"atMs": 10130,
 "msg": {
 "type": "sentiment.update",
-"score": -0.55,
-"label": "negative",
-"latencyMs": 840
+"score": -0.1,
+"label": "neutral",
+"latencyMs": 820
 }
 },
 {
-"atMs": 20333,
+"atMs": 13694,
+"msg": {
+"type": "transcript.interim",
+"text": "I'm honestly kind of panicking, because my affiliate income just fell off a cliff",
+"ts": 1784400013694,
+"speaker": "customer"
+},
+"asrMs": 112
+},
+{
+"atMs": 16830,
+"msg": {
+"type": "transcript.final",
+"text": "I'm honestly kind of panicking, because my affiliate income just fell off a cliff this week, and I have a big campaign going out this weekend.",
+"ts": 1784400016830,
+"speaker": "customer"
+},
+"asrMs": 112
+},
+{
+"atMs": 17610,
+"msg": {
+"type": "sentiment.update",
+"score": -0.75,
+"label": "frustrated",
+"latencyMs": 900
+}
+},
+{
+"atMs": 17611,
+"msg": {
+"type": "alert.frustration",
+"latencyMs": 900
+}
+},
+{
+"atMs": 17730,
 "msg": {
 "type": "docs.update",
 "docs": [
@@ -137,7 +164,7 @@
 "id": 9001,
 "title": "Amazon Associate Tag Setup",
 "snippet": "# Amazon Associate Tag Setup\n\nUse this procedure when a creator's Amazon links aren't carrying their associate tag, or they ask how commissions work.\n\n## How it works\nWhen a captured product",
-"score": 0.41,
+"score": 0.42,
 "body": "# Amazon Associate Tag Setup\n\nUse this procedure when a creator's Amazon links aren't carrying their associate tag, or they ask how commissions work.\n\n## How it works\nWhen a captured product URL is a real `amazon.com` link, Shopfolio automatically appends the creator's **associate tag** so qualifying purchases are attributed to them. Non-Amazon merchants carry **no** commission — Shopfolio does not mint or inject affiliate links for other retailers.\n\n## Setup\n1. In **Settings → Integrations → Amazon**, have the creator paste their Amazon Associates **tracking ID** (the `tag=` value).\n2. Save. From then on, new Amazon captures get the tag applied at redirect time on the `/r/<code>` link.\n\n## Troubleshooting\n1. **Tag missing on a link:** confirm the tracking ID is saved and the destination is a genuine `amazon.com` URL (shortened `amzn.to` links should be expanded first).\n2. **Links captured before the tag was added:** re-save the item to re-apply, or bulk **Re-apply tag** from the library.\n\n## Notes\n- Shopfolio takes no cut; the associate relationship is directly between the creator and Amazon."
 },
 {
@@ -165,119 +192,83 @@
 }
 },
 {
-"atMs": 20683,
+"atMs": 18080,
 "msg": {
 "type": "notes.update",
 "markdown": "**Reason for call**  \nAffiliate income dropped sharply  \n\n**Key details**  \n- Amazon earnings fell to zero  \n- Big campaign launching this weekend  \n\n**Actions taken**  \n—  \n\n**Follow-ups**  \n—"
 }
 },
 {
-"atMs": 21654,
+"atMs": 19446,
 "msg": {
 "type": "transcript.interim",
-"text": "Okay, I'm going to get",
-"ts": 1784400021654,
-"speaker": "agent"
-},
-"asrMs": 112
-},
-{
-"atMs": 22890,
-"msg": {
-"type": "transcript.final",
-"text": "Okay, I'm going to get this sorted with you.",
-"ts": 1784400022890,
-"speaker": "agent"
-},
-"asrMs": 112
-},
-{
-"atMs": 26552,
-"msg": {
-"type": "transcript.interim",
-"text": "When you say it fell off — is it earnings,",
-"ts": 1784400026552,
+"text": "Okay, I'm going to help this",
+"ts": 1784400019446,
 "speaker": "agent"
 },
 "asrMs": 83
 },
 {
-"atMs": 29374,
+"atMs": 20890,
 "msg": {
 "type": "transcript.final",
-"text": "When you say it fell off — is it earnings, or is it the click tracking that looks off?",
-"ts": 1784400029374,
+"text": "Okay, I'm going to help this get this sorted with you.",
+"ts": 1784400020890,
 "speaker": "agent"
 },
 "asrMs": 83
 },
 {
-"atMs": 29686,
+"atMs": 23309,
 "msg": {
 "type": "transcript.interim",
-"text": "Both, I",
-"ts": 1784400029686,
-"speaker": "customer"
+"text": "When you say it fell off, is it earnings, or",
+"ts": 1784400023309,
+"speaker": "agent"
 },
 "asrMs": 88
 },
 {
-"atMs": 30204,
+"atMs": 25050,
 "msg": {
 "type": "transcript.final",
-"text": "Both, I think?",
-"ts": 1784400030204,
-"speaker": "customer"
+"text": "When you say it fell off, is it earnings, or is it the click tracking that looks off?",
+"ts": 1784400025050,
+"speaker": "agent"
 },
 "asrMs": 88
 },
 {
-"atMs": 30924,
-"msg": {
-"type": "sentiment.update",
-"score": -0.45,
-"label": "negative",
-"latencyMs": 760
-}
-},
-{
-"atMs": 31844,
+"atMs": 29137,
 "msg": {
 "type": "transcript.interim",
-"text": "My Amazon products stopped",
-"ts": 1784400031844,
+"text": "Both, I think. My Amazon products stopped earning completely, like",
+"ts": 1784400029137,
 "speaker": "customer"
 },
 "asrMs": 104
 },
 {
-"atMs": 35073,
+"atMs": 32210,
 "msg": {
 "type": "transcript.final",
-"text": "My Amazon products stopped earning completely. Like zero.",
-"ts": 1784400035073,
+"text": "Both, I think. My Amazon products stopped earning completely, like zero. And I swear I didn't change anything.",
+"ts": 1784400032210,
 "speaker": "customer"
 },
 "asrMs": 104
 },
 {
-"atMs": 35773,
+"atMs": 32910,
 "msg": {
 "type": "sentiment.update",
-"score": -0.75,
+"score": -0.7,
 "label": "frustrated",
 "latencyMs": 720
 }
 },
 {
-"atMs": 35774,
-"msg": {
-"type": "alert.frustration",
-"latencyMs": 720
-}
-},
-{
-"atMs": 35973,
+"atMs": 33110,
 "msg": {
 "type": "docs.update",
 "docs": [
@@ -285,7 +276,7 @@
 "id": 9001,
 "title": "Amazon Associate Tag Setup",
 "snippet": "# Amazon Associate Tag Setup\n\nUse this procedure when a creator's Amazon links aren't carrying their associate tag, or they ask how commissions work.\n\n## How it works\nWhen a captured product",
-"score": 0.57,
+"score": 0.58,
 "body": "# Amazon Associate Tag Setup\n\nUse this procedure when a creator's Amazon links aren't carrying their associate tag, or they ask how commissions work.\n\n## How it works\nWhen a captured product URL is a real `amazon.com` link, Shopfolio automatically appends the creator's **associate tag** so qualifying purchases are attributed to them. Non-Amazon merchants carry **no** commission — Shopfolio does not mint or inject affiliate links for other retailers.\n\n## Setup\n1. In **Settings → Integrations → Amazon**, have the creator paste their Amazon Associates **tracking ID** (the `tag=` value).\n2. Save. From then on, new Amazon captures get the tag applied at redirect time on the `/r/<code>` link.\n\n## Troubleshooting\n1. **Tag missing on a link:** confirm the tracking ID is saved and the destination is a genuine `amazon.com` URL (shortened `amzn.to` links should be expanded first).\n2. **Links captured before the tag was added:** re-save the item to re-apply, or bulk **Re-apply tag** from the library.\n\n## Notes\n- Shopfolio takes no cut; the associate relationship is directly between the creator and Amazon."
 },
 {
@@ -313,149 +304,149 @@
 }
 },
 {
-"atMs": 36105,
-"msg": {
-"type": "transcript.interim",
-"text": "And I swear I",
-"ts": 1784400036105,
-"speaker": "customer"
-},
-"asrMs": 76
-},
-{
-"atMs": 37176,
-"msg": {
-"type": "transcript.final",
-"text": "And I swear I didn't change anything.",
-"ts": 1784400037176,
-"speaker": "customer"
-},
-"asrMs": 76
-},
-{
-"atMs": 37876,
-"msg": {
-"type": "sentiment.update",
-"score": -0.6,
-"label": "negative",
-"latencyMs": 700
-}
-},
-{
-"atMs": 38426,
+"atMs": 33460,
 "msg": {
 "type": "notes.update",
 "markdown": "**Reason for call**  \nAffiliate income dropped sharply  \n\n**Key details**  \n- Amazon products earning zero  \n- No settings changed on creator side  \n- Campaign launching this weekend  \n\n**Actions taken**  \n—  \n\n**Follow-ups**  \n—"
 }
 },
 {
-"atMs": 41014,
+"atMs": 35490,
 "msg": {
 "type": "transcript.interim",
-"text": "Got it — that pattern almost always means your",
-"ts": 1784400041014,
+"text": "Got it. That pattern almost always means your",
+"ts": 1784400035490,
+"speaker": "agent"
+},
+"asrMs": 76
+},
+{
+"atMs": 37690,
+"msg": {
+"type": "transcript.final",
+"text": "Got it. That pattern almost always means your Amazon Associate tag dropped off the links.",
+"ts": 1784400037690,
+"speaker": "agent"
+},
+"asrMs": 76
+},
+{
+"atMs": 39893,
+"msg": {
+"type": "transcript.interim",
+"text": "Let me pull up your storefront settings",
+"ts": 1784400039893,
 "speaker": "agent"
 },
 "asrMs": 121
 },
 {
-"atMs": 45220,
+"atMs": 41490,
 "msg": {
 "type": "transcript.final",
-"text": "Got it — that pattern almost always means your Amazon Associate tag dropped off the links.",
-"ts": 1784400045220,
+"text": "Let me pull up your storefront settings and look while we talk.",
+"ts": 1784400041490,
 "speaker": "agent"
 },
 "asrMs": 121
 },
 {
-"atMs": 46750,
+"atMs": 42476,
 "msg": {
 "type": "transcript.interim",
-"text": "Let me pull up your storefront",
-"ts": 1784400046750,
-"speaker": "agent"
+"text": "Ah,",
+"ts": 1784400042476,
+"speaker": "customer"
 },
 "asrMs": 95
 },
 {
-"atMs": 48263,
+"atMs": 43110,
 "msg": {
 "type": "transcript.final",
-"text": "Let me pull up your storefront settings while we talk.",
-"ts": 1784400048263,
-"speaker": "agent"
+"text": "Ah, okay.",
+"ts": 1784400043110,
+"speaker": "customer"
 },
 "asrMs": 95
 },
 {
-"atMs": 48465,
+"atMs": 43790,
+"msg": {
+"type": "sentiment.update",
+"score": -0.45,
+"label": "negative",
+"latencyMs": 700
+}
+},
+{
+"atMs": 44161,
 "msg": {
 "type": "transcript.interim",
-"text": "Ugh,",
-"ts": 1784400048465,
+"text": "But then there's",
+"ts": 1784400044161,
 "speaker": "customer"
 },
 "asrMs": 112
 },
 {
-"atMs": 48872,
-"msg": {
-"type": "transcript.final",
-"text": "Ugh, okay.",
-"ts": 1784400048872,
-"speaker": "customer"
-},
-"asrMs": 112
-},
-{
-"atMs": 49563,
+"atMs": 44360,
 "msg": {
 "type": "notes.update",
 "markdown": "**Reason for call**  \nAffiliate income dropped sharply  \n\n**Key details**  \n- Amazon products earning zero  \n- Suspected missing Associate tag  \n- No settings changed on creator side  \n- Campaign launching this weekend  \n\n**Actions taken**  \n- Checking storefront link settings  \n\n**Follow-ups**  \n—"
 }
 },
 {
-"atMs": 51453,
-"msg": {
-"type": "transcript.interim",
-"text": "But then the other thing — even my non-Amazon",
-"ts": 1784400051453,
-"speaker": "customer"
-},
-"asrMs": 83
-},
-{
-"atMs": 54170,
+"atMs": 44750,
 "msg": {
 "type": "transcript.final",
-"text": "But then the other thing — even my non-Amazon links, the click analytics just show zero.",
-"ts": 1784400054170,
+"text": "But then there's this other thing.",
+"ts": 1784400044750,
+"speaker": "customer"
+},
+"asrMs": 112
+},
+{
+"atMs": 46916,
+"msg": {
+"type": "transcript.interim",
+"text": "Even my non-Amazon links, the click",
+"ts": 1784400046916,
 "speaker": "customer"
 },
 "asrMs": 83
 },
 {
-"atMs": 54648,
+"atMs": 48810,
+"msg": {
+"type": "transcript.final",
+"text": "Even my non-Amazon links, the click analytics just show zero.",
+"ts": 1784400048810,
+"speaker": "customer"
+},
+"asrMs": 83
+},
+{
+"atMs": 49359,
 "msg": {
 "type": "transcript.interim",
 "text": "Nothing's",
-"ts": 1784400054648,
+"ts": 1784400049359,
 "speaker": "customer"
 },
 "asrMs": 88
 },
 {
-"atMs": 54910,
+"atMs": 49530,
 "msg": {
 "type": "sentiment.update",
-"score": -0.65,
+"score": -0.6,
 "label": "negative",
-"latencyMs": 800
+"latencyMs": 780
 }
 },
 {
-"atMs": 55070,
+"atMs": 49710,
 "msg": {
 "type": "docs.update",
 "docs": [
@@ -463,7 +454,7 @@
 "id": 36,
 "title": "Link Click Analytics",
 "snippet": "# Link Click Analytics\n\nUse this procedure when a creator asks about clicks, why a link shows no data, or what the analytics do and don't track.\n\n## What we track\nEvery storefront and post l",
-"score": 0.59,
+"score": 0.6,
 "body": "# Link Click Analytics\n\nUse this procedure when a creator asks about clicks, why a link shows no data, or what the analytics do and don't track.\n\n## What we track\nEvery storefront and post link is served through a tracked `/r/<code>` redirect. We count **click-throughs** — opens per link, over time, by referrer. That's it.\n\n## What we do NOT track\nShopfolio does **not** track sales, revenue, or dollar amounts. Click analytics are revenue-free by design. If a creator expects to see earnings, explain that monetization is intentionally out of scope and only click data is available.\n\n## Troubleshooting \"no clicks\"\n1. Confirm the link in the creator's bio/post is the `/r/<code>` short link, not the raw destination URL — raw links bypass tracking.\n2. Analytics roll up on a short delay; brand-new links can read zero for a few minutes.\n3. Ad blockers and some in-app browsers suppress the redirect ping, so counts are a floor, not an exact number.\n\n## Escalate when\n- A link that clearly gets traffic reports zero for more than an hour."
 },
 {
@@ -491,176 +482,204 @@
 }
 },
 {
-"atMs": 56526,
+"atMs": 49750,
 "msg": {
 "type": "transcript.final",
 "text": "Nothing's counting.",
-"ts": 1784400056526,
+"ts": 1784400049750,
 "speaker": "customer"
 },
 "asrMs": 88
 },
 {
-"atMs": 57226,
+"atMs": 50430,
 "msg": {
 "type": "sentiment.update",
-"score": -0.6,
+"score": -0.65,
 "label": "negative",
 "latencyMs": 690
 }
 },
 {
-"atMs": 57776,
+"atMs": 51050,
 "msg": {
 "type": "notes.update",
 "markdown": "**Reason for call**  \nAffiliate income dropped sharply  \n\n**Key details**  \n- Amazon earnings zero — tag likely dropped  \n- Click analytics also reading zero  \n- No settings changed on creator side  \n- Campaign launching this weekend  \n\n**Actions taken**  \n- Checking storefront link settings  \n\n**Follow-ups**  \n—"
 }
 },
 {
-"atMs": 57835,
+"atMs": 52601,
 "msg": {
 "type": "transcript.interim",
-"text": "That's a separate piece, and",
-"ts": 1784400057835,
-"speaker": "agent"
+"text": "I am so frustrated at this,",
+"ts": 1784400052601,
+"speaker": "customer"
 },
 "asrMs": 104
 },
 {
-"atMs": 59127,
+"atMs": 55170,
 "msg": {
 "type": "transcript.final",
-"text": "That's a separate piece, and it's a good clue.",
-"ts": 1784400059127,
-"speaker": "agent"
+"text": "I am so frustrated at this, and thinking about leaving Shopfolio.",
+"ts": 1784400055170,
+"speaker": "customer"
 },
 "asrMs": 104
 },
 {
-"atMs": 62261,
+"atMs": 55890,
+"msg": {
+"type": "sentiment.update",
+"score": -0.9,
+"label": "frustrated",
+"latencyMs": 760
+}
+},
+{
+"atMs": 55891,
+"msg": {
+"type": "alert.frustration",
+"latencyMs": 760
+}
+},
+{
+"atMs": 58999,
+"msg": {
+"type": "transcript.interim",
+"text": "That's a separate piece,",
+"ts": 1784400058999,
+"speaker": "agent"
+},
+"asrMs": 76
+},
+{
+"atMs": 60650,
+"msg": {
+"type": "transcript.final",
+"text": "That's a separate piece, and a good clue.",
+"ts": 1784400060650,
+"speaker": "agent"
+},
+"asrMs": 76
+},
+{
+"atMs": 63444,
 "msg": {
 "type": "transcript.interim",
 "text": "If click tracking flatlined at the same time, your",
-"ts": 1784400062261,
+"ts": 1784400063444,
 "speaker": "agent"
 },
-"asrMs": 76
+"asrMs": 121
 },
 {
-"atMs": 65103,
+"atMs": 65770,
 "msg": {
 "type": "transcript.final",
 "text": "If click tracking flatlined at the same time, your storefront domain may have lost its tracking connection.",
-"ts": 1784400065103,
+"ts": 1784400065770,
 "speaker": "agent"
 },
-"asrMs": 76
+"asrMs": 121
 },
 {
-"atMs": 68277,
+"atMs": 68952,
 "msg": {
 "type": "transcript.interim",
 "text": "I can walk you",
-"ts": 1784400068277,
+"ts": 1784400068952,
 "speaker": "agent"
 },
-"asrMs": 121
+"asrMs": 95
 },
 {
-"atMs": 69403,
+"atMs": 70090,
 "msg": {
 "type": "transcript.final",
 "text": "I can walk you through re-verifying it.",
-"ts": 1784400069403,
+"ts": 1784400070090,
 "speaker": "agent"
 },
-"asrMs": 121
+"asrMs": 95
 },
 {
-"atMs": 70703,
+"atMs": 71138,
+"msg": {
+"type": "transcript.interim",
+"text": "Please. Sorry, one",
+"ts": 1784400071138,
+"speaker": "customer"
+},
+"asrMs": 112
+},
+{
+"atMs": 71790,
+"msg": {
+"type": "transcript.final",
+"text": "Please. Sorry, one more thing.",
+"ts": 1784400071790,
+"speaker": "customer"
+},
+"asrMs": 112
+},
+{
+"atMs": 72490,
+"msg": {
+"type": "sentiment.update",
+"score": -0.5,
+"label": "negative",
+"latencyMs": 700
+}
+},
+{
+"atMs": 73090,
 "msg": {
 "type": "notes.update",
 "markdown": "**Reason for call**  \nAffiliate income dropped sharply  \n\n**Key details**  \n- Amazon earnings zero — tag likely dropped  \n- Click tracking flatlined to zero  \n- Storefront domain tracking may be disconnected  \n- Campaign launching this weekend  \n\n**Actions taken**  \n- Checking storefront link settings  \n\n**Follow-ups**  \n- Re-verify domain tracking connection"
 }
 },
 {
-"atMs": 70704,
-"msg": {
-"type": "transcript.final",
-"text": "Please.",
-"ts": 1784400070704,
-"speaker": "customer"
-},
-"asrMs": 95
-},
-{
-"atMs": 71293,
-"msg": {
-"type": "transcript.interim",
-"text": "And — sorry,",
-"ts": 1784400071293,
-"speaker": "customer"
-},
-"asrMs": 112
-},
-{
-"atMs": 72401,
-"msg": {
-"type": "transcript.final",
-"text": "And — sorry, one more —",
-"ts": 1784400072401,
-"speaker": "customer"
-},
-"asrMs": 112
-},
-{
-"atMs": 74816,
+"atMs": 74455,
 "msg": {
 "type": "transcript.interim",
 "text": "I tried importing my new LTK links this",
-"ts": 1784400074816,
+"ts": 1784400074455,
 "speaker": "customer"
 },
 "asrMs": 83
 },
 {
-"atMs": 76994,
+"atMs": 76610,
 "msg": {
 "type": "transcript.final",
 "text": "I tried importing my new LTK links this morning and the import just hangs forever.",
-"ts": 1784400076994,
+"ts": 1784400076610,
 "speaker": "customer"
 },
 "asrMs": 83
 },
 {
-"atMs": 77714,
+"atMs": 77310,
 "msg": {
 "type": "sentiment.update",
 "score": -0.7,
 "label": "frustrated",
-"latencyMs": 770
+"latencyMs": 730
 }
 },
 {
-"atMs": 77715,
-"msg": {
-"type": "alert.frustration",
-"latencyMs": 770
-}
-},
-{
-"atMs": 77860,
+"atMs": 77371,
 "msg": {
 "type": "transcript.interim",
 "text": "Spinning wheel,",
-"ts": 1784400077860,
+"ts": 1784400077371,
 "speaker": "customer"
 },
 "asrMs": 88
 },
 {
-"atMs": 77944,
+"atMs": 77560,
 "msg": {
 "type": "docs.update",
 "docs": [
@@ -696,165 +715,174 @@
 }
 },
 {
-"atMs": 79432,
+"atMs": 78050,
 "msg": {
 "type": "transcript.final",
 "text": "Spinning wheel, never finishes.",
-"ts": 1784400079432,
+"ts": 1784400078050,
 "speaker": "customer"
 },
 "asrMs": 88
 },
 {
-"atMs": 80132,
+"atMs": 78730,
 "msg": {
 "type": "sentiment.update",
-"score": -0.55,
+"score": -0.6,
 "label": "negative",
-"latencyMs": 710
+"latencyMs": 700
 }
 },
 {
-"atMs": 80732,
+"atMs": 79400,
 "msg": {
 "type": "notes.update",
 "markdown": "**Reason for call**  \nAffiliate income dropped sharply  \n\n**Key details**  \n- Amazon earnings zero — tag likely dropped  \n- Click tracking reading zero  \n- LTK import hanging — never finishes  \n- Campaign launching this weekend  \n\n**Actions taken**  \n- Checking storefront link settings  \n\n**Follow-ups**  \n- Re-verify domain tracking connection"
 }
 },
 {
-"atMs": 81017,
+"atMs": 80782,
 "msg": {
 "type": "transcript.interim",
-"text": "No need to apologize, this is",
-"ts": 1784400081017,
+"text": "Okay, no need to apologize. This is",
+"ts": 1784400080782,
 "speaker": "agent"
 },
 "asrMs": 104
 },
 {
-"atMs": 82586,
+"atMs": 82730,
 "msg": {
 "type": "transcript.final",
-"text": "No need to apologize, this is exactly what I'm here for.",
-"ts": 1784400082586,
+"text": "Okay, no need to apologize. This is exactly what I'm here for.",
+"ts": 1784400082730,
 "speaker": "agent"
 },
 "asrMs": 104
 },
 {
-"atMs": 85056,
+"atMs": 85495,
 "msg": {
 "type": "transcript.interim",
-"text": "The LTK import hang is a known one when a",
-"ts": 1784400085056,
+"text": "The LTK import hang is a known",
+"ts": 1784400085495,
 "speaker": "agent"
 },
 "asrMs": 76
 },
 {
-"atMs": 87807,
+"atMs": 87830,
 "msg": {
 "type": "transcript.final",
-"text": "The LTK import hang is a known one when a batch is too large — there's a workaround.",
-"ts": 1784400087807,
+"text": "The LTK import hang is a known bug. There is a workaround.",
+"ts": 1784400087830,
 "speaker": "agent"
 },
 "asrMs": 76
 },
 {
-"atMs": 91163,
+"atMs": 91963,
 "msg": {
 "type": "transcript.interim",
-"text": "Let's do it in order: fix the Amazon tag first so",
-"ts": 1784400091163,
+"text": "Let's do it in order. Fix the Amazon tag first so",
+"ts": 1784400091963,
 "speaker": "agent"
 },
 "asrMs": 121
 },
 {
-"atMs": 94555,
+"atMs": 95270,
 "msg": {
 "type": "transcript.final",
-"text": "Let's do it in order: fix the Amazon tag first so this weekend's campaign actually earns, then tracking, then LTK.",
-"ts": 1784400094555,
+"text": "Let's do it in order. Fix the Amazon tag first so this weekend's campaign actually earns, then tracking, then LTK.",
+"ts": 1784400095270,
 "speaker": "agent"
 },
 "asrMs": 121
 },
 {
-"atMs": 94812,
+"atMs": 95714,
 "msg": {
 "type": "transcript.interim",
 "text": "Sound",
-"ts": 1784400094812,
+"ts": 1784400095714,
 "speaker": "agent"
 },
 "asrMs": 95
 },
 {
-"atMs": 95219,
+"atMs": 95970,
 "msg": {
 "type": "transcript.final",
 "text": "Sound good?",
-"ts": 1784400095219,
+"ts": 1784400095970,
 "speaker": "agent"
 },
 "asrMs": 95
 },
 {
-"atMs": 95836,
-"msg": {
-"type": "transcript.interim",
-"text": "Yes.",
-"ts": 1784400095836,
-"speaker": "customer"
-},
-"asrMs": 112
-},
-{
-"atMs": 95905,
+"atMs": 96620,
 "msg": {
 "type": "notes.update",
 "markdown": "**Reason for call**  \nAffiliate income dropped sharply  \n\n**Key details**  \n- Amazon earnings zero — tag likely dropped  \n- Click tracking reading zero  \n- LTK import hangs on large batch  \n- Campaign launching this weekend  \n\n**Actions taken**  \n- Checking storefront link settings  \n\n**Follow-ups**  \n- Fix Associate tag first, then re-verify tracking  \n- Retry LTK import in smaller batches"
 }
 },
 {
-"atMs": 96986,
+"atMs": 96787,
 "msg": {
-"type": "transcript.final",
-"text": "Yes. Okay.",
-"ts": 1784400096986,
+"type": "transcript.interim",
+"text": "Yes.",
+"ts": 1784400096787,
 "speaker": "customer"
 },
 "asrMs": 112
 },
 {
-"atMs": 98129,
-"msg": {
-"type": "transcript.interim",
-"text": "I feel a lot better",
-"ts": 1784400098129,
-"speaker": "customer"
-},
-"asrMs": 83
-},
-{
-"atMs": 99254,
+"atMs": 97250,
 "msg": {
 "type": "transcript.final",
-"text": "I feel a lot better already — thank you.",
-"ts": 1784400099254,
+"text": "Yes. Okay.",
+"ts": 1784400097250,
+"speaker": "customer"
+},
+"asrMs": 112
+},
+{
+"atMs": 97930,
+"msg": {
+"type": "sentiment.update",
+"score": 0.1,
+"label": "neutral",
+"latencyMs": 680
+}
+},
+{
+"atMs": 98304,
+"msg": {
+"type": "transcript.interim",
+"text": "I feel a lot",
+"ts": 1784400098304,
 "speaker": "customer"
 },
 "asrMs": 83
 },
 {
-"atMs": 99954,
+"atMs": 99370,
+"msg": {
+"type": "transcript.final",
+"text": "I feel a lot better already. Thank you.",
+"ts": 1784400099370,
+"speaker": "customer"
+},
+"asrMs": 83
+},
+{
+"atMs": 100070,
 "msg": {
 "type": "sentiment.update",
-"score": 0.4,
+"score": 0.5,
 "label": "positive",
-"latencyMs": 680
+"latencyMs": 690
 }
 }
 ]
