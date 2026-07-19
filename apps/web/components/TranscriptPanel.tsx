@@ -79,7 +79,6 @@ export function TranscriptPanel({
   interim: string;
   interimSpeaker?: Speaker | null;
 }) {
-  const endRef = useRef<HTMLDivElement | null>(null);
   const wrapRef = useRef<HTMLDivElement | null>(null);
   const pinnedRef = useRef(true);
 
@@ -90,10 +89,14 @@ export function TranscriptPanel({
   };
 
   useEffect(() => {
-    // Only auto-scroll once there's content — otherwise this fires on mount and
-    // scrolls the whole page down past the header (empty transcript).
-    if ((finals.length || interim) && pinnedRef.current) {
-      endRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    // Keep the newest line in view by scrolling ONLY the transcript box — never
+    // the page. Element.scrollIntoView() bubbles up and scrolls every scrollable
+    // ancestor, including the window, so on mobile each incoming utterance yanked
+    // the whole page back to the transcript while you were reading further down.
+    // Setting scrollTop on the inner list is self-contained and moves nothing else.
+    const el = wrapRef.current;
+    if (el && pinnedRef.current && (finals.length || interim)) {
+      el.scrollTo({ top: el.scrollHeight, behavior: "smooth" });
     }
   }, [finals, interim]);
 
@@ -118,7 +121,6 @@ export function TranscriptPanel({
           <Line key={i} text={l.text} speaker={l.speaker} />
         ))}
         {interim && <Line text={interim} speaker={interimSpeaker} interim />}
-        <div ref={endRef} />
       </div>
     </Panel>
   );
