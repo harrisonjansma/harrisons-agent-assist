@@ -12,7 +12,8 @@ It's a public re-build of a real-time agent-assist system I built at Capital One
 
 **Live demo:** https://agentassistdemo.harrisonjansma.com · **Write-up:** https://harrisonjansma.com
 
-> "Acme Support" and all procedure docs are fictional sample data.
+> The demo is themed around **Shopfolio**, a creator-storefront side-project; the
+> support call and all procedure docs are fictional sample data.
 
 ## Architecture
 

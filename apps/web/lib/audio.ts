@@ -3,12 +3,11 @@
  *
  * - Mic mode (`startMic`) is fully live: it streams ~250ms webm/opus chunks to
  *   the worker, which relays them to Deepgram and runs the downstream LLMs.
- * - Sample mode (`replaySample`) is a RECORDED REPLAY: the call was run through
- *   the real pipeline once (see scripts/capture-replay.mjs) and every event —
- *   transcript, notes, doc hits, sentiment, alert — was captured with its
- *   playback timestamp into public/sample-replay.json. Here we just play the
- *   audio and re-emit those cached events on their original cadence, so nothing
- *   is re-transcribed or re-scored. It's deterministic, instant, and free.
+ * - Sample mode (`replaySample`) is a RECORDED REPLAY: a recorded call whose
+ *   speaker-labelled transcript, notes, doc hits, sentiment and alert are cached
+ *   as timed events in public/sample-replay.json. Here we just play the audio and
+ *   re-emit those cached events on their original cadence, so nothing is
+ *   re-transcribed or re-scored. It's deterministic, instant, and free.
  */
 import { LIMITS } from "@call-copilot/shared/protocol";
 import type { ServerMessage } from "@call-copilot/shared/protocol";
