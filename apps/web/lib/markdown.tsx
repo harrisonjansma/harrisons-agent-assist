@@ -2,8 +2,16 @@
  * Minimal markdown renderer for the notes panel. The notes prompt emits a
  * constrained subset (bold section headers, bullet lists, em-dashes), so a tiny
  * purpose-built renderer avoids a markdown dependency (ADR: keep deps thin).
+ *
+ * The notes render as instrument sections: each `**Header**` becomes a mono
+ * rule-underlined caption, and the lines under it become dotted rows.
  */
 import { Fragment, type ReactNode } from "react";
+
+export interface NoteSection {
+  title: string;
+  items: string[];
+}
 
 function renderInline(text: string): ReactNode[] {
   // split on **bold** spans
@@ -16,42 +24,38 @@ function renderInline(text: string): ReactNode[] {
   });
 }
 
-export function Markdown({ source }: { source: string }) {
-  const lines = source.split("\n");
-  const out: ReactNode[] = [];
-  let bullets: string[] = [];
-
-  const flush = () => {
-    if (bullets.length) {
-      out.push(
-        <ul key={`ul-${out.length}`} className="ml-4 list-disc space-y-0.5">
-          {bullets.map((b, i) => (
-            <li key={i}>{renderInline(b)}</li>
-          ))}
-        </ul>,
-      );
-      bullets = [];
+/** `**Header**` starts a section; every other non-blank line is one of its rows. */
+export function parseNotes(source: string): NoteSection[] {
+  const sections: NoteSection[] = [];
+  for (const raw of source.split("\n")) {
+    const line = raw.trim();
+    if (!line) continue;
+    if (line.startsWith("**")) {
+      sections.push({ title: line.replace(/\*\*/g, "").trim(), items: [] });
+    } else if (sections.length) {
+      sections[sections.length - 1]!.items.push(line.replace(/^[-*]\s*/, ""));
     }
-  };
-
-  for (const raw of lines) {
-    const line = raw.trimEnd();
-    if (!line.trim()) {
-      flush();
-      continue;
-    }
-    const bullet = line.match(/^\s*[-*]\s+(.*)$/);
-    if (bullet) {
-      bullets.push(bullet[1]!);
-      continue;
-    }
-    flush();
-    out.push(
-      <p key={`p-${out.length}`} className="mt-2">
-        {renderInline(line)}
-      </p>,
-    );
   }
-  flush();
-  return <div className="animate-rise text-sm leading-relaxed text-ink-muted [&_strong]:text-ink">{out}</div>;
+  return sections;
+}
+
+export function NoteSections({ source }: { source: string }) {
+  const sections = parseNotes(source);
+  return (
+    <>
+      {sections.map((s, i) => (
+        <div key={`${s.title}-${i}`} className="a-rise">
+          <div className="border-b border-line-2 pb-1.5 font-mono text-[9.5px] font-bold uppercase tracking-[0.15em] text-ink-faint">
+            {s.title}
+          </div>
+          {s.items.map((it, j) => (
+            <div key={j} className="flex gap-2 pt-[7px] text-[13.5px] leading-[1.55] text-ink-2">
+              <span aria-hidden className="mt-[7px] h-1 w-1 flex-none rounded-full bg-brand-2" />
+              <span>{renderInline(it)}</span>
+            </div>
+          ))}
+        </div>
+      ))}
+    </>
+  );
 }

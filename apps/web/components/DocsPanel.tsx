@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { DocHit } from "@call-copilot/shared/protocol";
-import { Panel, Empty } from "./TranscriptPanel";
+import { Panel, PanelBody, Empty } from "./TranscriptPanel";
 
 function DocCard({ doc }: { doc: DocHit }) {
   const [open, setOpen] = useState(false);
@@ -34,18 +34,28 @@ function DocCard({ doc }: { doc: DocHit }) {
   return (
     <button
       onClick={toggle}
-      className="animate-rise w-full rounded-xl border border-[var(--line)] bg-[var(--surface)] p-3 text-left transition hover:border-[var(--line-strong)] hover:bg-[var(--surface-strong)]"
+      aria-expanded={open}
+      className="a-rise w-full rounded-xl border border-line-3 bg-surface px-3 py-[11px] text-left transition hover:border-[#cfd4e8] hover:bg-[#fbfbff]"
     >
       <div className="flex items-center justify-between gap-2">
-        <span className="text-sm font-medium text-ink">{doc.title}</span>
-        <span className="shrink-0 rounded-md bg-[var(--brand)]/10 px-1.5 py-0.5 text-[10px] tabular-nums text-brand-ink">
+        <span className="text-[13px] font-semibold leading-[1.35] text-ink">{doc.title}</span>
+        <span className="flex-none rounded-md bg-[rgba(79,70,229,0.09)] px-1.5 py-0.5 font-mono text-[10px] font-bold tabular-nums text-brand-ink">
           {doc.score.toFixed(2)}
         </span>
       </div>
-      <div className="mt-2 h-1 w-full overflow-hidden rounded-full bg-black/[0.07]">
-        <div className="brand-gradient h-full rounded-full transition-all" style={{ width: `${pct}%` }} />
+      <div className="mt-[9px] h-[3px] w-full overflow-hidden rounded-full bg-line-2">
+        <div
+          className="brand-gradient h-full rounded-full"
+          style={{ width: `${pct}%`, transition: "width 500ms ease" }}
+        />
       </div>
-      <p className="mt-2 text-xs leading-relaxed text-ink-faint [&]:line-clamp-4">
+      {/* Collapsed, the snippet's own line breaks would eat the 3-line clamp;
+          expanded, the doc body needs them. */}
+      <p
+        className={`mt-[9px] text-xs leading-[1.55] text-ink-faint ${
+          open ? "whitespace-pre-line" : "line-clamp-3"
+        }`}
+      >
         {open ? (loading ? "loading…" : body) : `${doc.snippet}…`}
       </p>
     </button>
@@ -54,8 +64,12 @@ function DocCard({ doc }: { doc: DocHit }) {
 
 export function DocsPanel({ docs }: { docs: DocHit[] }) {
   return (
-    <Panel title="Procedure docs · RAG" accent="#34d399">
-      <div className="scroll-thin h-full space-y-2 overflow-y-auto pr-1">
+    <Panel
+      index="03"
+      title="Procedure docs · RAG"
+      meta={<span className="font-mono text-[10px] text-ink-faint">top {docs.length}</span>}
+    >
+      <PanelBody className="gap-[9px]">
         {docs.length === 0 ? (
           <Empty
             icon={
@@ -70,7 +84,7 @@ export function DocsPanel({ docs }: { docs: DocHit[] }) {
         ) : (
           docs.map((d) => <DocCard key={d.id} doc={d} />)
         )}
-      </div>
+      </PanelBody>
     </Panel>
   );
 }

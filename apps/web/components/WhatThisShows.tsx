@@ -1,39 +1,34 @@
-import { useState } from "react";
+import { InfoCard } from "./InfoCard";
+
+function MiniStat({ value, caption }: { value: string; caption: string }) {
+  return (
+    <div className="bg-surface px-3.5 py-3">
+      <div className="font-mono text-[17px] font-bold text-ink">{value}</div>
+      <div className="mt-0.5 font-mono text-[9.5px] uppercase tracking-[0.12em] text-ink-faint">{caption}</div>
+    </div>
+  );
+}
 
 export function WhatThisShows() {
-  const [open, setOpen] = useState(false);
   return (
-    <div className="card text-sm">
-      <button
-        onClick={() => setOpen((o) => !o)}
-        className="flex w-full items-center justify-between px-4 py-3 text-left font-medium text-ink"
-      >
-        What this shows
-        <span className="grid h-6 w-6 place-items-center rounded-lg border border-[var(--line)] text-ink-muted">
-          {open ? "–" : "+"}
-        </span>
-      </button>
-      {open && (
-        <div className="animate-rise space-y-3 border-t border-[var(--line)] px-4 py-4 text-ink-muted">
-          <p className="leading-relaxed">
-            <span className="text-ink">This isn&rsquo;t a machine-learning model I trained.</span> The
-            speech-to-text is Deepgram; the notes, document retrieval, and sentiment are OpenAI API calls. No
-            model was built or fine-tuned here — those are off-the-shelf, general-purpose services anyone can call.
-          </p>
-          <p className="leading-relaxed">
-            What it demonstrates is <span className="text-ink">using assistive / generative-AI technologies
-            intelligently</span> — composing those commodity models into a real-time product that fills an
-            actual need: helping a support agent, live and mid-conversation, before a call goes sideways.
-          </p>
-          <p className="leading-relaxed text-ink-muted">
-            The engineering is in the orchestration, not the models: a single-WebSocket streaming design;
-            cadence and debouncing so the LLM calls stay cheap; retrieval thresholds so the docs stay quiet
-            until they&rsquo;re relevant; speaker diarization; sub-second transcript-to-alert latency; and a
-            cached replay so this demo is deterministic and free to run. Knowing <em>which</em> model to reach
-            for, and building the system around it, is the skill on display.
-          </p>
-        </div>
-      )}
-    </div>
+    <InfoCard index="05" title="What this shows">
+      <p className="text-[13.5px] leading-[1.65] text-ink-muted">
+        <span className="font-semibold text-ink">This isn&rsquo;t a model I trained.</span> Speech-to-text is
+        Deepgram; notes, retrieval, and sentiment are OpenAI API calls — off-the-shelf services anyone can call.
+      </p>
+      <p className="mt-3 text-[13.5px] leading-[1.65] text-ink-muted">
+        What it demonstrates is composing those commodity models into a real-time product that fills an actual
+        need: helping a support agent, live and mid-conversation, before a call goes sideways.
+      </p>
+      <p className="mt-3 text-[13.5px] leading-[1.65] text-ink-muted">
+        The engineering is in the orchestration: a single-WebSocket streaming design; cadence and debouncing so LLM
+        calls stay cheap; retrieval thresholds so docs stay quiet until relevant; speaker diarization; sub-second
+        transcript-to-alert latency; and a cached replay so the demo is deterministic and free to run.
+      </p>
+      <div className="mt-4 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-line bg-line">
+        <MiniStat value="3" caption="parallel jobs / utterance" />
+        <MiniStat value="0.28" caption="cosine retrieval floor" />
+      </div>
+    </InfoCard>
   );
 }

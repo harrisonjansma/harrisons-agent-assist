@@ -2,67 +2,116 @@ import { useEffect, useRef } from "react";
 import type { Speaker } from "@call-copilot/shared/protocol";
 import type { TranscriptLine } from "../lib/useCopilot";
 
+/** m:ss from the start of the call. */
+export function fmtElapsed(ms: number): string {
+  const s = Math.max(0, Math.floor(ms / 1000));
+  return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
+}
+
+/** Instrument panel: mono index + title on the left, live meta on the right. */
 export function Panel({
+  index,
   title,
+  meta,
   children,
-  right,
-  accent,
 }: {
+  index: string;
   title: string;
+  meta?: React.ReactNode;
   children: React.ReactNode;
-  right?: React.ReactNode;
-  accent?: string;
 }) {
   return (
-    <section className="card flex h-full min-h-0 flex-col overflow-hidden">
-      <div className="flex items-center justify-between border-b border-[var(--line)] px-4 py-2.5">
-        <div className="flex items-center gap-2">
-          <span className="h-1.5 w-1.5 rounded-full" style={{ background: accent ?? "var(--brand)" }} />
-          <h2 className="text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-muted">{title}</h2>
+    <section className="flex h-full min-h-0 flex-col overflow-hidden rounded-2xl border border-line bg-surface">
+      <div className="flex items-center justify-between gap-3 border-b border-line-2 px-3.5 py-[11px]">
+        <div className="flex items-baseline gap-2.5">
+          <span className="font-mono text-[10px] tracking-[0.16em] text-ink-ghost">{index}</span>
+          <h2 className="font-display text-xs font-semibold uppercase tracking-[0.13em] text-ink">{title}</h2>
         </div>
-        {right}
+        {meta}
       </div>
-      <div className="min-h-0 flex-1 p-4">{children}</div>
+      {children}
     </section>
+  );
+}
+
+/** Shared scrolling body for the three panels. */
+export function PanelBody({
+  children,
+  scrollRef,
+  onScroll,
+  className = "",
+}: {
+  children: React.ReactNode;
+  scrollRef?: React.RefObject<HTMLDivElement>;
+  onScroll?: () => void;
+  className?: string;
+}) {
+  return (
+    <div
+      ref={scrollRef}
+      onScroll={onScroll}
+      className={`scroll-thin flex min-h-0 flex-1 flex-col overflow-y-auto p-3.5 ${className}`}
+    >
+      {children}
+    </div>
   );
 }
 
 export function Empty({ icon, children }: { icon?: React.ReactNode; children: React.ReactNode }) {
   return (
     <div className="flex h-full flex-col items-center justify-center gap-3 px-4 text-center">
-      {icon && <div className="text-ink-faint opacity-70">{icon}</div>}
-      <p className="max-w-[15rem] text-sm leading-relaxed text-ink-faint">{children}</p>
+      {icon && <div className="text-ink-ghost">{icon}</div>}
+      <p className="max-w-[15rem] text-[13px] leading-relaxed text-ink-faint">{children}</p>
     </div>
   );
 }
 
 /** One transcript line. With a speaker it's a chat bubble; without (mic), a plain line. */
-function Line({ text, speaker, interim }: { text: string; speaker?: Speaker | null; interim?: boolean }) {
+function Line({
+  text,
+  speaker,
+  atMs,
+  interim,
+}: {
+  text: string;
+  speaker?: Speaker | null;
+  atMs: number;
+  interim?: boolean;
+}) {
   if (!speaker) {
     return (
-      <p className={`animate-rise text-[15px] leading-relaxed ${interim ? "italic text-ink-faint" : "text-ink"}`}>
+      <p
+        className={`a-rise text-[13.5px] leading-[1.6] ${
+          interim ? "italic text-ink-muted opacity-[0.62]" : "text-ink"
+        }`}
+      >
         {text}
       </p>
     );
   }
   const isAgent = speaker === "agent";
   return (
-    <div className={`flex ${isAgent ? "justify-end" : "justify-start"}`}>
+    <div className={`a-rise flex ${isAgent ? "justify-end" : "justify-start"}`}>
       <div
-        className={`animate-rise max-w-[88%] rounded-2xl px-3 py-2 ${
-          isAgent
-            ? "rounded-tr-sm border border-[var(--line)] bg-[var(--surface-strong)]"
-            : "rounded-tl-sm border border-[var(--brand)]/25 bg-[var(--brand)]/[0.10]"
-        } ${interim ? "opacity-70" : ""}`}
+        className={`max-w-[88%] rounded-[14px] border px-3 py-2 ${
+          isAgent ? "border-line-3 bg-surface-strong" : "border-[rgba(79,70,229,0.28)] bg-[rgba(79,70,229,0.075)]"
+        } ${interim ? "opacity-[0.62]" : ""}`}
       >
-        <div
-          className={`mb-0.5 text-[10px] font-semibold uppercase tracking-[0.12em] ${
-            isAgent ? "text-ink-faint" : "text-brand-ink"
+        <div className="mb-[3px] flex items-baseline gap-[7px]">
+          <span
+            className={`font-mono text-[9px] font-bold tracking-[0.14em] ${
+              isAgent ? "text-ink-faint" : "text-brand-ink"
+            }`}
+          >
+            {isAgent ? "AGENT" : "CUSTOMER"}
+          </span>
+          <span className="font-mono text-[9px] text-[#b3b8ca]">{fmtElapsed(atMs)}</span>
+        </div>
+        <p
+          className={`text-[13.5px] leading-[1.6] ${isAgent ? "text-ink-muted" : "text-ink"} ${
+            interim ? "italic" : ""
           }`}
         >
-          {isAgent ? "Agent" : "Customer"}
-        </div>
-        <p className={`text-[14px] leading-relaxed ${isAgent ? "text-ink-muted" : "text-ink"} ${interim ? "italic" : ""}`}>
           {text}
         </p>
       </div>
@@ -74,10 +123,12 @@ export function TranscriptPanel({
   finals,
   interim,
   interimSpeaker,
+  interimAtMs,
 }: {
   finals: TranscriptLine[];
   interim: string;
   interimSpeaker?: Speaker | null;
+  interimAtMs: number;
 }) {
   const wrapRef = useRef<HTMLDivElement | null>(null);
   const pinnedRef = useRef(true);
@@ -103,8 +154,12 @@ export function TranscriptPanel({
   const empty = finals.length === 0 && !interim;
 
   return (
-    <Panel title="Transcript" accent="#4f46e5">
-      <div ref={wrapRef} onScroll={onScroll} className="scroll-thin h-full space-y-2 overflow-y-auto pr-1">
+    <Panel
+      index="01"
+      title="Transcript"
+      meta={<span className="font-mono text-[10px] text-ink-faint">diarized · 2 speakers</span>}
+    >
+      <PanelBody scrollRef={wrapRef} onScroll={onScroll} className="gap-[9px]">
         {empty && (
           <Empty
             icon={
@@ -118,10 +173,10 @@ export function TranscriptPanel({
           </Empty>
         )}
         {finals.map((l, i) => (
-          <Line key={i} text={l.text} speaker={l.speaker} />
+          <Line key={i} text={l.text} speaker={l.speaker} atMs={l.atMs} />
         ))}
-        {interim && <Line text={interim} speaker={interimSpeaker} interim />}
-      </div>
+        {interim && <Line text={interim} speaker={interimSpeaker} atMs={interimAtMs} interim />}
+      </PanelBody>
     </Panel>
   );
 }

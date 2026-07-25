@@ -1,33 +1,21 @@
-import { useEffect, useRef, useState } from "react";
-import { Markdown } from "../lib/markdown";
-import { Panel, Empty } from "./TranscriptPanel";
+import { NoteSections } from "../lib/markdown";
+import { Panel, PanelBody, Empty } from "./TranscriptPanel";
 
-export function NotesPanel({ notes, drafting }: { notes: string; drafting: boolean }) {
-  const [flash, setFlash] = useState(false);
-  const prev = useRef(notes);
-
-  useEffect(() => {
-    if (notes && notes !== prev.current) {
-      setFlash(true);
-      const t = setTimeout(() => setFlash(false), 1000);
-      prev.current = notes;
-      return () => clearTimeout(t);
-    }
-    prev.current = notes;
-  }, [notes]);
-
-  const spinner = drafting ? (
-    <span className="flex items-center gap-1.5 text-[11px] font-medium text-brand-ink">
-      <span className="h-1.5 w-1.5 animate-pulse2 rounded-full bg-brand" />
-      drafting
+export function NotesPanel({ notes, rev, drafting }: { notes: string; rev: number; drafting: boolean }) {
+  // The rev counter replaces the old "drafting" spinner; the dot still pulses
+  // while a redraft is actually in flight.
+  const meta = (
+    <span className="inline-flex items-center gap-1.5 font-mono text-[10px] text-brand-ink">
+      <span aria-hidden className={`h-1.5 w-1.5 rounded-full bg-brand-2 ${drafting ? "a-pulse" : ""}`} />
+      rev {String(rev).padStart(2, "0")}
     </span>
-  ) : null;
+  );
 
   return (
-    <Panel title="Call notes" accent="#7c3aed" right={spinner}>
-      <div className={`scroll-thin h-full overflow-y-auto rounded-lg ${flash ? "animate-flash" : ""}`}>
+    <Panel index="02" title="Call notes" meta={meta}>
+      <PanelBody className="gap-3.5">
         {notes ? (
-          <Markdown source={notes} />
+          <NoteSections source={notes} />
         ) : (
           <Empty
             icon={
@@ -40,7 +28,7 @@ export function NotesPanel({ notes, drafting }: { notes: string; drafting: boole
             Notes draft themselves — reason, key details, actions, follow-ups — as the call unfolds.
           </Empty>
         )}
-      </div>
+      </PanelBody>
     </Panel>
   );
 }

@@ -31,6 +31,8 @@ export interface TranscriptLine {
   text: string;
   ts: number;
   speaker?: Speaker;
+  /** ms since the call started — drives the per-line timestamp in the panel. */
+  atMs: number;
 }
 
 export interface CopilotState {
@@ -39,15 +41,26 @@ export interface CopilotState {
   finals: TranscriptLine[];
   interim: string;
   interimSpeaker: Speaker | null;
+  interimAtMs: number;
   notes: string;
   notesDrafting: boolean;
+  /** how many times the notes have been redrafted this session */
+  notesRev: number;
   docs: DocHit[];
+  /** cumulative doc hits retrieved this session (not the current top-N) */
+  docHits: number;
   sentimentScore: number;
   sentimentLabel: SentimentLabel;
   alert: { latencyMs: number; at: number; additionalCount: number } | null;
   asrLatencyMs: number | null;
+  /** latency of the most recent sentiment score (p50 is the aggregate) */
+  sentimentLatencyMs: number | null;
   sentimentP50Ms: number | null;
+  elapsedMs: number;
+  /** sample: the recording's length; mic: the session cap */
+  durationMs: number;
   remainingMs: number;
+  paused: boolean;
   errorMsg: string | null;
 }
 
@@ -68,15 +81,22 @@ const INITIAL: CopilotState = {
   finals: [],
   interim: "",
   interimSpeaker: null,
+  interimAtMs: 0,
   notes: "",
   notesDrafting: false,
+  notesRev: 0,
   docs: [],
+  docHits: 0,
   sentimentScore: 0,
   sentimentLabel: "neutral",
   alert: null,
   asrLatencyMs: null,
+  sentimentLatencyMs: null,
   sentimentP50Ms: null,
+  elapsedMs: 0,
+  durationMs: LIMITS.MAX_SESSION_MS,
   remainingMs: LIMITS.MAX_SESSION_MS,
+  paused: false,
   errorMsg: null,
 };
 
@@ -132,11 +152,19 @@ export function useCopilot() {
    * measures it from the last audio frame.
    */
   const applyMessage = useCallback(
-    (msg: ServerMessage, asrMs?: number) => {
+    (msg: ServerMessage, asrMs?: number, atMs?: number) => {
       const asr = asrMs ?? Date.now() - lastChunkAtRef.current;
+      // Replay events carry their own playback offset; live mic events are
+      // stamped against the session start.
+      const at = atMs ?? Date.now() - startedAtRef.current;
       switch (msg.type) {
         case "transcript.interim":
-          patch({ interim: msg.text, interimSpeaker: msg.speaker ?? null, asrLatencyMs: asr });
+          patch({
+            interim: msg.text,
+            interimSpeaker: msg.speaker ?? null,
+            interimAtMs: at,
+            asrLatencyMs: asr,
+          });
           break;
         case "transcript.final":
           setState((s) => ({
@@ -144,23 +172,24 @@ export function useCopilot() {
             interim: "",
             interimSpeaker: null,
             asrLatencyMs: asr,
-            finals: [...s.finals, { text: msg.text, ts: msg.ts, speaker: msg.speaker }],
+            finals: [...s.finals, { text: msg.text, ts: msg.ts, speaker: msg.speaker, atMs: at }],
             notesDrafting: true,
           }));
           notesAwaitRef.current = true;
           break;
         case "notes.update":
           notesAwaitRef.current = false;
-          patch({ notes: msg.markdown, notesDrafting: false });
+          setState((s) => ({ ...s, notes: msg.markdown, notesDrafting: false, notesRev: s.notesRev + 1 }));
           break;
         case "docs.update":
-          patch({ docs: msg.docs });
+          setState((s) => ({ ...s, docs: msg.docs, docHits: s.docHits + msg.docs.length }));
           break;
         case "sentiment.update": {
           sentimentLatenciesRef.current.push(msg.latencyMs);
           patch({
             sentimentScore: msg.score,
             sentimentLabel: msg.label,
+            sentimentLatencyMs: msg.latencyMs,
             sentimentP50Ms: median(sentimentLatenciesRef.current),
           });
           break;
@@ -206,11 +235,17 @@ export function useCopilot() {
     }
 
     startedAtRef.current = Date.now();
-    patch({ conn: "live" });
-
     const durationMs = fixture.audioDurationMs;
+    patch({ conn: "live", durationMs });
+
     timerRef.current = setInterval(() => {
-      patch({ remainingMs: Math.max(0, durationMs - (Date.now() - startedAtRef.current)) });
+      // Read the replay's own clock so the progress bar freezes with the call
+      // when it's paused, instead of running on ahead of the transcript.
+      const elapsed = audioRef.current?.clockMs?.() ?? Date.now() - startedAtRef.current;
+      patch({
+        elapsedMs: Math.min(durationMs, Math.max(0, elapsed)),
+        remainingMs: Math.max(0, durationMs - elapsed),
+      });
     }, 250);
 
     audioRef.current = replaySample(el, fixture, applyMessage, () => {
@@ -232,9 +267,10 @@ export function useCopilot() {
 
       // countdown timer + hard stop at the session cap
       timerRef.current = setInterval(() => {
-        const remaining = LIMITS.MAX_SESSION_MS - (Date.now() - startedAtRef.current);
+        const elapsed = Date.now() - startedAtRef.current;
+        const remaining = LIMITS.MAX_SESSION_MS - elapsed;
         if (remaining <= 0) stop();
-        else patch({ remainingMs: remaining });
+        else patch({ elapsedMs: elapsed, remainingMs: remaining });
       }, 250);
 
       const onChunk = (blob: Blob) => {
@@ -290,7 +326,22 @@ export function useCopilot() {
     [startReplay, startMicSession],
   );
 
+  /** Transport for the cached replay (sample mode only). */
+  const pause = useCallback(() => {
+    if (!audioRef.current?.pause) return;
+    audioRef.current.pause();
+    patch({ paused: true });
+  }, [patch]);
+
+  const resume = useCallback(() => {
+    if (!audioRef.current?.resume) return;
+    audioRef.current.resume();
+    patch({ paused: false });
+  }, [patch]);
+
+  const restart = useCallback(() => void start("sample"), [start]);
+
   useEffect(() => () => cleanup(), [cleanup]);
 
-  return { state, start, stop };
+  return { state, start, stop, pause, resume, restart };
 }
