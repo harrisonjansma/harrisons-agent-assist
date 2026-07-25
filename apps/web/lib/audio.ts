@@ -14,6 +14,12 @@ import type { ServerMessage } from "@call-copilot/shared/protocol";
 
 export interface AudioSource {
   stop: () => void;
+  /** Replay only: freeze/unfreeze the clock (and the audible playback). */
+  pause?: () => void;
+  resume?: () => void;
+  /** Replay only: current playback position, so the UI clock never drifts
+   *  from the events (a wall clock would keep running while paused). */
+  clockMs?: () => number;
 }
 
 /** One cached pipeline event, keyed to a playback position. */
@@ -77,14 +83,23 @@ export async function startMic(onChunk: (b: Blob) => void): Promise<AudioSource>
 export function replaySample(
   audioEl: HTMLAudioElement | null,
   fixture: ReplayFixture,
-  emit: (msg: ServerMessage, asrMs?: number) => void,
+  emit: (msg: ServerMessage, asrMs?: number, atMs?: number) => void,
   onEnd: () => void,
 ): AudioSource {
   const events = [...fixture.events].sort((a, b) => a.atMs - b.atMs);
   let i = 0;
   let stopped = false;
   let finished = false;
-  const startWall = performance.now();
+  let paused = false;
+  let pausedAt = 0;
+  let pausedTotal = 0;
+
+  // Wall clock with paused time subtracted out — used only for the fallback
+  // branches below (autoplay blocked, or audio finished before the events do).
+  const now = (): number =>
+    performance.now() - pausedTotal - (paused ? performance.now() - pausedAt : 0);
+
+  const startWall = now();
   let endedWall = 0;
 
   const clockMs = (): number => {
@@ -92,19 +107,19 @@ export function replaySample(
       return audioEl.currentTime * 1000; // audio is master while it advances
     }
     if (audioEl && audioEl.ended) {
-      if (!endedWall) endedWall = performance.now();
-      return fixture.audioDurationMs + (performance.now() - endedWall);
+      if (!endedWall) endedWall = now();
+      return fixture.audioDurationMs + (now() - endedWall);
     }
     // Not started / autoplay blocked — run on the wall clock so it still plays.
-    return performance.now() - startWall;
+    return now() - startWall;
   };
 
   const timer = setInterval(() => {
-    if (stopped) return;
+    if (stopped || paused) return;
     const t = clockMs();
     while (i < events.length && events[i]!.atMs <= t) {
       const ev = events[i]!;
-      emit(ev.msg, ev.asrMs);
+      emit(ev.msg, ev.asrMs, ev.atMs);
       i++;
     }
     if (i >= events.length && !finished) {
@@ -127,5 +142,24 @@ export function replaySample(
         }
       }
     },
+    pause: () => {
+      if (paused || stopped) return;
+      paused = true;
+      pausedAt = performance.now();
+      try {
+        audioEl?.pause();
+      } catch {
+        /* noop */
+      }
+    },
+    resume: () => {
+      if (!paused || stopped) return;
+      pausedTotal += performance.now() - pausedAt;
+      paused = false;
+      void audioEl?.play().catch(() => {
+        /* autoplay blocked — the replay still runs, just silently */
+      });
+    },
+    clockMs,
   };
 }
