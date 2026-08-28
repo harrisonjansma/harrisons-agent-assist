@@ -90,12 +90,12 @@ export function Hero(props: {
       <div className="min-w-0">
         <p className="flex items-center gap-2.5 font-mono text-[11px] font-medium uppercase tracking-[0.24em] text-brand-ink">
           <span aria-hidden className="a-pulse-fast h-[7px] w-[7px] rounded-full bg-brand" />
-          Real-time agent assist
+          Live in the browser
         </p>
         <h1 className="mt-3.5 font-display text-[40px] font-bold leading-[0.98] tracking-[-0.035em] [text-wrap:balance] mid:text-[52px] wide:text-[66px]">
-          Read the call
+          Real-time
           <br />
-          <span className="headline-text">as it happens.</span>
+          <span className="headline-text">agent assist.</span>
         </h1>
         <p className="mt-5 max-w-[37rem] text-[16.5px] leading-[1.6] text-ink-muted [text-wrap:pretty]">
           Speech in, four things out — a streaming transcript, self-drafting call notes, procedure docs pulled by
