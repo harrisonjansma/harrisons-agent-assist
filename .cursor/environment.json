@@ -1,0 +1,20 @@
+{
+  "name": "Live Call Copilot",
+  "install": "corepack enable >/dev/null 2>&1 || true; pnpm install --frozen-lockfile && pnpm --filter @call-copilot/shared build",
+  "terminals": [
+    {
+      "name": "worker",
+      "command": "pnpm dev:worker",
+      "description": "WebSocket + ASR/LLM/RAG orchestration worker on :8080 (GET /healthz, WS /ws)."
+    },
+    {
+      "name": "web",
+      "command": "pnpm dev:web",
+      "description": "Next.js three-panel UI on :3000. Use 'Play a sample call' for a keyless end-to-end demo."
+    }
+  ],
+  "ports": [
+    { "name": "web", "port": 3000 },
+    { "name": "worker", "port": 8080 }
+  ]
+}
